@@ -1,15 +1,10 @@
 <div id="outer">
-    <div class="container-fluid p-0 d-flex bg-white" id="main-container">
-        <div class="container-fluid m-0 col-2 bg-dark">
-            <div class="row align-items-center justify-content-center mt-4">
+    <div class="container-fluid d-flex flex-column bg-white" id="main-container">
+        <div class="row">
+            <div class="col-2 py-3 d-flex align-items-center justify-content-center">
                 <img src="../../assets/images/diagnosys-colorido.png" alt="Logo Diagnosys" id="logo-diagnosys">
             </div>
-            <div id="sidebar" class="col-2  bd-dark">
-            
-            </div>
-        </div>
-        <div id="barra-topo" class="container-fluid d-flex flex-column bg-warning">
-            <div class="row">
+            <div id="barra-topo" class="flex-grow-1 px-5 pt-3 d-flex align-items-center">
                 <div>
                     <h3>Painel</h3>
                 </div>
@@ -17,10 +12,13 @@
                     <h3>Painel</h3>
                 </div>
             </div>
-            <div class="row flex-grow-1">
-                <div id="modulos" class="col bg-info">
-                    
-                </div>
+        </div>
+        <div class="row flex-grow-1">
+            <div id="sidebar" class="col-2">
+
+            </div>
+            <div id="modulos" class="flex-grow-1 bg-info">
+                
             </div>
         </div>
     </div>
