@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AutenticacaoRoutingModule } from './autenticacao-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -10,7 +11,8 @@ import { RegistroComponent } from './registro/registro.component';
   declarations: [LoginComponent, RegistroComponent],
   imports: [
     CommonModule,
-    AutenticacaoRoutingModule
+    AutenticacaoRoutingModule,
+    FormsModule,
   ]
 })
 export class AutenticacaoModule { }
