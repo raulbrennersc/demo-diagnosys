@@ -11,6 +11,9 @@ html{
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+h1, h2, h3, h4{
+    color: #666666;
+}
 
 a:hover{
     cursor: pointer;
@@ -24,10 +27,6 @@ input{
     border-radius: 10px;
     color: var(--input-color);
     opacity: 1;
-}
-
-.row{
-    margin-bottom: 10px;
 }
 
 .btn{
@@ -45,5 +44,11 @@ input{
     border-color: transparent;
     background-color: var(--main-color);
     color: #fff;
+}
+
+.icone-input-right{
+    border-left: 0;
+    border-width: 1px;
+    color: var(--input-color);
 }
 

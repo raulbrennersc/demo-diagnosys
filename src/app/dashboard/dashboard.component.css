@@ -1,0 +1,29 @@
+#outer{
+    background-color: #fff;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+#main-container{
+    
+    height: 100%;
+}
+
+.div-topo{
+    height: 80px;
+}
+
+#logo-diagnosys{
+    width: 180px;
+}
+
+#sidebar{
+    
+}
+
+#modulos{
+    border-top-left-radius: 109px;
+    background: transparent linear-gradient(180deg, #EFF2F6 0%, #FAFAFA 76%, #FFFFFF 100%, #E9E9E9 100%, #E2E2E2 100%, #ADADAD 100%, #DBDBDB 100%) 0% 0% no-repeat padding-box;
+}

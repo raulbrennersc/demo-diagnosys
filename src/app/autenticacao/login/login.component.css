@@ -3,7 +3,7 @@ a{
     color: #2484D0;
 }
 
-#main-div{
+#outer{
     background-image: url(../../../assets/images/lavoura-opacity-30.jpg);
     background-attachment:fixed;
     background-repeat: no-repeat;
@@ -31,10 +31,6 @@ input{
     border-right: none;
 }
 
-.icone-input{
-    border-left: 0;
-    border-width: 1px;
-    border-top-right-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
-    color: var(--input-color);
+.row{
+    margin-bottom: 10px;
 }

@@ -10,7 +10,6 @@ export class AutenticacaoGuard implements CanActivate {
   constructor(private autenticacaoService: AutenticacaoService, private router: Router) { }
   canActivate(): boolean {
     if (this.autenticacaoService.loggedIn()) {
-      alert('ta logado!');
      return true;
     }
 
