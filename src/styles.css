@@ -9,6 +9,7 @@
 
 html{
     font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a:hover{
@@ -39,3 +40,10 @@ input{
 .btn-primary{
     border-color: var(--main-color);
 }
+
+.btn-primary:hover{
+    border-color: transparent;
+    background-color: var(--main-color);
+    color: #fff;
+}
+

@@ -3,16 +3,30 @@ a{
     color: #2484D0;
 }
 
+#main-div{
+    background-image: url(../../../assets/images/lavoura-opacity-30.jpg);
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+#logo-diagnosys{
+    margin-top: 100px;
+    width: 500px;
+}
+
 #main-container{
-    width: 520px;
-    margin-top: 200px;
+    background-color: #fff;
+    width: 450px;
     border-width: 1px;
     border-style: solid;
     border-radius: 5px;
-    border-color: var(--main-color);
+    border-color: #fff;
     padding-top: 40px;
     padding-bottom: 40px;
 }
+
 input{
     border-right: none;
 }
