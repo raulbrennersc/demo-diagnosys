@@ -4,7 +4,7 @@ import { AutenticacaoGuard } from './_guards/autenticacao.guard';
 
 
 const routes: Routes = [
-  { path: 'autenticacao', loadChildren: () => import('./autenticacao/autenticacao.module').then(m => m.AutenticacaoModule) },
+  { path: '', loadChildren: () => import('./autenticacao/autenticacao.module').then(m => m.AutenticacaoModule) },
   { 
     path: 'dashboard',
     runGuardsAndResolvers: 'always',

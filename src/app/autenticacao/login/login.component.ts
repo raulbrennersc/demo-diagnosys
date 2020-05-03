@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.autenticacaoService.login(this.model).subscribe(next => {
       alert('login realizado');
+      this.router.navigate(['/dashboard']);
     }, error => {
       alert('falha ao realizar login');
     }, () => {
