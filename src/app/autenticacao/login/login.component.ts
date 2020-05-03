@@ -13,12 +13,15 @@ export class LoginComponent implements OnInit {
   constructor(private autenticacaoService: AutenticacaoService, private router: Router) { }
 
   ngOnInit() {
+    if(this.loggedIn()){
+      this.router.navigate(['/painel']);
+    }
   }
 
   login() {
     this.autenticacaoService.login(this.model).subscribe(next => {
       alert('login realizado');
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/painel']);
     }, error => {
       alert('falha ao realizar login');
     }, () => {

@@ -14,7 +14,7 @@ export class AutenticacaoGuard implements CanActivate {
     }
 
     alert('You shall not pass!');
-    this.router.navigate(['/autenticacao/login']);
+    this.router.navigate(['/']);
     return false;
   }
   
