@@ -1,0 +1,26 @@
+
+a{
+    color: #2484D0;
+}
+
+#main-container{
+    width: 520px;
+    margin-top: 200px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: var(--main-color);
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+input{
+    border-right: none;
+}
+
+.icone-input{
+    border-left: 0;
+    border-width: 1px;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    color: var(--input-color);
+}
