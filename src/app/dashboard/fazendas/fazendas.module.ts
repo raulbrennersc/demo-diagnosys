@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { FazendasRoutingModule } from './fazendas-routing.module';
 import { FazendasComponent } from './fazendas.component';
@@ -15,7 +16,8 @@ import { ConfirmacaoFazendaComponent } from './confirmacao-fazenda/confirmacao-f
   declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent],
   imports: [
     CommonModule,
-    FazendasRoutingModule
+    FazendasRoutingModule,
+    FormsModule
   ]
 })
 export class FazendasModule { }

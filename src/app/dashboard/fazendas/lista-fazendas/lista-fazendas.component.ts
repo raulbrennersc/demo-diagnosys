@@ -9,7 +9,7 @@ import { FazendasService } from 'src/app/_services/fazenda.service';
 })
 export class ListaFazendasComponent implements OnInit {
 
-  fazendas: FazendaToList[] = [];
+  fazendas: any = [];
   constructor(private fazendaService: FazendasService) { }
 
   ngOnInit(): void {

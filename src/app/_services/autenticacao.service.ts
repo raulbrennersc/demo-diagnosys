@@ -24,7 +24,6 @@ export class AutenticacaoService {
           if (user) {
             localStorage.setItem('token', user.token);
             this.decodedToken = this.jwtHelper.decodeToken(user.token);
-            console.log(this.decodedToken);
           }
         })
       );
@@ -43,7 +42,6 @@ export class AutenticacaoService {
     const token = localStorage.getItem('token');
     if (token) {
       this.decodedToken = this.jwtHelper.decodeToken(token);
-      console.log(this.decodedToken);
     }
 
   }

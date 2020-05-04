@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StaticService } from 'src/app/_services/static.service';
 
 @Component({
   selector: 'app-localizacao-fazenda',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalizacaoFazendaComponent implements OnInit {
   localizacaoFazenda: any = {};
-  constructor() { }
-
+  constructor(private staticService: StaticService) { }
+  estados: any = [];
+  municipios: any = [];
   ngOnInit(): void {
+    this.staticService.listarEstados()
+      .subscribe(resposta => this.estados = resposta);
+  }
+
+  carregarMunicipios(idEstado) {
+    this.staticService.listarMunicipios(idEstado)
+      .subscribe(resposta => this.municipios = resposta);
+      console.log('caraeasdas');
   }
 
 }
