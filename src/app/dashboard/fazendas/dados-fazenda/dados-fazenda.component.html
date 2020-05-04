@@ -1,1 +1,16 @@
-<p>dados-fazenda works!</p>
+<div class="modulo-div text-center">
+    <div class="container-fluid text-right py-5">
+        <form>
+            <div class="row">
+                    <label class="col-3" for="nomeFazenda">Nome: * </label>
+                    <input class="form-control col-5" type="text" name="nomeFazenda">
+            </div>
+            <div class="row">
+                    <label class="col-3" for="idEstado">Estado: * </label>
+                    <select [(ngModel)]="dadosFazenda.idCultura" class="form-control col-5" name="idEstado">
+                        <option *ngFor="let cultura of culturas"  [ngValue]="cultura.id">{{cultura.nome}}</option>
+                    </select>
+            </div>
+        </form>
+    </div>
+</div>
