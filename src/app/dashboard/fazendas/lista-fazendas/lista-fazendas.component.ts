@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FazendaToList } from 'src/app/_models/fazendas/fazenda-to-list';
+import { FazendasService } from 'src/app/_services/fazenda.service';
 
 @Component({
   selector: 'app-lista-fazendas',
@@ -7,25 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaFazendasComponent implements OnInit {
 
-  fazendas: any = [{
-    nome: 'fazenda 1'
-  },
-  {
-    nome: 'fazenda 2'
-  },
-  {
-    nome: 'fazenda 3'
-  },
-  {
-    nome: 'fazenda 4'
-  },
-  {
-    nome: 'fazenda 5'
-  },
-  ]
-  constructor() { }
+  fazendas: FazendaToList[] = [];
+  constructor(private fazendaService: FazendasService) { }
 
   ngOnInit(): void {
+    this.fazendaService.listarFazendas()
+    .subscribe(resposta => this.fazendas = resposta);
   }
 
 }
