@@ -48,9 +48,9 @@ export class MapComponent{drawnItems: FeatureGroup = featureGroup();
 	public onDrawCreated(e: any) {
 		// tslint:disable-next-line:no-console
 		console.log('Draw Created Event!');
-
 		const layer = (e as DrawEvents.Created).layer;
 		this.drawnItems.addLayer(layer);
+		console.log(e.layer.toGeoJSON());
 	}
 
 	public onDrawStart(e: any) {
