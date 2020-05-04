@@ -9,4 +9,9 @@
 
 .row{
     align-items: center;
+    padding-bottom: 5px;
+}
+
+label{
+    width: 200px;
 }
