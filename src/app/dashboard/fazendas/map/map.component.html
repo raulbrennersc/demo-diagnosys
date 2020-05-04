@@ -1,6 +1,11 @@
-<div style="height: 300px;"
-     leaflet 
+<div leaflet style="height: 500px; margin: 0; padding: 0;"
+     leafletDraw
      [leafletOptions]="options"
-     [leafletLayersControl]="layersControl">
-     [leafletLayers]="layers">
+     [leafletDrawOptions]="drawOptions"
+     [leafletDrawLocal]="drawLocal"
+     (leafletDrawCreated)="onDrawCreated($event)"
+     (leafletDrawStart)="onDrawStart($event)">
+
+	<div [leafletLayer]="drawnItems"></div>
+
 </div>
