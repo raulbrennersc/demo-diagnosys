@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./localizacao-fazenda.component.css']
 })
 export class LocalizacaoFazendaComponent implements OnInit {
-
+  localizacaoFazenda: any = {};
   constructor() { }
 
   ngOnInit(): void {

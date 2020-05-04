@@ -1,0 +1,12 @@
+.modulo-div{
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    border-radius: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.row{
+    align-items: center;
+}
