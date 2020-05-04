@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    LeafletModule,
     JwtModule.forRoot({
       config: {
          tokenGetter,

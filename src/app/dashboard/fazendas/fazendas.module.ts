@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 
 import { FazendasRoutingModule } from './fazendas-routing.module';
 import { FazendasComponent } from './fazendas.component';
@@ -10,14 +12,16 @@ import { LocalizacaoFazendaComponent } from './localizacao-fazenda/localizacao-f
 import { DadosFazendaComponent } from './dados-fazenda/dados-fazenda.component';
 import { DemarcacaoFazendaComponent } from './demarcacao-fazenda/demarcacao-fazenda.component';
 import { ConfirmacaoFazendaComponent } from './confirmacao-fazenda/confirmacao-fazenda.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
-  declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent],
+  declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent, MapComponent],
   imports: [
     CommonModule,
     FazendasRoutingModule,
-    FormsModule
+    FormsModule,
+    LeafletModule
   ]
 })
 export class FazendasModule { }
