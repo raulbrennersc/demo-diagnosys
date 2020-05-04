@@ -10,7 +10,7 @@ import * as L from 'leaflet';
 export class MapComponent{drawnItems: FeatureGroup = featureGroup();
 	options = {
 		layers: [
-      tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
+    //   tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
 		],
 		zoom: 10,
@@ -24,9 +24,9 @@ export class MapComponent{drawnItems: FeatureGroup = featureGroup();
 				icon: L.icon({
 					iconSize: [ 25, 41 ],
 					iconAnchor: [ 13, 41 ],
-					iconUrl: '2b3e1faf89f94a4835397e7a43b4f77d.png',
+					iconUrl: 'assets/marker-icon.png',
 					iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
-					shadowUrl: 'a0c6cc1401c107b501efee6477816891.png'
+					shadowUrl: 'assets/marker-shadow.png'
 				})
 			}
 		},
