@@ -1,0 +1,26 @@
+.modulo-div{
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+#cabecalho-cadastro{
+    font-size: 20px;
+}
+
+#steps{
+    font-size: 30px;
+    background-color: grey;
+}
+
+#main-container{
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#icone-cadastro{
+    color: var(--main-color);
+    font-size: 25px;
+}
