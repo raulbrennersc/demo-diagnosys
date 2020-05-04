@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private autenticacaoService: AutenticacaoService, private router: Router) { }
   
   ngOnInit(): void {
-    this.user.name = this.autenticacaoService.decodedToken.NomeUsuario;
+    this.user.nome = this.autenticacaoService.decodedToken.NomeUsuario;
   }
 
   logout() {
