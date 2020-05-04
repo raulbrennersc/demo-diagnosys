@@ -7,7 +7,9 @@ import * as L from 'leaflet';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent{drawnItems: FeatureGroup = featureGroup();
+export class MapComponent{
+	geometries: any = [];
+	drawnItems: FeatureGroup = featureGroup();
 	options = {
 		layers: [
     //   tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
@@ -20,15 +22,20 @@ export class MapComponent{drawnItems: FeatureGroup = featureGroup();
 	drawOptions = {
 		position: 'topright',
 		draw: {
-			marker: {
-				icon: L.icon({
-					iconSize: [ 25, 41 ],
-					iconAnchor: [ 13, 41 ],
-					iconUrl: 'assets/marker-icon.png',
-					iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
-					shadowUrl: 'assets/marker-shadow.png'
-				})
-			}
+			polyline: false,
+			rectangle: false,
+			circle: false,
+			marker: false,
+			circlemarker: false,
+			// marker: {
+			// 	icon: L.icon({
+			// 		iconSize: [ 25, 41 ],
+			// 		iconAnchor: [ 13, 41 ],
+			// 		iconUrl: 'assets/marker-icon.png',
+			// 		iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
+			// 		shadowUrl: 'assets/marker-shadow.png'
+			// 	})
+			// }
 		},
 		edit: {
 			featureGroup: this.drawnItems
@@ -48,9 +55,18 @@ export class MapComponent{drawnItems: FeatureGroup = featureGroup();
 	public onDrawCreated(e: any) {
 		// tslint:disable-next-line:no-console
 		console.log('Draw Created Event!');
+		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
+		if(geojson.features.length == 1){
+			alert('ja tem geometria');
+			return;
+		}
+
+			
 		const layer = (e as DrawEvents.Created).layer;
 		this.drawnItems.addLayer(layer);
-		console.log(e.layer.toGeoJSON());
+		geojson.features.forEach(element => {
+			console.log(element);
+		});
 	}
 
 	public onDrawStart(e: any) {
