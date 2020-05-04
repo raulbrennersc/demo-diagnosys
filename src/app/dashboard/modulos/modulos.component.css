@@ -1,0 +1,17 @@
+.modulo-div{
+    background: transparent;
+    height: 100%;
+    padding-top: 100px;
+}
+
+.card-modulo{
+    background-color: var(--main-color);
+    border-radius: 45px;
+    height: 180px;
+    width: 180px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}

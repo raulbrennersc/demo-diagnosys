@@ -1,8 +1,10 @@
-<div id="outer">
+<div class="outer-div">
     <div class="container-fluid d-flex flex-column bg-white" id="main-container">
         <div class="row">
             <div class="col-2 py-2 d-flex align-items-center justify-content-start">
-                <img src="../../assets/images/diagnosys-colorido.png" alt="Logo Diagnosys" id="logo-diagnosys">
+                <a [routerLink]="['/painel']">
+                    <img src="../../assets/images/diagnosys-colorido.png" alt="Logo Diagnosys" id="logo-diagnosys">
+                </a>
             </div>
             <div id="barra-topo" class="flex-grow-1 px-5 pt-3 d-flex align-items-center">
                 <div>
@@ -20,7 +22,7 @@
             <div id="sidebar" class="col-2">
                 
             </div>
-            <div id="modulos" class="flex-grow-1 bg-info pt-5 pl-5">
+            <div id="modulos" class="flex-grow-1 bg-info">
                 <router-outlet></router-outlet>
             </div>
         </div>

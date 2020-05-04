@@ -5,7 +5,9 @@ import { DashboardComponent } from './dashboard.component';
 import { ModulosComponent } from './modulos/modulos.component';
 
 const routes: Routes = [{ path: '', component: DashboardComponent,
-  children: [{ path: '', component: ModulosComponent}
+  children: [
+    { path: '', component: ModulosComponent},
+    { path: 'fazendas', loadChildren: () => import('./fazendas/fazendas.module').then(m => m.FazendasModule) }
 
   ]
  }];

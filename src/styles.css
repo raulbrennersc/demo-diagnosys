@@ -4,23 +4,26 @@
 
 :root{
     --main-color: #0F8B72;
+    --text-main-color: #666666;
     --input-color: #666666;
 }
 
 html{
-    font-size: 14px;
-    font-family: 'Segoe UI';
 }
 
 body{
-    font-family: 'Segoe UI';
+    font-size: 14px;
+    color: var(--text-main-color)
 }
-h1, h2, h3, h4{
-    color: #666666;
+
+a{
+    color: var(--text-main-color);
 }
 
 a:hover{
     cursor: pointer;
+    text-decoration: none;
+    color: var(--text-main-color);
 }
 
 input{
@@ -32,6 +35,22 @@ input{
     color: var(--input-color);
     opacity: 1;
 }
+
+.outer-div{
+    background-color: #fff;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.modulo-div{
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 
 .btn{
     border-radius: 20px;
@@ -55,4 +74,5 @@ input{
     border-width: 1px;
     color: var(--input-color);
 }
+
 

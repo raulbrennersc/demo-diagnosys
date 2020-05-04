@@ -3,12 +3,8 @@ a{
     color: #2484D0;
 }
 
-#outer{
+.outer-div{
     background-image: url(../../../assets/images/lavoura-opacity-30.jpg);
-    background-attachment:fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
 }
 
 #logo-diagnosys{
