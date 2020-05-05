@@ -11,6 +11,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
   localizacaoFazenda: any = {};
   constructor(private staticService: StaticService, private fazendaService: FazendasService) { }
   @Input() idFazenda: number;
+  @Output() salvar = new EventEmitter<number>();
   estados: any = [];
   municipios: any = [];
 
@@ -32,11 +33,11 @@ export class LocalizacaoFazendaComponent implements OnInit {
       .subscribe(response => this.municipios = response);
   }
 
-  
   avancarEtapa(form){
     this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
     .subscribe(response => {
-      alert('dadosSalvos')
+      alert('dadosSalvos');
+      this.salvar.emit((response as any).id);
     }, response => {
       alert(response.error);
     });

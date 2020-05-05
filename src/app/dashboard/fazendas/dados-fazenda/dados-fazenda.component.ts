@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 
@@ -9,6 +9,7 @@ import { FazendasService } from 'src/app/_services/fazenda.service';
 })
 export class DadosFazendaComponent implements OnInit {
   @Input() idFazenda: number;
+  @Output() salvar = new EventEmitter<any>();
   dadosFazenda: any = {};
   culturas: any = [];
 
@@ -21,6 +22,8 @@ export class DadosFazendaComponent implements OnInit {
         this.fazendaService.consultarDadosFazenda(this.idFazenda)
         .subscribe(response => {
           this.dadosFazenda = response;
+        }, response => {
+
         });
       }
   }
@@ -28,7 +31,8 @@ export class DadosFazendaComponent implements OnInit {
   avancarEtapa(form){
     this.fazendaService.salvarDadosFazenda(this.dadosFazenda, this.idFazenda)
     .subscribe(response => {
-      alert('dadosSalvos')
+      alert('dadosSalvos');
+      this.salvar.emit(true);
     }, response => {
       alert(response.error);
     });
