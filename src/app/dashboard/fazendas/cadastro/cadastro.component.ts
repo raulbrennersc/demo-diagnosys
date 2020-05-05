@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
-
+  fazenda: any = {
+    nome: 'asdasdasda'
+  };
+  
   constructor() { }
-
+  
   ngOnInit(): void {
   }
-
+  
+  avancarEtapa () {
+    console.log('erro');
+  } 
 }
