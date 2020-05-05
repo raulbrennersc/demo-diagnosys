@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FazendasService } from 'src/app/_services/fazenda.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -6,16 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
-  fazenda: any = {
-    nome: 'asdasdasda'
-  };
+  fazenda: any = {};
   
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private fazendaService: FazendasService) { }
   
   ngOnInit(): void {
+    this.carregarFazenda();
   }
-  
+
   avancarEtapa () {
-    console.log('erro');
-  } 
+    this.carregarFazenda();
+  }
+
+  carregarFazenda(){
+    this.activatedRoute.params.subscribe(params => {
+      const idFazenda = params['id'];
+
+      if(idFazenda){
+        this.fazendaService.consultarFazenda(idFazenda)
+        .subscribe(response => {
+          this.fazenda = response;
+          console.log(this.fazenda.idEtapa)
+        }, response => {
+          alert(response.error);
+          this.router.navigate(['']);
+        });
+      }
+    });
+  }
 }

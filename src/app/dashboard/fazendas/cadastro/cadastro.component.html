@@ -8,8 +8,12 @@
                 <span>ETAPAS</span>
             </div>
             <div id="etapa" class="row">
-                <div class="container-fluid p-0 m-0">
-                    <app-localizacao-fazenda></app-localizacao-fazenda>
+                <div class="container-fluid p-0 m-0" [ngSwitch]="fazenda.idEtapa">
+                    <app-localizacao-fazenda [idFazenda]="fazenda.id" *ngSwitchCase="2"></app-localizacao-fazenda>
+                    <!-- <app-localizacao-fazenda *ngSwitchCase="1"></app-localizacao-fazenda>
+                    <app-dados-fazenda  *ngSwitchCase="2"></app-dados-fazenda>
+                    <app-demarcacao-fazenda  *ngSwitchCase="3"></app-demarcacao-fazenda>
+                    <app-confirmacao-fazenda  *ngSwitchCase="4"></app-confirmacao-fazenda> -->
                 </div>
             </div>
         </div>

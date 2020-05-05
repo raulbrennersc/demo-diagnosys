@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FazendaToList } from 'src/app/_models/fazendas/fazenda-to-list';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 
 @Component({

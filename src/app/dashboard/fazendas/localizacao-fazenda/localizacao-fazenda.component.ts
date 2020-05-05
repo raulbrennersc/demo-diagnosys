@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
+import { FazendasService } from 'src/app/_services/fazenda.service';
 
 @Component({
   selector: 'app-localizacao-fazenda',
@@ -7,26 +8,39 @@ import { StaticService } from 'src/app/_services/static.service';
   styleUrls: ['./localizacao-fazenda.component.css']
 })
 export class LocalizacaoFazendaComponent implements OnInit {
-  localizacaoFazenda: any = {
-    nome: 'teste',
-  };
-  constructor(private staticService: StaticService) { }
+  localizacaoFazenda: any = {};
+  constructor(private staticService: StaticService, private fazendaService: FazendasService) { }
+  @Input() idFazenda: number;
   estados: any = [];
   municipios: any = [];
+
   ngOnInit(): void {
     this.staticService.listarEstados()
-      .subscribe(resposta => this.estados = resposta);
+      .subscribe(response => this.estados = response);
+      if(this.idFazenda){
+        this.fazendaService.consultarLocalizacaoFazenda(this.idFazenda)
+        .subscribe(response => {
+          this.localizacaoFazenda = response;
+          this.carregarMunicipios(this.localizacaoFazenda.idEstado);
+        });
+      }
   }
 
   carregarMunicipios(idEstado) {
     this.staticService.listarMunicipios(idEstado)
-      .subscribe(resposta => this.municipios = resposta);
-      console.log('caraeasdas');
+      .subscribe(response => this.municipios = response);
   }
 
   
-  avancarEtapa(){
-    console.log(this.localizacaoFazenda);
+  avancarEtapa(form){
+    this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
+    .subscribe(response => {
+      console.log(response);
+      alert('dadosSalvos')
+    }, response => {
+      console.log(response.error);
+      alert(response.error);
+    });
   }
 
 }

@@ -1,16 +1,22 @@
-<div class="modulo-div text-center">
-    <div class="container-fluid text-right py-5">
-        <form>
-            <div class="row">
-                    <label class="col-3" for="nomeFazenda">Nome: * </label>
-                    <input class="form-control col-5" type="text" name="nomeFazenda">
-            </div>
-            <div class="row">
-                    <label class="col-3" for="idEstado">Estado: * </label>
-                    <select [(ngModel)]="dadosFazenda.idCultura" class="form-control col-5" name="idEstado">
-                        <option *ngFor="let cultura of culturas"  [ngValue]="cultura.id">{{cultura.nome}}</option>
-                    </select>
-            </div>
-        </form>
+<form #dadosForm="ngForm" (submit)="avancarEtapa(dadosForm)">
+    <div class="modulo-div text-center">
+        <div class="container-fluid text-right py-5">
+            <form>
+                <div class="row">
+                        <label class="col-3" for="area">Area total: * </label>
+                        <input class="form-control col-5" type="text" name="area" [(ngModel)]="dadosFazenda.nome" required>
+                        <span class="col text-left">ha</span>
+                </div>
+                <div class="row">
+                        <label class="col-3" for="idCultura">Cultura: * </label>
+                        <select [(ngModel)]="dadosFazenda.idCultura" required class="form-control col-5" name="idCultura">
+                            <option *ngFor="let cultura of culturas"  [ngValue]="cultura.id">{{cultura.nome}}</option>
+                        </select>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+    <div class="row justify-content-end mt-5 pr-2">
+		<button type="submit" class="btn btn-primary px-4">AVANÇAR <i class="fas fa-arrow-right"></i> </button>
+	</div>
+</form>
