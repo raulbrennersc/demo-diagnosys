@@ -7,17 +7,15 @@ import { StaticService } from 'src/app/_services/static.service';
   styleUrls: ['./localizacao-fazenda.component.css']
 })
 export class LocalizacaoFazendaComponent implements OnInit {
-  @Input() fazenda: any;
-  @Output() avancarEtapa = new EventEmitter<Function>();
-
-  localizacaoFazenda: any = {};
+  localizacaoFazenda: any = {
+    nome: 'teste',
+  };
   constructor(private staticService: StaticService) { }
   estados: any = [];
   municipios: any = [];
   ngOnInit(): void {
     this.staticService.listarEstados()
       .subscribe(resposta => this.estados = resposta);
-    this.avancarEtapa.emit(this.avancarFunc);
   }
 
   carregarMunicipios(idEstado) {
@@ -27,8 +25,8 @@ export class LocalizacaoFazendaComponent implements OnInit {
   }
 
   
-  avancarFunc(){
-    console.log('salvando localizacao');
+  avancarEtapa(){
+    console.log(this.localizacaoFazenda);
   }
 
 }

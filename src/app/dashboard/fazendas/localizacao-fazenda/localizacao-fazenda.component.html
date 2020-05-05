@@ -1,38 +1,42 @@
-<div class="modulo-div text-center">
-    <div class="container-fluid text-right py-5">
-        <form>
-            <div class="row">
-                    <label class="col-3" for="nomeFazenda">Nome: * </label>
-                    <input class="form-control col-8" type="text" name="nomeFazenda">
-            </div>
-            <div class="row">
-                    <label class="col-3" for="idEstado">Estado: * </label>
-                    <select (change)="carregarMunicipios(localizacaoFazenda.idEstado)" [(ngModel)]="localizacaoFazenda.idEstado" class="form-control col-3" name="idEstado">
-                        <option *ngFor="let estado of estados"  [ngValue]="estado.id">{{estado.nome}}</option>
-                    </select>
-                    <label class="col-2" for="idMunicipio">Município: * </label>
-                    <select  class="form-control col-3" name="idMunicipio">
-                        <option *ngFor="let municipio of municipios" value={{municipio.id}}>{{municipio.nome}}</option>
-                    </select>
-            </div>
-            <div class="row">
-                    <label class="col-3" for="nomeProprietario">Proprietário: * </label>
-                    <input class="form-control col-8" type="text" name="nomeProprietario">
-            </div>
-            <div class="row">
-                    <label class="col-3" for="nomeGerente">Gerente da Fazenda: * </label>
-                    <input class="form-control col-8" type="text" name="nomeGerente">
-            </div>
-            <div class="row">
-                    <label class="col-3" for="emailFazenda">E-mail da Fazenda: * </label>
-                    <input class="form-control col-2" type="text" name="emailFazenda">
-                    <label class="col-3" for="telefoneFazenda">Telefone da Fazenda: * </label>
-                    <input class="form-control col-3" type="text" name="telefoneFazenda">
-            </div>
-            <div class="row">
-                    <label class="col-3" for="pontoReferencia">Ponto de Referência: * </label>
-                    <input class="form-control col-8" type="text" name="pontoReferencia">
-            </div>
-        </form>
-    </div>
-</div>
+<form class="" (submit)="avancarEtapa()">
+	<div class="modulo-div text-center">
+		<div class="container-fluid text-right py-5 form-group">
+			<div class="row">
+				<label class="col-3" for="nomeFazenda">Nome: * </label>
+				<input class="form-control col-8" type="text" name="nomeFazenda" [(ngModel)]="localizacaoFazenda.nome">
+			</div>
+			<div class="row">
+				<label class="col-3" for="idEstado">Estado: * </label>
+				<select (change)="carregarMunicipios(localizacaoFazenda.idEstado)" [(ngModel)]="localizacaoFazenda.idEstado" class="form-control col-3" name="idEstado">
+				<option *ngFor="let estado of estados"  [ngValue]="estado.id">{{estado.nome}}</option>
+				</select>
+				<label class="col-2" for="idMunicipio">Município: * </label>
+				<select  class="form-control col-3" name="idMunicipio" [(ngModel)]="localizacaoFazenda.idMunicipio">
+				<option *ngFor="let municipio of municipios" value={{municipio.id}}>{{municipio.nome}}</option>
+				</select>
+			</div>
+			<div class="row">
+				<label class="col-3" for="nomeProprietario">Proprietário: * </label>
+				<input class="form-control col-8" type="text" name="nomeProprietario" [(ngModel)]="localizacaoFazenda.proprietario">
+			</div>
+			<div class="row">
+				<label class="col-3" for="nomeGerente">Gerente da Fazenda: * </label>
+				<input class="form-control col-8" type="text" name="nomeGerente" [(ngModel)]="localizacaoFazenda.gerente">
+			</div>
+			<div class="row">
+				<label class="col-3" for="emailFazenda">E-mail da Fazenda: * </label>
+				<input class="form-control col-2" type="text" name="emailFazenda" [(ngModel)]="localizacaoFazenda.email">
+				<label class="col-3" for="telefoneFazenda">Telefone da Fazenda: * </label>
+				<input class="form-control col-3" type="text" name="telefoneFazenda" [(ngModel)]="localizacaoFazenda.telefone">
+			</div>
+			<div class="row">
+				<label class="col-3" for="pontoReferencia">Ponto de Referência: * </label>
+				<input class="form-control col-8" type="text" name="pontoReferencia" [(ngModel)]="localizacaoFazenda.pontoReferencia">
+			</div>
+		</div>
+	</div>
+	
+	<div class="row justify-content-end mt-5 pr-2">
+		<button type="submit" class="btn btn-primary px-4">AVANÇAR <i class="fas fa-arrow-right"></i> </button>
+	</div>
+</form>
