@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-confirmacao-fazenda',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirmacao-fazenda.component.css']
 })
 export class ConfirmacaoFazendaComponent implements OnInit {
+  @Input() idFazenda: number;
 
   constructor() { }
 

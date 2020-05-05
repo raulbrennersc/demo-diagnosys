@@ -23,12 +23,10 @@ export class CadastroComponent implements OnInit {
   carregarFazenda(){
     this.activatedRoute.params.subscribe(params => {
       const idFazenda = params['id'];
-
       if(idFazenda){
         this.fazendaService.consultarFazenda(idFazenda)
         .subscribe(response => {
           this.fazenda = response;
-          console.log(this.fazenda.idEtapa)
         }, response => {
           alert(response.error);
           this.router.navigate(['']);

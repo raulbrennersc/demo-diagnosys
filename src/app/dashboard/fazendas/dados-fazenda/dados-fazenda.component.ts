@@ -17,15 +17,19 @@ export class DadosFazendaComponent implements OnInit {
   ngOnInit(): void {
     this.staticService.listarCulturas()
       .subscribe(resposta => this.culturas = resposta);
+      if(this.idFazenda){
+        this.fazendaService.consultarDadosFazenda(this.idFazenda)
+        .subscribe(response => {
+          this.dadosFazenda = response;
+        });
+      }
   }
 
   avancarEtapa(form){
     this.fazendaService.salvarDadosFazenda(this.dadosFazenda, this.idFazenda)
     .subscribe(response => {
-      console.log(response);
       alert('dadosSalvos')
     }, response => {
-      console.log(response.error);
       alert(response.error);
     });
   }

@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./demarcacao-fazenda.component.css']
 })
 export class DemarcacaoFazendaComponent implements OnInit {
-  @Input() fazenda: any;
+  @Input() idFazenda: number;
   @Output() avancarEtapa = new EventEmitter<Function>();
   constructor() { }
   
@@ -15,7 +15,7 @@ export class DemarcacaoFazendaComponent implements OnInit {
   }
   
   avancarFunc(){
-    console.log('salvando demarcacao');
+    alert('salvando demarcacao');
   }
   
 }

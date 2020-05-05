@@ -7,7 +7,7 @@
 			</div>
 			<div class="row">
 				<label class="col-3" for="localizacao.idEstado">Estado: * </label>
-				<select (ngModelChange)="carregarMunicipios(localizacaoFazenda.idEstado)" [(ngModel)]="localizacaoFazenda.idEstado" class="form-control col-3" required name="idEstado">
+				<select (change)="carregarMunicipios(localizacaoFazenda.idEstado)" [(ngModel)]="localizacaoFazenda.idEstado" class="form-control col-3" required name="idEstado">
 				<option *ngFor="let estado of estados"  [ngValue]="estado.id">{{estado.nome}}</option>
 				</select>
 				<label class="col-2" for="localizacao.idMunicipio">Município: * </label>

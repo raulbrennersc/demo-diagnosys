@@ -27,6 +27,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
   }
 
   carregarMunicipios(idEstado) {
+    console.log(this.localizacaoFazenda);
     this.staticService.listarMunicipios(idEstado)
       .subscribe(response => this.municipios = response);
   }
@@ -35,10 +36,8 @@ export class LocalizacaoFazendaComponent implements OnInit {
   avancarEtapa(form){
     this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
     .subscribe(response => {
-      console.log(response);
       alert('dadosSalvos')
     }, response => {
-      console.log(response.error);
       alert(response.error);
     });
   }
