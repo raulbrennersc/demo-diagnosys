@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { ThrowStmt } from '@angular/compiler';
 
@@ -9,6 +9,7 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class ConfirmacaoFazendaComponent implements OnInit {
   @Input() idFazenda: number;
+  @Output() confirmar = new EventEmitter<boolean>();
 
   fazenda: any;
   etapaCarregada = false;
@@ -28,8 +29,18 @@ export class ConfirmacaoFazendaComponent implements OnInit {
         console.log(this.fazenda);
         this.etapaCarregada = true;
       }, (response) => {
-        console.log('erro');
+        alert('erro ao carregar');
       });
+  }
+
+  confirmarFazenda(){
+    this.fazendaService.concluirFazenda(this.idFazenda)
+    .subscribe(response => {
+      alert('fazenda concluida');
+      this.confirmar.emit(false);
+    }, response => {
+      alert(response.error);
+    })
   }
 
 }

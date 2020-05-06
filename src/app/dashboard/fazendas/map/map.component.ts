@@ -76,8 +76,12 @@ export class MapComponent implements OnInit {
 			this.drawOptions.draw.rectangle = this.ferramentas.rectangle;
 			this.drawOptions.draw.circle = this.ferramentas.circle;
 			this.drawOptions.draw.circlemarker = this.ferramentas.circlemarker;
-			this.drawOptions.edit.edit = this.ferramentas.edit ?? false;
-			this.drawOptions.edit.remove = this.ferramentas.remove ?? false;
+			this.drawOptions.edit.edit = this.ferramentas.edit || false;
+			this.drawOptions.edit.remove = this.ferramentas.remove || false;
+		}
+		else{
+			this.drawOptions.edit.edit = false;
+			this.drawOptions.edit.remove =false;
 		}
 	}
 

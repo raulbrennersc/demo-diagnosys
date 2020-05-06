@@ -38,4 +38,8 @@ export class CadastroComponent implements OnInit {
       }
     });
   }
+
+  concluirCadastro(){
+    this.router.navigate(['painel', 'fazendas']);
+  }
 }

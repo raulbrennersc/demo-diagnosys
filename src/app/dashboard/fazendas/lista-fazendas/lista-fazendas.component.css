@@ -7,6 +7,18 @@
     margin-right: 100px;
 }
 
+a{
+    margin: 0px;
+    padding: 0px;
+    color: white;
+}
+
+i{
+    margin: 0px;
+    padding: 0px;
+    color: white;
+}
+
 .card-fazenda{
     color: #fff;
     background-color: #264B5A;

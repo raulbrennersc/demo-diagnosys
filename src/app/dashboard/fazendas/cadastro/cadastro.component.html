@@ -13,7 +13,7 @@
                     <app-localizacao-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="1"></app-localizacao-fazenda>
                     <app-dados-fazenda  [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="2"></app-dados-fazenda>
                     <app-demarcacao-fazenda  [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="3"></app-demarcacao-fazenda>
-                    <app-confirmacao-fazenda  [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="4"></app-confirmacao-fazenda>
+                    <app-confirmacao-fazenda  [idFazenda]="fazenda.id" (confirmar)="concluirCadastro()" *ngSwitchCase="4"></app-confirmacao-fazenda>
                 </div>
             </div>
         </div>
