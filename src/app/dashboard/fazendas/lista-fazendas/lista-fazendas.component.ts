@@ -13,7 +13,8 @@ export class ListaFazendasComponent implements OnInit {
 
   ngOnInit(): void {
     this.fazendaService.listarFazendas()
-    .subscribe(resposta => this.fazendas = resposta);
+    .subscribe(resposta => this.fazendas = resposta,
+      response => alert(response.error));
   }
 
 }

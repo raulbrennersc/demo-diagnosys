@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents } from 'leaflet'
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents, Map} from 'leaflet';
 import * as L from 'leaflet';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -8,12 +9,15 @@ import * as L from 'leaflet';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent{
+	@Input() geometriaCadastrada: GeoJSON.Polygon;
+	@Output() geometriaDesenhada = new EventEmitter<GeoJSON.Polygon>();
+
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
 	options = {
 		layers: [
-    //   tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
+      tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
+    //   tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
 		],
 		zoom: 10,
 		center: latLng({ lat: -21.228959, lng: -45.003086 })
@@ -52,26 +56,28 @@ export class MapComponent{
 		}
 	};
 
+	onMapReady(map: Map) {
+		this.drawnItems.addLayer(L.geoJSON(this.geometriaCadastrada))
+	}
+
 	public onDrawCreated(e: any) {
-		// tslint:disable-next-line:no-console
-		console.log('Draw Created Event!');
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
 		if(geojson.features.length == 1){
 			alert('ja tem geometria');
 			return;
 		}
 
-			
+
+
 		const layer = (e as DrawEvents.Created).layer;
 		this.drawnItems.addLayer(layer);
-		geojson.features.forEach(element => {
-			console.log(element);
-		});
+		geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
+
+		this.geometriaDesenhada.emit(geojson.features[0].geometry as GeoJSON.Polygon)
 	}
 
 	public onDrawStart(e: any) {
-		// tslint:disable-next-line:no-console
-		console.log('Draw Started Event!');
+
 	}
 
 }
