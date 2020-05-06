@@ -8,12 +8,14 @@ import { from } from 'rxjs';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent{
+export class MapComponent implements OnInit {
 	@Input() geometriaCadastrada: GeoJSON.Polygon;
-	@Output() geometriaDesenhada = new EventEmitter<GeoJSON.Polygon>();
+	@Input() ferramentas: any;
+	@Output() geometriaDesenhada = new EventEmitter<GeoJSON.Geometry>();
 
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
+
 	options = {
 		layers: [
       tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
@@ -23,7 +25,7 @@ export class MapComponent{
 		center: latLng({ lat: -21.228959, lng: -45.003086 })
 	};
 
-	drawOptions = {
+	drawOptions: any = {
 		position: 'topright',
 		draw: {
 			polyline: false,
@@ -31,6 +33,7 @@ export class MapComponent{
 			circle: false,
 			marker: false,
 			circlemarker: false,
+			polygon: false,
 			// marker: {
 			// 	icon: L.icon({
 			// 		iconSize: [ 25, 41 ],
@@ -42,7 +45,9 @@ export class MapComponent{
 			// }
 		},
 		edit: {
-			featureGroup: this.drawnItems
+			featureGroup: this.drawnItems,
+			edit: {},
+			remove: {}
 		}
 	};
 
@@ -56,8 +61,28 @@ export class MapComponent{
 		}
 	};
 
-	onMapReady(map: Map) {
-		this.drawnItems.addLayer(L.geoJSON(this.geometriaCadastrada))
+	ngOnInit() {
+		if(this.geometriaCadastrada){
+			const layer = L.geoJSON(this.geometriaCadastrada);
+			this.drawnItems.addLayer(layer);
+			const center = layer.getBounds().getCenter();
+			this.options.center = center;
+		}
+
+		if(this.ferramentas){
+			this.drawOptions.draw.marker = this.ferramentas.marker;
+			this.drawOptions.draw.polygon = this.ferramentas.polygon;
+			this.drawOptions.draw.polyline = this.ferramentas.polyline;
+			this.drawOptions.draw.rectangle = this.ferramentas.rectangle;
+			this.drawOptions.draw.circle = this.ferramentas.circle;
+			this.drawOptions.draw.circlemarker = this.ferramentas.circlemarker;
+			this.drawOptions.edit.edit = this.ferramentas.edit ?? false;
+			this.drawOptions.edit.remove = this.ferramentas.remove ?? false;
+		}
+	}
+
+	public onMapReady(map: Map) {
+		
 	}
 
 	public onDrawCreated(e: any) {
@@ -73,7 +98,7 @@ export class MapComponent{
 		this.drawnItems.addLayer(layer);
 		geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
 
-		this.geometriaDesenhada.emit(geojson.features[0].geometry as GeoJSON.Polygon)
+		this.geometriaDesenhada.emit(geojson.features[0].geometry as GeoJSON.Geometry)
 	}
 
 	public onDrawStart(e: any) {

@@ -1,1 +1,49 @@
-<p>confirmacao-fazenda works!</p>
+<div class="modulo-div text-center">
+    <div *ngIf="etapaCarregada"  class="container-fluid pb-5">
+        <div class="row">
+            <div class="col-2 text-left mb-1 mr-n5 d-flex align-items-start">
+                <span><strong>Localização</strong></span>
+            </div>
+            <div class="flex-grow-1 pr-5"><hr></div>
+        </div>
+        <div class="row">
+            <div class="d-flex pl-5 flex-column align-items-start">
+                <span><strong>Nome:</strong> {{fazenda.localizacaoFazenda.nome}}</span>
+                <span><strong>Estado:</strong> {{fazenda.localizacaoFazenda.nomeEstado}}</span>
+                <span><strong>Município:</strong> {{fazenda.localizacaoFazenda.nomeMunicipio}}</span>
+                <span><strong>Proprietário:</strong> {{fazenda.localizacaoFazenda.proprietario}}</span>
+                <span><strong>Gerente da Fazenda:</strong> {{fazenda.localizacaoFazenda.gerente}}</span>
+                <span><strong>Contato da Fazenda:</strong> {{fazenda.localizacaoFazenda.telefone}}</span>
+                <span><strong>Ponto de referência:</strong> {{fazenda.localizacaoFazenda.pontoReferencia}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 text-left mb-1 mr-1 d-flex align-items-start">
+                <span><strong>Dados da Fazenda</strong></span>
+            </div>
+            <div class="flex-grow-1 pr-5"><hr></div>
+        </div>
+        <div class="row">
+            <div class="d-flex pl-5 flex-column align-items-start">
+                <span><strong>Cultura:</strong> {{fazenda.dadosFazenda.nomeCultura}}</span>
+                <span><strong>Área total:</strong> {{fazenda.dadosFazenda.areaTotal}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1 text-left mb-1 d-flex align-items-start">
+                <span><strong>Mapa</strong></span>
+            </div>
+            <div class="flex-grow-1 pr-5"><hr></div>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <app-map [geometriaCadastrada]="fazenda.demarcacao" ></app-map>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-end mt-5 pr-2 pb-5">
+    <button type="submit" class="btn btn-primary px-4">CONCLUIR <i class="fas fa-save"></i> </button>
+</div>

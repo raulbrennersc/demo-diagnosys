@@ -9,7 +9,13 @@ import { FazendasService } from 'src/app/_services/fazenda.service';
 export class DemarcacaoFazendaComponent implements OnInit {
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<boolean>();
+
   etapaCarregada = false;
+  opcoesMapa = {
+    polygon: true,
+    edit: {},
+    remove: {},
+  };
 
   geometria: GeoJSON.Feature<GeoJSON.Polygon>;
   constructor(private fazendaService: FazendasService) { }
@@ -23,6 +29,10 @@ export class DemarcacaoFazendaComponent implements OnInit {
   }
   
   avancarEtapa(){
+    if(!this.geometria){
+      alert('nao desenhou');
+      return;
+    }
     this.fazendaService.salvarDemarcacaoFazenda(this.geometria, this.idFazenda)
     .subscribe(response => {
       alert('dados salvos');
@@ -33,20 +43,18 @@ export class DemarcacaoFazendaComponent implements OnInit {
   }
 
   consultarGeometria () {
-    console.log('consultando');
     if(!this.idFazenda){
       this.etapaCarregada = true;
       return;
     }
 
     this.fazendaService.consultarDemarcacaoFazenda(this.idFazenda)
-      .subscribe(x => {
-        this.geometria = x as GeoJSON.Feature<GeoJSON.Polygon>;
-        this.etapaCarregada = true;
-        console.log('damarcacao', this.geometria);
-      }, x => {
-        this.etapaCarregada = true;
-      });
+      .subscribe(response => {
+          this.geometria = response as GeoJSON.Feature<GeoJSON.Polygon>;
+          this.etapaCarregada = true;
+        }, response => {
+          this.etapaCarregada = true;
+        });
   }
   
 }

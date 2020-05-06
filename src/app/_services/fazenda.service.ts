@@ -15,6 +15,10 @@ export class FazendasService {
     return this.http.get(this.baseUrl);
   }
 
+  consultarFazendaCompleta(idFazenda: number) {
+    return this.http.get(this.baseUrl + idFazenda + '/Completa');
+  }
+
   consultarFazenda(idFazenda: number) {
     return this.http.get(this.baseUrl + idFazenda);
   }
