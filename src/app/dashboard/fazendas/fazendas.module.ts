@@ -14,10 +14,11 @@ import { DadosFazendaComponent } from './dados-fazenda/dados-fazenda.component';
 import { DemarcacaoFazendaComponent } from './demarcacao-fazenda/demarcacao-fazenda.component';
 import { ConfirmacaoFazendaComponent } from './confirmacao-fazenda/confirmacao-fazenda.component';
 import { MapComponent } from './map/map.component';
+import { EtapasFazendaComponent } from './etapas-fazenda/etapas-fazenda.component';
 
 
 @NgModule({
-  declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent, MapComponent],
+  declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent, MapComponent, EtapasFazendaComponent],
   imports: [
     CommonModule,
     FazendasRoutingModule,
