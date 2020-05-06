@@ -21,4 +21,8 @@ export class StaticService {
     return this.http.get(this.baseUrl + 'culturas');
   }
 
+  listarEtapasFazenda() {
+    return this.http.get(this.baseUrl + 'etapasFazenda');
+  }
+
 }
