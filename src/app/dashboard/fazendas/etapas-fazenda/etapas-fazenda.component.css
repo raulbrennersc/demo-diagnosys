@@ -1,0 +1,28 @@
+.step-circle{
+    background-color: var(--main-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 90px;
+}
+
+.step-line{
+    position: static;
+    background-color: var(--main-color);
+    height: 5px;
+
+    font-size: 15px;
+    text-align: center;
+}
+
+.step:hover{
+    cursor: pointer;
+}
+
+span{
+    position: relative;
+    top: -25px;
+}
+
+.disabled{
+    background-color: var(--disabled-step-color);
+}
