@@ -4,8 +4,8 @@
     </div>
     <div id="main-container" class="container">
         <div class="container-fluid">
-            <app-etapas-fazenda [etapas]="etapas" [etapaFazenda]="fazenda.idEtapa"
-                (alterarEtapa)="alterarEtapa($event)">
+            <app-etapas-fazenda *ngIf="etapasCarregadas" [(etapas)]="etapas" [(etapaFazenda)]="fazenda.idEtapa"
+                [(etapaAtual)]="etapaAtiva" (alterarEtapa)="alterarEtapa($event)">
             </app-etapas-fazenda>
             <div id="etapa" class="row">
                 <div class="container-fluid p-0 m-0" [ngSwitch]="etapaAtiva">

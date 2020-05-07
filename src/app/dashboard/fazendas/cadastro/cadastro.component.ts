@@ -12,6 +12,7 @@ export class CadastroComponent implements OnInit {
   fazenda: any = { idEtapa: 1 };
   etapas: any = [];
   etapaAtiva = 1;
+  etapasCarregadas = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private fazendaService: FazendasService, private staticService: StaticService) { }
 
@@ -26,6 +27,7 @@ export class CadastroComponent implements OnInit {
   carregarFazenda(idNovaFazenda = undefined) {
     if (idNovaFazenda) {
       this.router.navigate(['painel', 'fazendas', 'cadastro', idNovaFazenda]);
+      return;
     }
 
     this.activatedRoute.params.subscribe(params => {
@@ -35,19 +37,27 @@ export class CadastroComponent implements OnInit {
           .subscribe(response => {
             this.fazenda = response;
             this.etapaAtiva = this.fazenda.idEtapa;
+            if (!this.etapasCarregadas)
+              this.carregarEtapas();
           }, response => {
             alert(response.error);
             this.router.navigate(['']);
           });
       }
-
-      this.staticService.listarEtapasFazenda()
-        .subscribe(response => {
-          this.etapas = response;
-        }, response => {
-          alert(response.error);
-        })
+      else {
+        this.carregarEtapas();
+      }
     });
+  }
+
+  carregarEtapas() {
+    this.staticService.listarEtapasFazenda()
+      .subscribe(response => {
+        this.etapas = response;
+        this.etapasCarregadas = true;
+      }, response => {
+        alert(response.error);
+      });
   }
 
   concluirCadastro() {

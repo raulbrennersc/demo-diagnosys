@@ -12,6 +12,7 @@
 
     font-size: 15px;
     text-align: center;
+    color: var(--main-color);
 }
 
 .step:hover{
@@ -23,6 +24,7 @@ span{
     top: -25px;
 }
 
-.disabled{
+.disabled > .step-circle, .disabled > .step-line{
     background-color: var(--disabled-step-color);
+    color: var(--disabled-step-color);
 }

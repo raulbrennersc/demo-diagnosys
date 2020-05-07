@@ -1,11 +1,11 @@
 <div class="container-fluid pb-4">
     <div class="row">
         <div (click)="modificarEtapa(etapa.id)" class="col d-flex align-items-center px-0 step"
-            *ngFor="let etapa of etapas">
+            *ngFor="let etapa of etapas" [ngClass]="{ disabled: etapaFazenda < etapa.id }">
             <div class="step-circle"></div>
-            <div class="step-line flex-grow-1"><span>{{etapa.nome}}</span></div>
+            <div class="step-line flex-grow-1"><span>{{etapa.nome}} </span></div>
         </div>
-        <div class="d-flex align-items-center px-0">
+        <div class="d-flex align-items-center px-0 " [ngClass]="{ disabled: etapaFazenda != ultimaEtapa }">
             <div class="step-circle"></div>
         </div>
     </div>
