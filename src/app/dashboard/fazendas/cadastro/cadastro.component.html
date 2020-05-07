@@ -4,9 +4,10 @@
     </div>
     <div id="main-container" class="container">
         <div class="container-fluid">
-            <app-etapas-fazenda></app-etapas-fazenda>
+            <app-etapas-fazenda [etapas]="etapas" [etapaAtiva]="fazenda.idEtapa" (alterarEtapa)="alterarEtapa($event)">
+            </app-etapas-fazenda>
             <div id="etapa" class="row">
-                <div class="container-fluid p-0 m-0" [ngSwitch]="fazenda.idEtapa">
+                <div class="container-fluid p-0 m-0" [ngSwitch]="etapaAtiva">
                     <app-localizacao-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda($event)"
                         *ngSwitchCase="undefined"></app-localizacao-fazenda>
                     <app-localizacao-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="1">
