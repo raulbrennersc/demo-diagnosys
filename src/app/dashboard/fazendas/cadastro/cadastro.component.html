@@ -10,9 +10,7 @@
             <div id="etapa" class="row">
                 <div class="container-fluid p-0 m-0" [ngSwitch]="etapaAtiva">
                     <app-localizacao-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda($event)"
-                        *ngSwitchCase="undefined"></app-localizacao-fazenda>
-                    <app-localizacao-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="1">
-                    </app-localizacao-fazenda>
+                        *ngSwitchCase="1"></app-localizacao-fazenda>
                     <app-dados-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="2">
                     </app-dados-fazenda>
                     <app-demarcacao-fazenda [idFazenda]="fazenda.id" (salvar)="carregarFazenda()" *ngSwitchCase="3">

@@ -18,13 +18,13 @@ export class LocalizacaoFazendaComponent implements OnInit {
   ngOnInit(): void {
     this.staticService.listarEstados()
       .subscribe(response => this.estados = response);
-      if(this.idFazenda){
-        this.fazendaService.consultarLocalizacaoFazenda(this.idFazenda)
+    if (this.idFazenda) {
+      this.fazendaService.consultarLocalizacaoFazenda(this.idFazenda)
         .subscribe(response => {
           this.localizacaoFazenda = response;
           this.carregarMunicipios(this.localizacaoFazenda.idEstado);
         });
-      }
+    }
   }
 
   carregarMunicipios(idEstado) {
@@ -33,14 +33,33 @@ export class LocalizacaoFazendaComponent implements OnInit {
       .subscribe(response => this.municipios = response);
   }
 
-  avancarEtapa(form){
+  avancarEtapa(form) {
+    const callback = {
+      next: (response) => {
+        alert('dadosSalvos');
+        this.salvar.emit((response as any).id);
+      },
+      error: (response) => {
+        alert(response.error);
+      }
+    }
+
+    if (this.idFazenda) {
+      this.atualizarLocalizacao(callback);
+    }
+    else {
+      this.salvarLocalizacao(callback);
+    }
+  }
+
+  salvarLocalizacao(callback) {
     this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
-    .subscribe(response => {
-      alert('dadosSalvos');
-      this.salvar.emit((response as any).id);
-    }, response => {
-      alert(response.error);
-    });
+      .subscribe(callback);
+  }
+
+  atualizarLocalizacao(callback) {
+    this.fazendaService.atualizarLocalizacaoFazenda(this.localizacaoFazenda, this.idFazenda)
+      .subscribe(callback);
   }
 
 }
