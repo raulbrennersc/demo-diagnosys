@@ -12,9 +12,23 @@ export class ListaFazendasComponent implements OnInit {
   constructor(private fazendaService: FazendasService) { }
 
   ngOnInit(): void {
+    this.carregarFazendas()
+  }
+
+  desativarFazenda(idFazenda) {
+    this.fazendaService.desativarFazenda(idFazenda)
+      .subscribe(response => {
+        alert('Fazenda excluida');
+        this.carregarFazendas();
+      }, response => {
+        alert(response.error);
+      })
+  }
+
+  carregarFazendas() {
     this.fazendaService.listarFazendas()
-    .subscribe(resposta => this.fazendas = resposta,
-      response => alert(response.error));
+      .subscribe(resposta => this.fazendas = resposta,
+        response => alert(response.error));
   }
 
 }
