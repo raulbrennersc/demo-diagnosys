@@ -2,9 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ConditionalExpr } from '@angular/compiler';
 
 @Component({
-  selector: 'app-etapas-fazenda',
-  templateUrl: './etapas-fazenda.component.html',
-  styleUrls: ['./etapas-fazenda.component.css']
+  selector: 'app-etapas',
+  templateUrl: './etapas.component.html',
+  styleUrls: ['./etapas.component.css']
 })
 export class EtapasFazendaComponent implements OnInit {
   @Input() etapas: any[];

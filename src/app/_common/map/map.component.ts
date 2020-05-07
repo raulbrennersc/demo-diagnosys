@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents, Map} from 'leaflet';
+import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents, Map } from 'leaflet';
 import * as L from 'leaflet';
 import { from } from 'rxjs';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+	selector: 'app-map',
+	templateUrl: './map.component.html',
+	styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
 	@Input() geometriaCadastrada: GeoJSON.Polygon;
@@ -18,8 +18,8 @@ export class MapComponent implements OnInit {
 
 	options = {
 		layers: [
-      tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
-    //   tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
+			tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
+			//   tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
 		],
 		zoom: 10,
 		center: latLng({ lat: -21.228959, lng: -45.003086 })
@@ -62,14 +62,14 @@ export class MapComponent implements OnInit {
 	};
 
 	ngOnInit() {
-		if(this.geometriaCadastrada){
+		if (this.geometriaCadastrada) {
 			const layer = L.geoJSON(this.geometriaCadastrada);
 			this.drawnItems.addLayer(layer);
 			const center = layer.getBounds().getCenter();
 			this.options.center = center;
 		}
 
-		if(this.ferramentas){
+		if (this.ferramentas) {
 			this.drawOptions.draw.marker = this.ferramentas.marker;
 			this.drawOptions.draw.polygon = this.ferramentas.polygon;
 			this.drawOptions.draw.polyline = this.ferramentas.polyline;
@@ -79,19 +79,19 @@ export class MapComponent implements OnInit {
 			this.drawOptions.edit.edit = this.ferramentas.edit || false;
 			this.drawOptions.edit.remove = this.ferramentas.remove || false;
 		}
-		else{
+		else {
 			this.drawOptions.edit.edit = false;
-			this.drawOptions.edit.remove =false;
+			this.drawOptions.edit.remove = false;
 		}
 	}
 
 	public onMapReady(map: Map) {
-		
+
 	}
 
 	public onDrawCreated(e: any) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
-		if(geojson.features.length == 1){
+		if (geojson.features.length == 1) {
 			alert('ja tem geometria');
 			return;
 		}

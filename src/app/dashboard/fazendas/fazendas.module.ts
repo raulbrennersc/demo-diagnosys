@@ -13,8 +13,8 @@ import { LocalizacaoFazendaComponent } from './localizacao-fazenda/localizacao-f
 import { DadosFazendaComponent } from './dados-fazenda/dados-fazenda.component';
 import { DemarcacaoFazendaComponent } from './demarcacao-fazenda/demarcacao-fazenda.component';
 import { ConfirmacaoFazendaComponent } from './confirmacao-fazenda/confirmacao-fazenda.component';
-import { MapComponent } from './map/map.component';
-import { EtapasFazendaComponent } from './etapas-fazenda/etapas-fazenda.component';
+import { MapComponent } from '../../_common/map/map.component';
+import { EtapasFazendaComponent } from '../../_common/etapas/etapas.component';
 
 
 @NgModule({
