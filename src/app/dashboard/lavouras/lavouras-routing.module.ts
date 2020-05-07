@@ -8,7 +8,8 @@ import { CadastroLavouraComponent } from './cadastro-lavoura/cadastro-lavoura.co
 const routes: Routes = [
   { path: '', component: ListaLavourasComponent },
   { path: 'cadastro', component: CadastroLavouraComponent },
-  { path: 'cadastro/:id', component: CadastroLavouraComponent }
+  { path: 'cadastro/:id', component: CadastroLavouraComponent },
+  { path: ':id', component: ListaLavourasComponent },
 ];
 
 @NgModule({
