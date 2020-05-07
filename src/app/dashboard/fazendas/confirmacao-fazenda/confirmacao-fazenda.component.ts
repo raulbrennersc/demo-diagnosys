@@ -12,6 +12,7 @@ export class ConfirmacaoFazendaComponent implements OnInit {
   @Output() confirmar = new EventEmitter<boolean>();
 
   fazenda: any;
+  editando = false;
   etapaCarregada = false;
 
   constructor(private fazendaService: FazendasService) { }
@@ -20,27 +21,27 @@ export class ConfirmacaoFazendaComponent implements OnInit {
     this.carregarEtapa();
   }
 
-  carregarEtapa(){
+  carregarEtapa() {
     this.fazendaService.consultarFazendaCompleta(this.idFazenda)
-    .subscribe( response => {
+      .subscribe(response => {
         this.fazenda = response;
-
-        console.log(this.fazenda.demarcacao);
-        console.log(this.fazenda);
+        this.editando = true;
         this.etapaCarregada = true;
       }, (response) => {
         alert('erro ao carregar');
       });
   }
 
-  confirmarFazenda(){
-    this.fazendaService.concluirFazenda(this.idFazenda)
-    .subscribe(response => {
-      alert('fazenda concluida');
+  confirmarFazenda() {
+    if (this.editando) {
       this.confirmar.emit(false);
-    }, response => {
-      alert(response.error);
-    })
+    }
+    this.fazendaService.concluirFazenda(this.idFazenda)
+      .subscribe(response => {
+        alert('fazenda concluida');
+        this.confirmar.emit(false);
+      }, response => {
+        alert(response.error);
+      })
   }
-
 }

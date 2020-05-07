@@ -9,6 +9,7 @@ import { FazendasService } from 'src/app/_services/fazenda.service';
 })
 export class LocalizacaoFazendaComponent implements OnInit {
   localizacaoFazenda: any = {};
+  editando = false;
   constructor(private staticService: StaticService, private fazendaService: FazendasService) { }
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<number>();
@@ -21,6 +22,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
     if (this.idFazenda) {
       this.fazendaService.consultarLocalizacaoFazenda(this.idFazenda)
         .subscribe(response => {
+          this.editando = true;
           this.localizacaoFazenda = response;
           this.carregarMunicipios(this.localizacaoFazenda.idEstado);
         });
@@ -44,7 +46,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
       }
     }
 
-    if (this.idFazenda) {
+    if (this.editando) {
       this.atualizarLocalizacao(callback);
     }
     else {

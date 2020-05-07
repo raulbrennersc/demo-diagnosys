@@ -24,7 +24,6 @@ export class CadastroComponent implements OnInit {
   }
 
   carregarFazenda(idNovaFazenda = undefined) {
-    console.log(idNovaFazenda);
     if (idNovaFazenda) {
       this.router.navigate(['painel', 'fazendas', 'cadastro', idNovaFazenda]);
     }
