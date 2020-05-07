@@ -18,8 +18,20 @@ i{
     padding: 0px;
 }
 
+#icone-concluido{
+    color: #264B5A;
+}
+
+#icone-editar{
+    color: #B1963C;
+}
+
 .card-fazenda{
     color: #fff;
     background-color: #264B5A;
     border-radius: 22px;
+}
+
+.editar{
+    background-color: #B1963C;
 }
