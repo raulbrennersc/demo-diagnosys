@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ModulosComponent } from './modulos/modulos.component';
 
-const routes: Routes = [{ path: '', component: DashboardComponent,
+const routes: Routes = [{
+  path: '', component: DashboardComponent,
   children: [
-    { path: '', component: ModulosComponent},
-    { path: 'fazendas', loadChildren: () => import('./fazendas/fazendas.module').then(m => m.FazendasModule) }
+    { path: '', component: ModulosComponent },
+    { path: 'fazendas', loadChildren: () => import('./fazendas/fazendas.module').then(m => m.FazendasModule) },
+    { path: 'lavouras', loadChildren: () => import('./lavouras/lavouras.module').then(m => m.LavourasModule) }
 
   ]
- }];
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
