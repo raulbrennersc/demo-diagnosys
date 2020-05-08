@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LavouraService } from 'src/app/_services/lavoura.service';
+import { StaticService } from 'src/app/_services/static.service';
 
 @Component({
   selector: 'app-cadastro-lavoura',
@@ -7,9 +10,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroLavouraComponent implements OnInit {
 
-  constructor() { }
+  lavoura: any = { idEtapa: 1 };
+  etapas: any = [];
+  etapaAtiva = 1;
+  etapasCarregadas = false;
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private lavouraService: LavouraService, private staticService: StaticService) { }
 
   ngOnInit(): void {
+    this.carregarLavoura();
+  }
+
+  avancarEtapa(idNovaLavoura = undefined) {
+    this.carregarLavoura(idNovaLavoura);
+    this.alterarEtapa(this.etapaAtiva + 1);
+  }
+
+  carregarLavoura(idNovaLavoura = undefined) {
+    if (idNovaLavoura) {
+      this.router.navigate(['painel', 'lavouras', 'cadastro', idNovaLavoura]);
+      return;
+    }
+
+    this.activatedRoute.params.subscribe(params => {
+      const idLavoura = params['id'];
+      if (idLavoura) {
+
+      }
+      else {
+        this.carregarEtapas();
+      }
+    });
+  }
+
+  carregarEtapas() {
+    this.staticService.listarEtapasLavoura()
+      .subscribe(response => {
+        this.etapas = response;
+        this.etapasCarregadas = true;
+      }, response => {
+        alert(response.error);
+      });
+  }
+
+  concluirCadastro() {
+    this.router.navigate(['painel', 'lavouras']);
+  }
+
+  alterarEtapa(idEtapa) {
+    this.etapaAtiva = idEtapa;
   }
 
 }

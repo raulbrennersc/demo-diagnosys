@@ -1,1 +1,24 @@
-<p>cadastro-lavoura works!</p>
+<div class="modulo-div">
+    <div id="cabecalho-cadastro">
+        <span><i id="icone-cadastro" class="fas fa-plus"></i> &nbsp; Lavouras / <strong>Cadastro</strong></span>
+    </div>
+    <div id="main-container" class="container">
+        <div class="container-fluid">
+            <app-etapas *ngIf="etapasCarregadas" [(etapas)]="etapas" [(etapaInicial)]="lavoura.idEtapa"
+                [(etapaAtual)]="etapaAtiva" (alterarEtapa)="alterarEtapa($event)">
+            </app-etapas>
+            <div id="etapa" class="row">
+                <div class="container-fluid p-0 m-0" [ngSwitch]="etapaAtiva">
+                    <app-dados-lavoura [idLavoura]="lavoura.id" (salvar)="avancarEtapa($event)" *ngSwitchCase="1">
+                    </app-dados-lavoura>
+                    <app-demarcacao-lavoura [idLavoura]="lavoura.id" (salvar)="avancarEtapa()" *ngSwitchCase="2">
+                    </app-demarcacao-lavoura>
+                    <app-talhoes-lavoura [idLavoura]="lavoura.id" (salvar)="avancarEtapa()" *ngSwitchCase="3">
+                    </app-talhoes-lavoura>
+                    <app-confirmacao-lavoura [idLavoura]="lavoura.id" (confirmar)="concluirCadastro()"
+                        *ngSwitchCase="4"></app-confirmacao-lavoura>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
