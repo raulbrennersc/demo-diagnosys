@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
-
-
 import { FazendasRoutingModule } from './fazendas-routing.module';
+import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
+
+
 import { FazendasComponent } from './fazendas.component';
 import { ListaFazendasComponent } from './lista-fazendas/lista-fazendas.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
@@ -13,18 +12,15 @@ import { LocalizacaoFazendaComponent } from './localizacao-fazenda/localizacao-f
 import { DadosFazendaComponent } from './dados-fazenda/dados-fazenda.component';
 import { DemarcacaoFazendaComponent } from './demarcacao-fazenda/demarcacao-fazenda.component';
 import { ConfirmacaoFazendaComponent } from './confirmacao-fazenda/confirmacao-fazenda.component';
-import { MapComponent } from '../../_common/map/map.component';
-import { EtapasFazendaComponent } from '../../_common/etapas/etapas.component';
 
 
 @NgModule({
-  declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent, MapComponent, EtapasFazendaComponent],
+  declarations: [FazendasComponent, ListaFazendasComponent, CadastroComponent, LocalizacaoFazendaComponent, DadosFazendaComponent, DemarcacaoFazendaComponent, ConfirmacaoFazendaComponent],
   imports: [
     CommonModule,
     FazendasRoutingModule,
     FormsModule,
-    LeafletModule,
-    LeafletDrawModule
+    SharedComponentsModule
   ]
 })
 export class FazendasModule { }

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
 import { LavourasRoutingModule } from './lavouras-routing.module';
+
+
 import { LavourasComponent } from './lavouras.component';
 import { ListaLavourasComponent } from './lista-lavouras/lista-lavouras.component';
 import { CadastroLavouraComponent } from './cadastro-lavoura/cadastro-lavoura.component';
@@ -15,7 +17,8 @@ import { ConfirmacaoLavouraComponent } from './confirmacao-lavoura/confirmacao-l
   declarations: [LavourasComponent, ListaLavourasComponent, CadastroLavouraComponent, DadosLavouraComponent, DemarcacaoLavouraComponent, TalhoesLavouraComponent, ConfirmacaoLavouraComponent],
   imports: [
     CommonModule,
-    LavourasRoutingModule
+    LavourasRoutingModule,
+    SharedComponentsModule
   ]
 })
 export class LavourasModule { }

@@ -25,11 +25,11 @@ export function tokenGetter() {
     LeafletDrawModule,
     JwtModule.forRoot({
       config: {
-         tokenGetter,
-         whitelistedDomains: ['localhost:5000'],
-         blacklistedRoutes: ['localhost:5000/api/auth'],
+        tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth'],
       }
-   }),
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

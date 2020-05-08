@@ -6,7 +6,7 @@ import { ConditionalExpr } from '@angular/compiler';
   templateUrl: './etapas.component.html',
   styleUrls: ['./etapas.component.css']
 })
-export class EtapasFazendaComponent implements OnInit {
+export class EtapasComponent implements OnInit {
   @Input() etapas: any[];
   @Input() etapaFazenda: any;
   @Input() etapaAtual: any;

@@ -25,4 +25,8 @@ export class StaticService {
     return this.http.get(this.baseUrl + 'etapasFazenda');
   }
 
+  listarEtapasLavoura() {
+    return this.http.get(this.baseUrl + 'etapasLavoura');
+  }
+
 }
