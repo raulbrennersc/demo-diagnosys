@@ -9,7 +9,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListaLavourasComponent implements OnInit {
   lavourasCarregadas = false;
-  lavouras: any = [];
+  lavouras: any = [
+    {
+      id: 1,
+      nome: 'lavoura 1',
+      concluida: true,
+    },
+    {
+      id: 2,
+      nome: 'lavoura 2',
+      concluida: false,
+    },
+    {
+      id: 3,
+      nome: 'lavoura 3',
+      concluida: false,
+    },
+  ];
   idFazenda = 0;
 
   constructor(private lavourasService: LavouraService, private activatedRoute: ActivatedRoute) { }
@@ -19,7 +35,7 @@ export class ListaLavourasComponent implements OnInit {
       this.idFazenda = params['id'];
       this.lavourasService.listarPorFazenda(this.idFazenda)
         .subscribe(response => {
-          this.lavouras = response;
+          // this.lavouras = response;
           this.lavourasCarregadas = true;
         })
     });

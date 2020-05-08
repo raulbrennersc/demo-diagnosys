@@ -1,21 +1,29 @@
 <div class="modulo-div">
     <div class="container-fluid pt-5 px-5">
-        <div class="row justify-content-end">
+        <div class="row justify-content-end px-3">
             <a [routerLink]="['cadastro']"><button type="submit" class="btn btn-primary px-4"><i
                         class="fas fa-plus"></i> CADASTRAR LAVOURA</button></a>
         </div>
-        <div class="container-fluid d-flex flex-wrap my-5" id="div-tabela-lavouras">
-            <table class="w-100 text-center">
-                <tr>
-                    <th>Lavouras Cadastradas</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-                <tr>
-                    <td>teste</td>
-                    <td>teste</td>
-                    <td>teste</td>
-                </tr>
+        <div class="container-fluid d-flex flex-wrap my-5 px-0" id="div-tabela-lavouras">
+            <table class="w-100 text-center table border">
+                <thead class="thead-light">
+                    <tr class="">
+                        <th class="text-left">Lavouras Cadastradas</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let lavoura of lavouras">
+                        <td class="text-left">{{lavoura.nome}}</td>
+                        <td>{{lavoura.concluida ? 'Cadastro concluído' : 'Cadastro em andamento'}}</td>
+                        <td class="td-icones">
+                            <a><i class="fas fa-eye"></i></a>
+                            <a><i class="fas fa-edit ml-2"></i></a>
+                            <a><i class="fas fa-trash ml-2"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
 
         </div>
