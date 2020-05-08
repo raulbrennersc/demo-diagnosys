@@ -1,44 +1,44 @@
 <div class="modulo-div">
-    <div class="container-fluid pt-5 px-5">
-        <span><strong>Legenda:</strong> As ações a seguir são referentes à fazenda cadastrada.</span>
-        <div class="row pl-4">
-            <div class="ml-5 col-2">
-                <i class="fas fa-eye"></i><span> Visualiziar</span>
-            </div>
-            <div class="ml-5 col-2">
-                <i class="fas fa-trash"></i><span> Excluir</span>
-            </div>
-            <div class="ml-5 col-3">
-                <i id="icone-concluido" class="fas fa-circle"></i><span> Cadastro concluído</span>
-            </div>
-        </div>
-        <div class="row pl-4">
-            <div class="ml-5 col-2">
-                <i class="fas fa-edit"></i><span> Editar</span>
-            </div>
-            <div class="ml-5 col-2">
-                <i class="fas fa-plus"></i><span> Cadastrar lavouras</span>
-            </div>
-            <div class="ml-5 col-3">
-                <i id="icone-editar" class="fas fa-circle"></i><span> Continuar cadastro</span>
-            </div>
-        </div>
-        <div class="row justify-content-end">
-            <a [routerLink]="['cadastro']"><button type="submit" class="btn btn-primary px-4"><i
-                        class="fas fa-plus"></i> CADASTRAR FAZENDA</button></a>
-        </div>
-        <div class="container-fluid d-flex flex-wrap my-5" id="div-lista-fazendas">
-
-            <div *ngFor="let fazenda of fazendas" class="card-fazenda text-center pt-3 pb-5 pl-5 pr-5 col-3 mb-3 ml-5"
-                [ngClass]="{editar: !fazenda.concluida}">
-                <div class="row justify-content-end mb-3">
-                    <a><i class="fas fa-eye d-none"></i></a>
-                    <a [routerLink]="['cadastro', fazenda.id]"><i class="fas fa-edit ml-2"></i></a>
-                    <a (click)="desativarFazenda(fazenda.id)"><i class="fas fa-trash ml-2"></i></a>
-                    <a><i class="fas fa-plus ml-2"></i></a>
-                </div>
-                <span>{{fazenda.nome}}</span>
-            </div>
-        </div>
+  <div class="container-fluid pt-5 px-5">
+    <span><strong>Legenda:</strong> As ações a seguir são referentes à fazenda cadastrada.</span>
+    <div class="row pl-4">
+      <div class="ml-5 col-2">
+        <i class="fas fa-eye"></i><span> Visualiziar</span>
+      </div>
+      <div class="ml-5 col-2">
+        <i class="fas fa-trash"></i><span> Excluir</span>
+      </div>
+      <div class="ml-5 col-3">
+        <i id="icone-concluido" class="fas fa-circle"></i><span> Cadastro concluído</span>
+      </div>
     </div>
+    <div class="row pl-4">
+      <div class="ml-5 col-2">
+        <i class="fas fa-edit"></i><span> Editar</span>
+      </div>
+      <div class="ml-5 col-2">
+        <i class="fas fa-plus"></i><span> Cadastrar lavouras</span>
+      </div>
+      <div class="ml-5 col-3">
+        <i id="icone-editar" class="fas fa-circle"></i><span> Continuar cadastro</span>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <a [routerLink]="['cadastro']"><button type="submit" class="btn btn-primary px-4"><i class="fas fa-plus"></i>
+          CADASTRAR FAZENDA</button></a>
+    </div>
+    <div class="container-fluid d-flex flex-wrap my-5" id="div-lista-fazendas">
+
+      <div *ngFor="let fazenda of fazendas" class="card-fazenda text-center pt-3 pb-5 pl-5 pr-5 col-3 mb-3 ml-5"
+        [ngClass]="{editar: !fazenda.concluida}">
+        <div class="row justify-content-end mb-3">
+          <a><i class="fas fa-eye d-none"></i></a>
+          <a [routerLink]="['cadastro', fazenda.id]"><i class="fas fa-edit ml-2"></i></a>
+          <a (click)="desativarFazenda(fazenda.id)"><i class="fas fa-trash ml-2"></i></a>
+          <a [routerLink]="['/painel', 'lavouras', fazenda.id]"><i class="fas fa-plus ml-2"></i></a>
+        </div>
+        <span>{{fazenda.nome}}</span>
+      </div>
+    </div>
+  </div>
 </div>
