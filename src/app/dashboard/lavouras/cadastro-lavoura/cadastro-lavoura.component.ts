@@ -35,7 +35,17 @@ export class CadastroLavouraComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const idLavoura = params['id'];
       if (idLavoura) {
-
+        this.lavouraService.consultarDadosLavoura(idLavoura)
+          .subscribe(response => {
+            this.lavoura = response;
+            if (!this.etapasCarregadas) {
+              this.etapaAtiva = this.lavoura.idEtapa;
+              this.carregarEtapas();
+            }
+          }, response => {
+            alert(response.error);
+            this.router.navigate(['']);
+          });
       }
       else {
         this.carregarEtapas();

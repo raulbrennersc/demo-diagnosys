@@ -9,6 +9,7 @@ export class LavouraService {
   constructor(private http: HttpClient) { }
   baseUrl = environment.apiUrl + 'lavouras/';
   fazendaUrl = environment.apiUrl + 'fazendas/';
+  fazendaAtual = 0;
 
   listarPorFazenda(idFazenda) {
     return this.http.get(this.fazendaUrl + '/' + idFazenda + '/lavouras');
@@ -18,7 +19,7 @@ export class LavouraService {
     return this.http.get(this.baseUrl);
   }
 
-  salvarLavoura(idLavoura) {
+  consultarLavoura(idLavoura) {
     return this.http.get(this.baseUrl + idLavoura);
   }
 
@@ -34,8 +35,8 @@ export class LavouraService {
     return this.http.get(this.baseUrl + idLavoura);
   }
 
-  salvarDadosLavoura(idLavoura, dadosLavoura) {
-    return this.http.post(this.baseUrl + 'DadosLavoura/' + idLavoura, dadosLavoura);
+  salvarDadosLavoura(idFazenda, dadosLavoura) {
+    return this.http.post(this.baseUrl + 'DadosLavoura/' + idFazenda, dadosLavoura);
   }
 
   salvarDemarcacaoLavoura(idLavoura, demarcacaoLavoura) {
@@ -46,15 +47,15 @@ export class LavouraService {
     return this.http.post(this.baseUrl + 'TalhoesLavoura/' + idLavoura, talhoesLavoura);
   }
 
-  editarDadosLavoura(idLavoura, dadosLavoura) {
+  atualizarDadosLavoura(idLavoura, dadosLavoura) {
     return this.http.put(this.baseUrl + 'DadosLavoura/' + idLavoura, dadosLavoura);
   }
 
-  editarDemarcacaoLavoura(idLavoura, demarcacaoLavoura) {
+  atualizarDemarcacaoLavoura(idLavoura, demarcacaoLavoura) {
     return this.http.put(this.baseUrl + 'DemarcacaoLavoura/' + idLavoura, demarcacaoLavoura);
   }
 
-  editarTalhoesLavoura(idLavoura, talhoesLavoura) {
+  atualizarTalhoesLavoura(idLavoura, talhoesLavoura) {
     return this.http.put(this.baseUrl + 'TalhoesLavoura/' + idLavoura, talhoesLavoura);
   }
 

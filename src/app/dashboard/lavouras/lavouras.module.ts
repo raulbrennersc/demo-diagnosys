@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
 import { LavourasRoutingModule } from './lavouras-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 import { LavourasComponent } from './lavouras.component';
@@ -18,7 +19,8 @@ import { ConfirmacaoLavouraComponent } from './confirmacao-lavoura/confirmacao-l
   imports: [
     CommonModule,
     LavourasRoutingModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    FormsModule
   ]
 })
 export class LavourasModule { }

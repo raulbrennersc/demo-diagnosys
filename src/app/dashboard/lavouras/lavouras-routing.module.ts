@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LavourasComponent } from './lavouras.component';
 import { ListaLavourasComponent } from './lista-lavouras/lista-lavouras.component';
 import { CadastroLavouraComponent } from './cadastro-lavoura/cadastro-lavoura.component';
 

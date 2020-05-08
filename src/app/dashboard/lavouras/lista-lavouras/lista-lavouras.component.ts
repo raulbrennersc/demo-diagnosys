@@ -12,12 +12,13 @@ export class ListaLavourasComponent implements OnInit {
   lavouras: any = [];
   idFazenda = 0;
 
-  constructor(private lavourasService: LavouraService, private activatedRoute: ActivatedRoute) { }
+  constructor(private lavouraService: LavouraService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.idFazenda = params['id'];
       if (this.idFazenda) {
+        this.lavouraService.fazendaAtual = this.idFazenda;
         this.carregarLavourasPorFazenda()
       }
       else {
@@ -27,7 +28,7 @@ export class ListaLavourasComponent implements OnInit {
   }
 
   carregarLavourasPorFazenda() {
-    this.lavourasService.listarPorFazenda(this.idFazenda)
+    this.lavouraService.listarPorFazenda(this.idFazenda)
       .subscribe(response => {
         this.lavouras = response;
         this.lavourasCarregadas = true;
@@ -35,7 +36,7 @@ export class ListaLavourasComponent implements OnInit {
   }
 
   carregarLavourasPorUsuario() {
-    this.lavourasService.listarTodas()
+    this.lavouraService.listarTodas()
       .subscribe(response => {
         this.lavouras = response;
         this.lavourasCarregadas = true;
