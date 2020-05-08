@@ -18,9 +18,39 @@
                 </div>
             </div>
         </div>
+
         <div class="row flex-grow-1">
-            <div id="sidebar" class="col-2">
-                
+            <div id="sidebar" class="container-fluid d-flex flex-column justify-content-center pb-5 col-2">
+                <a routerLink="/painel" routerLinkActive="modulo-ativo" [routerLinkActiveOptions]="{exact: true}">
+                    <div class="row items-painel">
+                        <div class="mark"></div>
+                        <div><i class="fa fa-th-large mr-3"></i>Home</div>
+                    </div>
+                </a>
+                <a routerLink="/painel/fazendas" routerLinkActive="modulo-ativo">
+                    <div class="row items-painel">
+                        <div class="mark"></div>
+                        <div><i class="fa fa-tractor mr-3"></i>Fazendas</div>
+                    </div>
+                </a>
+                <a routerLink="/painel/monitoramento" routerLinkActive="modulo-ativo">
+                    <div class="row items-painel">
+                        <div class="mark"></div>
+                        <div><i class="fa fa-eye mr-3"></i>Monitoramento</div>
+                    </div>
+                </a>
+                <a routerLink="/painel/blog" routerLinkActive="modulo-ativo">
+                    <div class="row items-painel">
+                        <div class="mark"></div>
+                        <div><i class="fa fa-blog mr-3"></i>Blog QIPixel</div>
+                    </div>
+                </a>
+                <a routerLink="/painel/suporte" routerLinkActive="modulo-ativo">
+                    <div class="row items-painel">
+                        <div class="mark"></div>
+                        <div><i class="fa fa-question-circle mr-3"></i>Suporte</div>
+                    </div>
+                </a>
             </div>
             <div id="modulos" class="col-10 bg-info">
                 <router-outlet></router-outlet>
@@ -28,4 +58,3 @@
         </div>
     </div>
 </div>
-

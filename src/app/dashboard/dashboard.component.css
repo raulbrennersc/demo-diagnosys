@@ -11,11 +11,40 @@
     width: 200px;
 }
 
-#sidebar{
-    
-}
-
 #modulos{
     border-top-left-radius: 109px;
     background: transparent linear-gradient(180deg, #EFF2F6 0%, #FAFAFA 76%, #FFFFFF 100%, #E9E9E9 100%, #E2E2E2 100%, #ADADAD 100%, #DBDBDB 100%) 0% 0% no-repeat padding-box;
+}
+
+#sidebar i{
+    color: var(--main-color);
+}
+
+#sidebar {
+    max-height: 100vh;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.modulo-ativo{
+    font-weight: bold;
+}
+
+.mark{
+    padding: 0px;
+    margin-right: 40px;
+}
+
+.modulo-ativo .mark{
+    width: 4px;
+    height: 100%;
+    background-color: var(--main-color);
+}
+
+
+.items-painel{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 45px;
+    align-items: center;
 }

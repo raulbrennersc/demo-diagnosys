@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   user: any = {};
-  
+
   constructor(private autenticacaoService: AutenticacaoService, private router: Router) { }
-  
+
   ngOnInit(): void {
     this.user.nome = this.autenticacaoService.decodedToken.NomeUsuario;
   }
