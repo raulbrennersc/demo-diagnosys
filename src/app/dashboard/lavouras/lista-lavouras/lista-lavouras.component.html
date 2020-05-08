@@ -14,14 +14,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lavoura of lavouras">
-                        <td class="text-left">{{lavoura.nome}}</td>
-                        <td>{{lavoura.concluida ? 'Cadastro concluído' : 'Cadastro em andamento'}}</td>
-                        <td class="td-icones">
-                            <a><i class="fas fa-eye"></i></a>
-                            <a><i class="fas fa-edit ml-2"></i></a>
-                            <a><i class="fas fa-trash ml-2"></i></a>
-                        </td>
+                    <tr *ngIf="lavouras.length == 0">
+                        <td colspan="3" class="text-center">Não existem lavouras para listar.</td>
                     </tr>
                 </tbody>
             </table>

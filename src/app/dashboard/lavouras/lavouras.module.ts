@@ -5,10 +5,14 @@ import { LavourasRoutingModule } from './lavouras-routing.module';
 import { LavourasComponent } from './lavouras.component';
 import { ListaLavourasComponent } from './lista-lavouras/lista-lavouras.component';
 import { CadastroLavouraComponent } from './cadastro-lavoura/cadastro-lavoura.component';
+import { DadosLavouraComponent } from './dados-lavoura/dados-lavoura.component';
+import { DemarcacaoLavouraComponent } from './demarcacao-lavoura/demarcacao-lavoura.component';
+import { TalhoesLavouraComponent } from './talhoes-lavoura/talhoes-lavoura.component';
+import { ConfirmacaoLavouraComponent } from './confirmacao-lavoura/confirmacao-lavoura.component';
 
 
 @NgModule({
-  declarations: [LavourasComponent, ListaLavourasComponent, CadastroLavouraComponent],
+  declarations: [LavourasComponent, ListaLavourasComponent, CadastroLavouraComponent, DadosLavouraComponent, DemarcacaoLavouraComponent, TalhoesLavouraComponent, ConfirmacaoLavouraComponent],
   imports: [
     CommonModule,
     LavourasRoutingModule
