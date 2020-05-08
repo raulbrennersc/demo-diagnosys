@@ -36,32 +36,32 @@ export class LocalizacaoFazendaComponent implements OnInit {
   }
 
   avancarEtapa(form) {
-    const callback = {
-      next: (response) => {
-        alert('dadosSalvos');
-        this.salvar.emit((response as any).id);
-      },
-      error: (response) => {
-        alert(response.error);
-      }
-    }
-
     if (this.editando) {
-      this.atualizarLocalizacao(callback);
+      this.atualizarLocalizacao();
     }
     else {
-      this.salvarLocalizacao(callback);
+      this.salvarLocalizacao();
     }
   }
 
-  salvarLocalizacao(callback) {
+  salvarLocalizacao() {
     this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
-      .subscribe(callback);
+      .subscribe(response => {
+        alert('dadosSalvos');
+        this.salvar.emit((response as any).id);
+      }, response => {
+        alert(response.error);
+      });
   }
 
-  atualizarLocalizacao(callback) {
+  atualizarLocalizacao() {
     this.fazendaService.atualizarLocalizacaoFazenda(this.localizacaoFazenda, this.idFazenda)
-      .subscribe(callback);
+      .subscribe(response => {
+        alert('dadosSalvos');
+        this.salvar.emit();
+      }, response => {
+        alert(response.error);
+      });
   }
 
 }

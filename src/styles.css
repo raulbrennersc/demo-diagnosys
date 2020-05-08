@@ -59,6 +59,8 @@ input{
 .btn{
     border-radius: 20px;
     border-width: 1px;
+    padding-left: 25px;
+    padding-right: 25px;
     background-color: white;
     color: var(--main-color);
 }

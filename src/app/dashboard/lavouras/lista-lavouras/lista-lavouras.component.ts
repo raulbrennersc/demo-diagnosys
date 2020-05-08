@@ -17,12 +17,29 @@ export class ListaLavourasComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.idFazenda = params['id'];
-      this.lavourasService.listarPorFazenda(this.idFazenda)
-        .subscribe(response => {
-          // this.lavouras = response;
-          this.lavourasCarregadas = true;
-        })
+      if (this.idFazenda) {
+        this.carregarLavourasPorFazenda()
+      }
+      else {
+        this.carregarLavourasPorUsuario();
+      }
     });
+  }
+
+  carregarLavourasPorFazenda() {
+    this.lavourasService.listarPorFazenda(this.idFazenda)
+      .subscribe(response => {
+        this.lavouras = response;
+        this.lavourasCarregadas = true;
+      });
+  }
+
+  carregarLavourasPorUsuario() {
+    this.lavourasService.listarTodas()
+      .subscribe(response => {
+        this.lavouras = response;
+        this.lavourasCarregadas = true;
+      });
   }
 
 }

@@ -20,8 +20,9 @@ export class CadastroComponent implements OnInit {
     this.carregarFazenda();
   }
 
-  avancarEtapa() {
-    this.carregarFazenda();
+  avancarEtapa(idNovaFazenda = undefined) {
+    this.carregarFazenda(idNovaFazenda);
+    this.alterarEtapa(this.etapaAtiva + 1);
   }
 
   carregarFazenda(idNovaFazenda = undefined) {
@@ -36,9 +37,10 @@ export class CadastroComponent implements OnInit {
         this.fazendaService.consultarFazenda(idFazenda)
           .subscribe(response => {
             this.fazenda = response;
-            this.etapaAtiva = this.fazenda.idEtapa;
-            if (!this.etapasCarregadas)
+            if (!this.etapasCarregadas) {
+              this.etapaAtiva = this.fazenda.idEtapa;
               this.carregarEtapas();
+            }
           }, response => {
             alert(response.error);
             this.router.navigate(['']);

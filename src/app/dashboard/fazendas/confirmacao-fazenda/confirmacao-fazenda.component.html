@@ -1,10 +1,12 @@
 <div class="modulo-div text-center">
-    <div *ngIf="etapaCarregada"  class="container-fluid pb-5">
+    <div *ngIf="etapaCarregada" class="container-fluid pb-5">
         <div class="row">
             <div class="col-2 text-left mb-1 mr-n5 d-flex align-items-start">
                 <span><strong>Localização</strong></span>
             </div>
-            <div class="flex-grow-1 pr-5"><hr></div>
+            <div class="flex-grow-1 pr-5">
+                <hr>
+            </div>
         </div>
         <div class="row">
             <div class="d-flex pl-5 flex-column align-items-start">
@@ -22,7 +24,9 @@
             <div class="col-2 text-left mb-1 mr-1 d-flex align-items-start">
                 <span><strong>Dados da Fazenda</strong></span>
             </div>
-            <div class="flex-grow-1 pr-5"><hr></div>
+            <div class="flex-grow-1 pr-5">
+                <hr>
+            </div>
         </div>
         <div class="row">
             <div class="d-flex pl-5 flex-column align-items-start">
@@ -35,15 +39,17 @@
             <div class="col-1 text-left mb-1 d-flex align-items-start">
                 <span><strong>Mapa</strong></span>
             </div>
-            <div class="flex-grow-1 pr-5"><hr></div>
+            <div class="flex-grow-1 pr-5">
+                <hr>
+            </div>
         </div>
         <div class="row">
             <div class="col-10 mx-auto">
-                <app-map [geometriaCadastrada]="fazenda.demarcacao" ></app-map>
+                <app-map [geometriaCadastrada]="fazenda.demarcacao"></app-map>
             </div>
         </div>
     </div>
 </div>
 <div class="row justify-content-end mt-5 pr-2 pb-5">
-    <button (click)="confirmarFazenda()" class="btn btn-primary px-4">CONCLUIR <i class="fas fa-save"></i> </button>
+    <button (click)="confirmarFazenda()" class="btn btn-primary">CONCLUIR <i class="fas fa-save"></i> </button>
 </div>
