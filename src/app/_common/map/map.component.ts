@@ -9,6 +9,7 @@ import { from } from 'rxjs';
 	styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+	@Input() geometriasFixas: GeoJSON.Geometry[];
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
 	@Input() ferramentas: any;
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
@@ -63,6 +64,19 @@ export class MapComponent implements OnInit {
 	};
 
 	ngOnInit() {
+		if (this.geometriasFixas && this.geometriasFixas.length > 0) {
+			this.geometriasFixas.forEach(g => {
+				if (!g) {
+					return;
+				}
+				const layer = L.geoJSON(g);
+				this.drawnItems.addLayer(layer);
+				const center = layer.getBounds().getCenter();
+				this.options.center = center;
+			});
+		}
+
+
 		if (this.geometriasCadastradas && this.geometriasCadastradas.length > 0) {
 			this.geometriasCadastradas.forEach(g => {
 				if (!g) {

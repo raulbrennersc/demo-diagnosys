@@ -7,10 +7,9 @@ import { LavouraService } from 'src/app/_services/lavoura.service';
   styleUrls: ['./confirmacao-lavoura.component.css']
 })
 export class ConfirmacaoLavouraComponent implements OnInit {
-  @Input() idLavoura: number;
+  @Input() lavoura: any;
   @Output() confirmar = new EventEmitter<boolean>();
 
-  lavoura: any;
   etapaCarregada = false;
 
   constructor(private lavouraService: LavouraService) { }
@@ -20,7 +19,7 @@ export class ConfirmacaoLavouraComponent implements OnInit {
   }
 
   carregarEtapa() {
-    this.lavouraService.consultarLavouraCompleta(this.idLavoura)
+    this.lavouraService.consultarLavouraCompleta(this.lavoura.id)
       .subscribe(response => {
         this.lavoura = response;
         this.etapaCarregada = true;
@@ -34,7 +33,7 @@ export class ConfirmacaoLavouraComponent implements OnInit {
       this.confirmar.emit();
       return;
     }
-    this.lavouraService.concluirLavoura(this.idLavoura)
+    this.lavouraService.concluirLavoura(this.lavoura.id)
       .subscribe(response => {
         alert('lavoura concluida');
         this.confirmar.emit(false);

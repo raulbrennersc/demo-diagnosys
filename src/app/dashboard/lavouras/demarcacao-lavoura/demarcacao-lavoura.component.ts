@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
+import { FazendasService } from 'src/app/_services/fazenda.service';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-demarcacao-lavoura',
@@ -7,7 +9,7 @@ import { LavouraService } from 'src/app/_services/lavoura.service';
   styleUrls: ['./demarcacao-lavoura.component.css']
 })
 export class DemarcacaoLavouraComponent implements OnInit {
-  @Input() idLavoura: number;
+  @Input() lavoura: any;
   @Output() salvar = new EventEmitter<boolean>();
 
   etapaCarregada = false;
@@ -18,8 +20,9 @@ export class DemarcacaoLavouraComponent implements OnInit {
     remove: {},
   };
 
-  geometria: GeoJSON.Feature<GeoJSON.Polygon>;
-  constructor(private lavouraService: LavouraService) { }
+  geometria: GeoJSON.Geometry;
+  geometriaFazenda: GeoJSON.Geometry;
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -30,19 +33,21 @@ export class DemarcacaoLavouraComponent implements OnInit {
   }
 
   consultarGeometria() {
-    if (!this.idLavoura) {
-      this.etapaCarregada = true;
-      return;
-    }
-
-    this.lavouraService.consultarDemarcacaoLavoura(this.idLavoura)
+    this.lavouraService.consultarDemarcacaoLavoura(this.lavoura.id)
       .subscribe(response => {
         this.editando = true;
-        this.geometria = response as GeoJSON.Feature<GeoJSON.Polygon>;
-        this.etapaCarregada = true;
+        this.geometria = response as GeoJSON.Geometry;
+        this.carregarGeometriaFazenda();
       }, response => {
-        this.etapaCarregada = true;
+        this.carregarGeometriaFazenda();
       });
+  }
+
+  carregarGeometriaFazenda() {
+    this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(responseFazenda => {
+      this.geometriaFazenda = (responseFazenda as GeoJSON.Geometry);
+      this.etapaCarregada = true;
+    });
   }
 
   avancarEtapa() {
@@ -65,12 +70,12 @@ export class DemarcacaoLavouraComponent implements OnInit {
   }
 
   salvarDemarcacao(callback) {
-    this.lavouraService.salvarDemarcacaoLavoura(this.idLavoura, this.geometria)
+    this.lavouraService.salvarDemarcacaoLavoura(this.lavoura.id, this.geometria)
       .subscribe(callback);
   }
 
   atualizarDemarcacao(callback) {
-    this.lavouraService.atualizarDemarcacaoLavoura(this.geometria, this.idLavoura)
+    this.lavouraService.atualizarDemarcacaoLavoura(this.geometria, this.lavoura.id)
       .subscribe(callback);
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
+import { FazendasService } from 'src/app/_services/fazenda.service';
 
 @Component({
   selector: 'app-talhoes-lavoura',
@@ -7,7 +8,7 @@ import { LavouraService } from 'src/app/_services/lavoura.service';
   styleUrls: ['./talhoes-lavoura.component.css']
 })
 export class TalhoesLavouraComponent implements OnInit {
-  @Input() idLavoura: number;
+  @Input() lavoura: any;
   @Output() salvar = new EventEmitter<boolean>();
 
   etapaCarregada = false;
@@ -19,7 +20,8 @@ export class TalhoesLavouraComponent implements OnInit {
   };
 
   geometrias: GeoJSON.FeatureCollection;
-  constructor(private lavouraService: LavouraService) { }
+  geometriasFixas: GeoJSON.Geometry[] = new Array<GeoJSON.Geometry>();
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -30,19 +32,24 @@ export class TalhoesLavouraComponent implements OnInit {
   }
 
   consultarGeometria() {
-    if (!this.idLavoura) {
-      this.etapaCarregada = true;
-      return;
-    }
-
-    this.lavouraService.consultarTalhoesLavoura(this.idLavoura)
+    this.lavouraService.consultarTalhoesLavoura(this.lavoura.id)
       .subscribe(response => {
         this.editando = true;
         this.geometrias = response as GeoJSON.FeatureCollection;
-        this.etapaCarregada = true;
+        this.carregarGeometriasFixas();
       }, response => {
+        this.carregarGeometriasFixas();
+      });
+  }
+
+  carregarGeometriasFixas() {
+    this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(responseFazenda => {
+      this.geometriasFixas.push(responseFazenda as GeoJSON.Geometry);
+      this.lavouraService.consultarDemarcacaoLavoura(this.lavoura.id).subscribe(responseLavoura => {
+        this.geometriasFixas.push(responseLavoura as GeoJSON.Geometry);
         this.etapaCarregada = true;
       });
+    });
   }
 
   avancarEtapa() {
@@ -65,12 +72,12 @@ export class TalhoesLavouraComponent implements OnInit {
   }
 
   salvarTalhoes(callback) {
-    this.lavouraService.salvarTalhoesLavoura(this.idLavoura, this.geometrias)
+    this.lavouraService.salvarTalhoesLavoura(this.lavoura.id, this.geometrias)
       .subscribe(callback);
   }
 
   atualizarTalhoes(callback) {
-    this.lavouraService.atualizarTalhoesLavoura(this.idLavoura, this.geometrias)
+    this.lavouraService.atualizarTalhoesLavoura(this.lavoura.id, this.geometrias)
       .subscribe(callback);
   }
 
