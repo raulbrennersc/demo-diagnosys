@@ -23,6 +23,10 @@ export class LavouraService {
     return this.http.get(this.baseUrl + idLavoura);
   }
 
+  consultarLavouraCompleta(idLavoura: number) {
+    return this.http.get(this.baseUrl + idLavoura + '/Completa');
+  }
+
   consultarDadosLavoura(idLavoura) {
     return this.http.get(this.baseUrl + 'DadosLavoura/' + idLavoura);
   }
@@ -59,7 +63,7 @@ export class LavouraService {
     return this.http.put(this.baseUrl + 'TalhoesLavoura/' + idLavoura, talhoesLavoura);
   }
 
-  confirmarLavoura(idLavoura) {
+  concluirLavoura(idLavoura) {
     return this.http.post(this.baseUrl + 'ConclusaoLavoura/' + idLavoura, {});
   }
 }

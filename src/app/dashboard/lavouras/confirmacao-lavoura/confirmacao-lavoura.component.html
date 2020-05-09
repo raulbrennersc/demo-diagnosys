@@ -1,1 +1,54 @@
-<p>confirmacao-lavoura works!</p>
+<div class="modulo-div text-center">
+    <div *ngIf="etapaCarregada" class="container-fluid pb-5">
+        <div class="row">
+            <div class="text-left mb-1 d-flex mr-5 align-items-start">
+                <span><strong>Dados da Lavoura</strong></span>
+            </div>
+            <div class="flex-grow-1">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-flex pl-5 flex-column align-items-start">
+                <span><strong>Nome da Lavoura:</strong> {{lavoura.dadosLavoura.nome}}</span>
+                <span><strong>Mês/Ano plantio:</strong> {{lavoura.dadosLavoura.mesAnoPlantio}}</span>
+                <span><strong>Cultivar:</strong> {{lavoura.dadosLavoura.cultivar}}</span>
+                <span><strong>N° de plantas:</strong> {{lavoura.dadosLavoura.numeroPlantas}}</span>
+                <span><strong>Área total:</strong> {{lavoura.dadosLavoura.areaTotal}}</span>
+                <span><strong>Espaçamento:</strong> {{lavoura.dadosLavoura.espacamentoHorizontal}} x
+                    {{lavoura.dadosLavoura.espacamentoVertical}}</span>
+                <span><strong>Observações:</strong> {{lavoura.dadosLavoura.observacoes}}</span>
+                <span><strong>Stand:</strong> {{lavoura.dadosLavoura.Stand}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-left mb-1 mr-5 d-flex align-items-start">
+                <span><strong>Demarcação</strong></span>
+            </div>
+            <div class="flex-grow-1 pr-5">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <app-map [geometriasCadastradas]="[lavoura.demarcacao]"></app-map>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-left mb-1 d-flex mr-5 align-items-start">
+                <span><strong>Talhões</strong></span>
+            </div>
+            <div class="flex-grow-1 pr-5">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <app-map [geometriasCadastradas]="lavoura.talhoes"></app-map>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-end mt-5 pr-2 pb-5">
+    <button (click)="confirmarLavoura()" class="btn btn-primary">CONCLUIR <i class="fas fa-save"></i> </button>
+</div>
