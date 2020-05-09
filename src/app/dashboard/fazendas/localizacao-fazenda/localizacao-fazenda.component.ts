@@ -30,7 +30,6 @@ export class LocalizacaoFazendaComponent implements OnInit {
   }
 
   carregarMunicipios(idEstado) {
-    console.log(this.localizacaoFazenda);
     this.staticService.listarMunicipios(idEstado)
       .subscribe(response => this.municipios = response);
   }

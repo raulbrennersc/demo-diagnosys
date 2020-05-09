@@ -1,1 +1,7 @@
-<p>talhoes-lavoura works!</p>
+<div class="modulo-div">
+    <app-map *ngIf="etapaCarregada" [geometriasCadastradas]="[geometrias]" [ferramentas]="opcoesMapa"
+        (featuresDesenhadas)="salvarGeometria($event)"></app-map>
+</div>
+<div class="row justify-content-end mt-5 pr-2 mb-5">
+    <button (click)="avancarEtapa()" class="btn btn-primary">AVANÇAR <i class="fas fa-arrow-right"></i> </button>
+</div>

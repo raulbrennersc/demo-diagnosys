@@ -25,8 +25,8 @@ export class DemarcacaoLavouraComponent implements OnInit {
     this.consultarGeometria();
   }
 
-  salvarGeometria(geo) {
-    this.geometria = geo;
+  salvarGeometria(geometrias) {
+    this.geometria = geometrias[0];
   }
 
   consultarGeometria() {

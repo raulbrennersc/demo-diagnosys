@@ -32,7 +32,7 @@ export class LavouraService {
   }
 
   consultarTalhoesLavoura(idLavoura) {
-    return this.http.get(this.baseUrl + 'TalhoesLavoura' + idLavoura);
+    return this.http.get(this.baseUrl + 'TalhoesLavoura/' + idLavoura);
   }
 
   salvarDadosLavoura(idFazenda, dadosLavoura) {

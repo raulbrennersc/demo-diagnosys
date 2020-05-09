@@ -9,9 +9,10 @@ import { from } from 'rxjs';
 	styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-	@Input() geometriaCadastrada: GeoJSON.Polygon;
+	@Input() geometriasCadastradas: GeoJSON.Geometry[];
 	@Input() ferramentas: any;
-	@Output() geometriaDesenhada = new EventEmitter<GeoJSON.Geometry>();
+	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
+	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
 
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
@@ -62,11 +63,16 @@ export class MapComponent implements OnInit {
 	};
 
 	ngOnInit() {
-		if (this.geometriaCadastrada) {
-			const layer = L.geoJSON(this.geometriaCadastrada);
-			this.drawnItems.addLayer(layer);
-			const center = layer.getBounds().getCenter();
-			this.options.center = center;
+		if (this.geometriasCadastradas && this.geometriasCadastradas.length > 0) {
+			this.geometriasCadastradas.forEach(g => {
+				if (!g) {
+					return;
+				}
+				const layer = L.geoJSON(g);
+				this.drawnItems.addLayer(layer);
+				const center = layer.getBounds().getCenter();
+				this.options.center = center;
+			});
 		}
 
 		if (this.ferramentas) {
@@ -91,18 +97,23 @@ export class MapComponent implements OnInit {
 
 	public onDrawCreated(e: any) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
-		if (geojson.features.length == 1) {
+		if (geojson.features.length == 2) {
 			alert('ja tem geometria');
 			return;
 		}
 
-
-
 		const layer = (e as DrawEvents.Created).layer;
 		this.drawnItems.addLayer(layer);
+
 		geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
 
-		this.geometriaDesenhada.emit(geojson.features[0].geometry as GeoJSON.Geometry)
+		var geometries = new Array<GeoJSON.Geometry>();
+		geojson.features.forEach(f => {
+			geometries.push(f.geometry)
+		});
+
+		this.geometriasDesenhadas.emit(geometries);
+		this.featuresDesenhadas.emit(geojson);
 	}
 
 	public onDrawStart(e: any) {
