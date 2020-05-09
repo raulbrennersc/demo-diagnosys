@@ -44,9 +44,13 @@ export class TalhoesLavouraComponent implements OnInit {
 
   carregarGeometriasFixas() {
     this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(responseFazenda => {
-      this.geometriasFixas.push(responseFazenda as GeoJSON.Geometry);
+      let geoFazenda = responseFazenda as any;
+      geoFazenda.style = { color: '#a9cf74' };
+      this.geometriasFixas.push(geoFazenda as GeoJSON.Geometry);
       this.lavouraService.consultarDemarcacaoLavoura(this.lavoura.id).subscribe(responseLavoura => {
-        this.geometriasFixas.push(responseLavoura as GeoJSON.Geometry);
+        let geoLavoura = responseLavoura as any;
+        geoLavoura.style = { color: '#f5a142' };
+        this.geometriasFixas.push(geoLavoura as GeoJSON.Geometry);
         this.etapaCarregada = true;
       });
     });

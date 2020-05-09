@@ -12,6 +12,7 @@ export class MapComponent implements OnInit {
 	@Input() geometriasFixas: GeoJSON.Geometry[];
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
 	@Input() ferramentas: any;
+	@Input() estiloDesenhadas: any = { color: 'lightblue' };
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
 	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
 
@@ -69,7 +70,7 @@ export class MapComponent implements OnInit {
 				if (!g) {
 					return;
 				}
-				const layer = L.geoJSON(g);
+				const layer = this.preparaLayer(g);
 				this.drawnItems.addLayer(layer);
 				const center = layer.getBounds().getCenter();
 				this.options.center = center;
@@ -82,7 +83,7 @@ export class MapComponent implements OnInit {
 				if (!g) {
 					return;
 				}
-				const layer = L.geoJSON(g);
+				const layer = this.preparaLayer(g);
 				this.drawnItems.addLayer(layer);
 				const center = layer.getBounds().getCenter();
 				this.options.center = center;
@@ -132,6 +133,16 @@ export class MapComponent implements OnInit {
 
 	public onDrawStart(e: any) {
 
+	}
+
+	private preparaLayer(g: GeoJSON.Geometry) {
+		const layer = L.geoJSON(g);
+		let style = (g as any).style;
+		if (!style) {
+			style = this.estiloDesenhadas;
+		}
+		layer.setStyle(style);
+		return layer;
 	}
 
 }

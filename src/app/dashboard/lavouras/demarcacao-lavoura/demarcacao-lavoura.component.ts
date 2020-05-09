@@ -45,7 +45,9 @@ export class DemarcacaoLavouraComponent implements OnInit {
 
   carregarGeometriaFazenda() {
     this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(responseFazenda => {
-      this.geometriaFazenda = (responseFazenda as GeoJSON.Geometry);
+      let geoFazenda = responseFazenda as any;
+      geoFazenda.style = { color: '#a9cf74' };
+      this.geometriaFazenda = geoFazenda as GeoJSON.Geometry;
       this.etapaCarregada = true;
     });
   }
