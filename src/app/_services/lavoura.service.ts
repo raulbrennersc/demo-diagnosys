@@ -9,7 +9,7 @@ export class LavouraService {
   constructor(private http: HttpClient) { }
   baseUrl = environment.apiUrl + 'lavouras/';
   fazendaUrl = environment.apiUrl + 'fazendas/';
-  fazendaAtual = 0;
+  fazendaAtual = 71;
 
   listarPorFazenda(idFazenda) {
     return this.http.get(this.fazendaUrl + '/' + idFazenda + '/lavouras');

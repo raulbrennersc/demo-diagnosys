@@ -7,7 +7,7 @@
                     [(ngModel)]="dadosLavoura.nome">
                 <label class="col-2" for="localizacao.mesAnoPlantio">Mês/Ano plantio: * </label>
                 <input class="form-control col-3" type="text" required name="mesAnoPlantio"
-                    [(ngModel)]="dadosLavoura.nome">
+                    [(ngModel)]="dadosLavoura.mesAnoPlantio">
             </div>
             <div class="row">
                 <label class="col-3" for="localizacao.cultivar">Cultivar: * </label>
@@ -31,7 +31,7 @@
             <div class="row">
                 <label class="col-3" for="localizacao.nPlantas">
                     <i class="fa fa-question-circle"></i>
-                    N°: * </label>
+                    N° de plantas: * </label>
                 <div class="col-3 d-flex align-items-center px-0 mx-0">
                     <input class="form-control col-10" disabled type="text" required name="nPlantas"
                         [(ngModel)]="dadosLavoura.nPlantas">
