@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-demarcacao-lavoura',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demarcacao-lavoura.component.css']
 })
 export class DemarcacaoLavouraComponent implements OnInit {
-
+  @Input() idLavoura: number;
   constructor() { }
 
   ngOnInit(): void {

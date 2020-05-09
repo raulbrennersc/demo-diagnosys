@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-talhoes-lavoura',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./talhoes-lavoura.component.css']
 })
 export class TalhoesLavouraComponent implements OnInit {
-
+  @Input() idLavoura: number;
   constructor() { }
 
   ngOnInit(): void {
