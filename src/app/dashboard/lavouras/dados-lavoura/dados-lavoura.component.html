@@ -2,43 +2,47 @@
     <div class="modulo-div text-center">
         <div class="container-fluid text-right py-5 form-group">
             <div class="row">
-                <label class="col-3" for="localizacao.nomeFazenda">Nome da Lavoura: * </label>
-                <input class="form-control col-8" type="text" required name="nomeFazenda"
+                <label class="col-3" for="localizacao.nomeLavoura">Nome da Lavoura: * </label>
+                <input class="form-control col-3" type="text" required name="nomeLavoura"
+                    [(ngModel)]="dadosLavoura.nome">
+                <label class="col-2" for="localizacao.mesAnoPlantio">Mês/Ano plantio: * </label>
+                <input class="form-control col-3" type="text" required name="mesAnoPlantio"
                     [(ngModel)]="dadosLavoura.nome">
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.idEstado">Estado: * </label>
-                <select (change)="carregarMunicipios(dadosLavoura.idEstado)" [(ngModel)]="dadosLavoura.idEstado"
-                    class="form-control col-3" required name="idEstado">
-                    <option *ngFor="let estado of estados" [ngValue]="estado.id">{{estado.nome}}</option>
-                </select>
-                <label class="col-2" for="localizacao.idMunicipio">Município: * </label>
-                <select class="form-control col-3" required name="idMunicipio" [(ngModel)]="dadosLavoura.idMunicipio">
-                    <option *ngFor="let municipio of municipios" value={{municipio.id}}>{{municipio.nome}}</option>
-                </select>
+                <label class="col-3" for="localizacao.cultivar">Cultivar: * </label>
+                <input class="form-control col-8" type="text" required name="cultivar"
+                    [(ngModel)]="dadosLavoura.cultivar">
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.nomeProprietario">Proprietário: * </label>
-                <input class="form-control col-8" type="text" required name="nomeProprietario"
-                    [(ngModel)]="dadosLavoura.proprietario">
+                <label class="col-3" for="localizacao.areaTotal">Área total: * </label>
+                <input class="form-control col-2" type="text" required name="areaTotal"
+                    [(ngModel)]="dadosLavoura.areaTotal">
+                <label class="col-2" for="localizacao.espacamentoHorizontal">Espaçamento: * </label>
+                <div class="col-4 px-0 mx-0 d-flex align-items-center">
+                    <input class="form-control col" type="text" required name="espacamentoHorizontal"
+                        [(ngModel)]="dadosLavoura.espacamentoHorizontal">
+                    <span class="col-1 text-center px-0 mx-0">x</span>
+                    <input class="form-control col" type="text" required name="espacamentoVertical"
+                        [(ngModel)]="dadosLavoura.espacamentoVertical">
+                </div>
+                <span>&nbsp; m</span>
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.nomeGerente">Gerente da Fazenda: * </label>
-                <input class="form-control col-8" type="text" required name="nomeGerente"
-                    [(ngModel)]="dadosLavoura.gerente">
+                <label class="col-3" for="localizacao.nPlantas">N°: * </label>
+                <div class="col-3 d-flex align-items-center px-0 mx-0">
+                    <input class="form-control col-10" disabled type="text" required name="nPlantas"
+                        [(ngModel)]="dadosLavoura.nPlantas">
+                    <span>&nbsp; ha</span>
+                </div>
+                <label class="col-2" for="localizacao.stand">Stand: * </label>
+                <input class="form-control col-3" disabled type="text" required name="stand"
+                    [(ngModel)]="dadosLavoura.stand">
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.emailFazenda">E-mail da Fazenda: * </label>
-                <input class="form-control col-3" type="text" required name="emailFazenda"
-                    [(ngModel)]="dadosLavoura.email">
-                <label class="col-3" for="localizacao.telefoneFazenda">Telefone da Fazenda: * </label>
-                <input class="form-control col-2" type="text" required name="telefoneFazenda"
-                    [(ngModel)]="dadosLavoura.telefone">
-            </div>
-            <div class="row">
-                <label class="col-3" for="localizacao.pontoReferencia">Ponto de Referência: * </label>
-                <input class="form-control col-8" type="text" required name="pontoReferencia"
-                    [(ngModel)]="dadosLavoura.pontoReferencia">
+                <label class="col-3" for="localizacao.observacoes">Observações: * </label>
+                <input class="form-control col-8" type="text" required name="observacoes"
+                    [(ngModel)]="dadosLavoura.observacoes">
             </div>
         </div>
     </div>
