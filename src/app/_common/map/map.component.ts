@@ -110,14 +110,15 @@ export class MapComponent implements OnInit {
 
 	}
 
-	public onDrawCreated(e: any) {
+	public onDrawCreated(e: DrawEvents.Created) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
-		if (geojson.features.length == 2) {
+		if (geojson.features.length == 10) {
 			alert('ja tem geometria');
 			return;
 		}
 
-		const layer = (e as DrawEvents.Created).layer;
+		const geo = e.layer.toGeoJSON().geometry;
+		const layer = this.preparaLayer(geo);
 		this.drawnItems.addLayer(layer);
 
 		geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);

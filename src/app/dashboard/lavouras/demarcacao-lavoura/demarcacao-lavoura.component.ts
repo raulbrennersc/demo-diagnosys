@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-demarcacao-lavoura',
