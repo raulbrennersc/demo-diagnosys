@@ -17,7 +17,7 @@ export class CadastroLavouraComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private lavouraService: LavouraService, private staticService: StaticService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.carregarLavoura();
   }
 
@@ -35,7 +35,7 @@ export class CadastroLavouraComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const idLavoura = params['id'];
       if (idLavoura) {
-        this.lavouraService.consultarDadosLavoura(idLavoura)
+        this.lavouraService.consultarLavoura(idLavoura)
           .subscribe(response => {
             this.lavoura = response;
             if (!this.etapasCarregadas) {

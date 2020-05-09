@@ -17,7 +17,11 @@ html{
 
 body{
     font-size: 14px;
-    color: var(--text-main-color)
+    color: var(--text-main-color);
+}
+
+.table{
+    color: var(--text-main-color);
 }
 
 a{

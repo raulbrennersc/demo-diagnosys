@@ -12,7 +12,7 @@ export class LavouraService {
   fazendaAtual = 71;
 
   listarPorFazenda(idFazenda) {
-    return this.http.get(this.fazendaUrl + '/' + idFazenda + '/lavouras');
+    return this.http.get(this.fazendaUrl + idFazenda + '/lavouras');
   }
 
   listarTodas() {
@@ -24,15 +24,15 @@ export class LavouraService {
   }
 
   consultarDadosLavoura(idLavoura) {
-    return this.http.get(this.baseUrl + idLavoura);
+    return this.http.get(this.baseUrl + 'DadosLavoura/' + idLavoura);
   }
 
   consultarDemarcacaoLavoura(idLavoura) {
-    return this.http.get(this.baseUrl + idLavoura);
+    return this.http.get(this.baseUrl + 'DemarcacaoLavoura/' + idLavoura);
   }
 
   consultarTalhoesLavoura(idLavoura) {
-    return this.http.get(this.baseUrl + idLavoura);
+    return this.http.get(this.baseUrl + 'TalhoesLavoura' + idLavoura);
   }
 
   salvarDadosLavoura(idFazenda, dadosLavoura) {

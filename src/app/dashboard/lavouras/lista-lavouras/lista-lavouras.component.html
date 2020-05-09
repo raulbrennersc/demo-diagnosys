@@ -15,6 +15,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr *ngFor="let lavoura of lavouras">
+                        <td class="text-left">{{lavoura.nome}}</td>
+                        <td class="text-center">{{lavoura.concluida ? 'Cadstro concluído' : 'Cadastro em andamento'}}
+                        </td>
+                        <td class="text-center">
+                            <a [routerLink]="['/painel', 'lavouras', 'cadastro', lavoura.id]"><i
+                                    class="fa fa-eye"></i></a>
+                            <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-edit mx-2"></i></a>
+                            <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
                     <tr *ngIf="lavouras.length == 0">
                         <td colspan="3" class="text-center">Não existem lavouras para listar.</td>
                     </tr>

@@ -10,3 +10,8 @@
 .td-icones{
     color: var(--input-color);
 }
+
+{
+    font-size: 14px;
+    color: var(--text-main-color);
+}
