@@ -1,0 +1,21 @@
+.modulo-div{
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    border-radius: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.row{
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+label{
+    width: 200px;
+}
+
+hr{
+    border-width: 1px;
+    border-color: #707070;
+}
