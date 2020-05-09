@@ -146,4 +146,14 @@ export class MapComponent implements OnInit {
 		return layer;
 	}
 
+	public onDeleted(e: DrawEvents.Deleted) {
+		e.layers.eachLayer(layer => {
+			layer.remove();
+		});
+	}
+
+	public onTest(e) {
+		console.log(e);
+	}
+
 }
