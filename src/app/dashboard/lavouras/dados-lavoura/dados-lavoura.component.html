@@ -29,13 +29,17 @@
                 <span>&nbsp; m</span>
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.nPlantas">N°: * </label>
+                <label class="col-3" for="localizacao.nPlantas">
+                    <i class="fa fa-question-circle"></i>
+                    N°: * </label>
                 <div class="col-3 d-flex align-items-center px-0 mx-0">
                     <input class="form-control col-10" disabled type="text" required name="nPlantas"
                         [(ngModel)]="dadosLavoura.nPlantas">
                     <span>&nbsp; ha</span>
                 </div>
-                <label class="col-2" for="localizacao.stand">Stand: * </label>
+                <label class="col-2" for="localizacao.stand">
+                    <i class="fa fa-question-circle"></i>
+                    Stand: * </label>
                 <input class="form-control col-3" disabled type="text" required name="stand"
                     [(ngModel)]="dadosLavoura.stand">
             </div>

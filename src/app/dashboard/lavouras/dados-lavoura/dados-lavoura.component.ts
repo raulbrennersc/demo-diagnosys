@@ -24,15 +24,8 @@ export class DadosLavouraComponent implements OnInit {
         .subscribe(response => {
           this.editando = true;
           this.dadosLavoura = response;
-          this.carregarMunicipios(this.dadosLavoura.idEstado);
         });
     }
-  }
-
-  carregarMunicipios(idEstado) {
-    console.log(this.dadosLavoura);
-    this.staticService.listarMunicipios(idEstado)
-      .subscribe(response => this.municipios = response);
   }
 
   avancarEtapa(form) {
