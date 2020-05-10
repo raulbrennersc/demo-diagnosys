@@ -45,4 +45,16 @@ export class ListaLavourasComponent implements OnInit {
       });
   }
 
+  excluirLavoura(idLavoura) {
+    this.lavouraService.excluirLavoura(idLavoura)
+      .subscribe(response => {
+        if (this.idFazenda) {
+          this.carregarLavourasPorFazenda();
+        }
+        else {
+          this.carregarLavourasPorUsuario();
+        }
+      })
+  }
+
 }

@@ -66,4 +66,7 @@ export class LavouraService {
   concluirLavoura(idLavoura) {
     return this.http.post(this.baseUrl + 'ConclusaoLavoura/' + idLavoura, {});
   }
+  excluirLavoura(idLavoura) {
+    return this.http.post(this.baseUrl + 'ExcluirLavoura/' + idLavoura, {});
+  }
 }
