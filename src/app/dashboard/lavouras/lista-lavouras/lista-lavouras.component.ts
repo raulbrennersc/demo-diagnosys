@@ -11,6 +11,7 @@ export class ListaLavourasComponent implements OnInit {
   lavourasCarregadas = false;
   lavouras: any = [];
   idFazenda = 0;
+  podeCadastrar = false;
 
   constructor(private lavouraService: LavouraService, private activatedRoute: ActivatedRoute) { }
 
@@ -18,6 +19,7 @@ export class ListaLavourasComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.idFazenda = params['id'];
       if (this.idFazenda) {
+        this.podeCadastrar = true;
         this.lavouraService.fazendaAtual = this.idFazenda;
         this.carregarLavourasPorFazenda()
       }

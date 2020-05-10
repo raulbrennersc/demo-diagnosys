@@ -1,6 +1,6 @@
 <div class="modulo-div">
     <div class="container-fluid pt-5 px-5">
-        <div class="row justify-content-end px-3">
+        <div *ngIf="podeCadastrar" class="row justify-content-end px-3">
             <a [routerLink]="['/painel', 'lavouras', 'cadastro']"><button type="submit" class="btn btn-primary"><i
                         class="fas fa-plus"></i>
                     CADASTRAR LAVOURA</button></a>
@@ -20,8 +20,7 @@
                         <td class="text-center">{{lavoura.concluida ? 'Cadstro concluído' : 'Cadastro em andamento'}}
                         </td>
                         <td class="text-center">
-                            <a [routerLink]="['/painel', 'lavouras', 'cadastro', lavoura.id]"><i
-                                    class="fa fa-eye"></i></a>
+                            <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-eye"></i></a>
                             <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-edit mx-2"></i></a>
                             <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-trash"></i></a>
                         </td>
