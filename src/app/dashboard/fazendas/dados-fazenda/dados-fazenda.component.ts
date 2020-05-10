@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-dados-fazenda',
@@ -14,7 +15,7 @@ export class DadosFazendaComponent implements OnInit {
   dadosFazenda: any = {};
   culturas: any = [];
 
-  constructor(private staticService: StaticService, private fazendaService: FazendasService) { }
+  constructor(private staticService: StaticService, private fazendaService: FazendasService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.staticService.listarCulturas()
@@ -24,8 +25,6 @@ export class DadosFazendaComponent implements OnInit {
         .subscribe(response => {
           this.editando = true;
           this.dadosFazenda = response;
-        }, response => {
-          console.log(response.error);
         });
     }
   }
@@ -33,11 +32,8 @@ export class DadosFazendaComponent implements OnInit {
   avancarEtapa(form) {
     const callback = {
       next: (response) => {
-        alert('dadosSalvos');
+        this.alertify.success('Dados salvos!');
         this.salvar.emit();
-      },
-      error: (response) => {
-        alert(response.error);
       }
     }
 

@@ -23,6 +23,7 @@
     "@asymmetrik/ngx-leaflet-draw": "^6.0.0",
     "@auth0/angular-jwt": "^4.0.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "alertifyjs": "^1.13.1",
     "bootstrap": "^4.4.1",
     "leaflet": "^1.6.0",
     "leaflet-draw": "^1.0.4",

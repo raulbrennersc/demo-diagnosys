@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-confirmacao-lavoura',
@@ -13,7 +14,7 @@ export class ConfirmacaoLavouraComponent implements OnInit {
 
   etapaCarregada = false;
 
-  constructor(private lavouraService: LavouraService, private geometriaService: GeometriaService) { }
+  constructor(private lavouraService: LavouraService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.carregarEtapa();
@@ -29,8 +30,6 @@ export class ConfirmacaoLavouraComponent implements OnInit {
         lavoura.conjuntoGeometrias = [lavoura.demarcacaoFazenda, lavoura.demarcacao, ...lavoura.talhoes]
         this.lavoura = lavoura;
         this.etapaCarregada = true;
-      }, (response) => {
-        alert('erro ao carregar');
       });
   }
 
@@ -41,10 +40,8 @@ export class ConfirmacaoLavouraComponent implements OnInit {
     }
     this.lavouraService.concluirLavoura(this.lavoura.id)
       .subscribe(response => {
-        alert('lavoura concluida');
+        this.alertify.success('Cadastro de lavoura concluído!');
         this.confirmar.emit(false);
-      }, response => {
-        alert(response.error);
       })
   }
 

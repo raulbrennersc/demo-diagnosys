@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-localizacao-fazenda',
@@ -10,7 +11,7 @@ import { FazendasService } from 'src/app/_services/fazenda.service';
 export class LocalizacaoFazendaComponent implements OnInit {
   localizacaoFazenda: any = {};
   editando = false;
-  constructor(private staticService: StaticService, private fazendaService: FazendasService) { }
+  constructor(private staticService: StaticService, private fazendaService: FazendasService, private alertify: AlertifyService) { }
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<number>();
   estados: any = [];
@@ -46,20 +47,16 @@ export class LocalizacaoFazendaComponent implements OnInit {
   salvarLocalizacao() {
     this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
       .subscribe(response => {
-        alert('dadosSalvos');
+        this.alertify.success('Dados salvos!');
         this.salvar.emit((response as any).id);
-      }, response => {
-        alert(response.error);
       });
   }
 
   atualizarLocalizacao() {
     this.fazendaService.atualizarLocalizacaoFazenda(this.localizacaoFazenda, this.idFazenda)
       .subscribe(response => {
-        alert('dadosSalvos');
+        this.alertify.success('Dados salvos!');
         this.salvar.emit();
-      }, response => {
-        alert(response.error);
       });
   }
 

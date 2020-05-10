@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents, Map } from 'leaflet';
 import * as L from 'leaflet';
 import { from } from 'rxjs';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
 	selector: 'app-map',
@@ -66,6 +67,8 @@ export class MapComponent implements OnInit {
 		}
 	};
 
+	constructor(private alertify: AlertifyService) { }
+
 	ngOnInit() {
 		if (this.geometriasFixas && this.geometriasFixas.length > 0) {
 			this.geometriasFixas.forEach(g => {
@@ -116,7 +119,7 @@ export class MapComponent implements OnInit {
 	public onDrawCreated(e: DrawEvents.Created) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
 		if (this.ferramentas.quantidadeGeometrias > 0 && geojson.features.length >= this.ferramentas.quantidadeGeometrias) {
-			alert('ja tem geometria');
+			this.alertify.error('Quantidade máxima de geometrias atingida!');
 			return;
 		}
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { ThrowStmt } from '@angular/compiler';
 import { GeometriaService } from 'src/app/_services/geometria.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-confirmacao-fazenda',
@@ -15,7 +16,7 @@ export class ConfirmacaoFazendaComponent implements OnInit {
   fazenda: any;
   etapaCarregada = false;
 
-  constructor(private fazendaService: FazendasService, private geometriaService: GeometriaService) { }
+  constructor(private fazendaService: FazendasService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.carregarEtapa();
@@ -27,8 +28,6 @@ export class ConfirmacaoFazendaComponent implements OnInit {
         this.fazenda = response;
         this.fazenda.demarcacao = this.geometriaService.montarGeometriaFazenda(this.fazenda.demarcacao);
         this.etapaCarregada = true;
-      }, (response) => {
-        alert('erro ao carregar');
       });
   }
 
@@ -39,10 +38,8 @@ export class ConfirmacaoFazendaComponent implements OnInit {
     }
     this.fazendaService.concluirFazenda(this.idFazenda)
       .subscribe(response => {
-        alert('fazenda concluida');
+        this.alertify.success('Cadastro da fazenda concluído');
         this.confirmar.emit(false);
-      }, response => {
-        alert(response.error);
       })
   }
 }

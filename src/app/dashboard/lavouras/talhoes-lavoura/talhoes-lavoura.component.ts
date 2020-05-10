@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-talhoes-lavoura',
@@ -23,7 +24,7 @@ export class TalhoesLavouraComponent implements OnInit {
 
   geometrias: GeoJSON.Geometry[];
   geometriasFixas: GeoJSON.Geometry[] = new Array<GeoJSON.Geometry>();
-  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService) { }
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -57,11 +58,8 @@ export class TalhoesLavouraComponent implements OnInit {
   avancarEtapa() {
     const callback = {
       next: (response) => {
-        alert('dadosSalvos');
+        this.alertify.success('Dados Salvos!');
         this.salvar.emit();
-      },
-      error: (response) => {
-        alert(response.error);
       }
     }
 

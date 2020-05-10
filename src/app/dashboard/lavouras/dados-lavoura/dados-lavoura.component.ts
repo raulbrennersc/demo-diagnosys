@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { LavouraService } from 'src/app/_services/lavoura.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-dados-lavoura',
@@ -10,7 +11,7 @@ import { LavouraService } from 'src/app/_services/lavoura.service';
 export class DadosLavouraComponent implements OnInit {
   dadosLavoura: any = {};
   editando = false;
-  constructor(private staticService: StaticService, private lavouraService: LavouraService) { }
+  constructor(private staticService: StaticService, private lavouraService: LavouraService, private alertify: AlertifyService) { }
   @Input() idLavoura: number;
   @Output() salvar = new EventEmitter<number>();
   estados: any = [];
@@ -40,20 +41,16 @@ export class DadosLavouraComponent implements OnInit {
   salvarLocalizacao() {
     this.lavouraService.salvarDadosLavoura(this.lavouraService.fazendaAtual, this.dadosLavoura)
       .subscribe(response => {
-        alert('dadosSalvos');
+        this.alertify.success('Dados salvos!');
         this.salvar.emit((response as any).id);
-      }, response => {
-        alert(response.error);
       });
   }
 
   atualizarLocalizacao() {
     this.lavouraService.atualizarDadosLavoura(this.dadosLavoura, this.idLavoura)
       .subscribe(response => {
-        alert('dadosSalvos');
+        this.alertify.success('Dados salvos!');
         this.salvar.emit();
-      }, response => {
-        alert(response.error);
       });
   }
 }

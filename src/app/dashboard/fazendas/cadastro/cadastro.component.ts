@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { StaticService } from 'src/app/_services/static.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,7 +15,7 @@ export class CadastroComponent implements OnInit {
   etapaAtiva = 1;
   etapasCarregadas = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private fazendaService: FazendasService, private staticService: StaticService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private fazendaService: FazendasService, private staticService: StaticService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.carregarFazenda();
@@ -42,7 +43,6 @@ export class CadastroComponent implements OnInit {
               this.carregarEtapas();
             }
           }, response => {
-            alert(response.error);
             this.router.navigate(['']);
           });
       }
@@ -57,8 +57,6 @@ export class CadastroComponent implements OnInit {
       .subscribe(response => {
         this.etapas = response;
         this.etapasCarregadas = true;
-      }, response => {
-        alert(response.error);
       });
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacaoService } from 'src/app/_services/autenticacao.service';
 import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +11,22 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   model: any = {};
-  constructor(private autenticacaoService: AutenticacaoService, private router: Router) { }
+  constructor(private autenticacaoService: AutenticacaoService, private router: Router, private alertify: AlertifyService) { }
 
   ngOnInit() {
-    if(this.loggedIn()){
+    if (this.loggedIn()) {
       this.router.navigate(['/painel']);
     }
   }
 
   login() {
     this.autenticacaoService.login(this.model).subscribe(next => {
-      alert('login realizado');
+      this.alertify.success('Login realizado!');
       this.router.navigate(['/painel']);
     }, error => {
-      alert('falha ao realizar login');
+      this.alertify.error('Login e/ou senha incorretos!');
     }, () => {
-      
+
     });
 
   }

@@ -42,9 +42,6 @@ export class CadastroLavouraComponent implements OnInit {
               this.etapaAtiva = this.lavoura.idEtapa;
               this.carregarEtapas();
             }
-          }, response => {
-            alert(response.error);
-            this.router.navigate(['']);
           });
       }
       else {
@@ -58,8 +55,6 @@ export class CadastroLavouraComponent implements OnInit {
       .subscribe(response => {
         this.etapas = response;
         this.etapasCarregadas = true;
-      }, response => {
-        alert(response.error);
       });
   }
 

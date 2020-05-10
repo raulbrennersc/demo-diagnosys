@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FazendasService } from 'src/app/_services/fazenda.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-lista-fazendas',
@@ -9,7 +10,7 @@ import { FazendasService } from 'src/app/_services/fazenda.service';
 export class ListaFazendasComponent implements OnInit {
 
   fazendas: any = [];
-  constructor(private fazendaService: FazendasService) { }
+  constructor(private fazendaService: FazendasService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.carregarFazendas()
@@ -18,17 +19,14 @@ export class ListaFazendasComponent implements OnInit {
   desativarFazenda(idFazenda) {
     this.fazendaService.desativarFazenda(idFazenda)
       .subscribe(response => {
-        alert('Fazenda excluida');
+        this.alertify.success('Fazenda excluida');
         this.carregarFazendas();
-      }, response => {
-        alert(response.error);
       })
   }
 
   carregarFazendas() {
     this.fazendaService.listarFazendas()
-      .subscribe(resposta => this.fazendas = resposta,
-        response => alert(response.error));
+      .subscribe(resposta => this.fazendas = resposta);
   }
 
 }
