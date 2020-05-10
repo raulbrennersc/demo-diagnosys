@@ -19,7 +19,7 @@ export class TalhoesLavouraComponent implements OnInit {
     remove: {},
   };
 
-  geometrias: GeoJSON.FeatureCollection;
+  geometrias: GeoJSON.Geometry[];
   geometriasFixas: GeoJSON.Geometry[] = new Array<GeoJSON.Geometry>();
   constructor(private lavouraService: LavouraService, private fazendaService: FazendasService) { }
 
@@ -35,7 +35,7 @@ export class TalhoesLavouraComponent implements OnInit {
     this.lavouraService.consultarTalhoesLavoura(this.lavoura.id)
       .subscribe(response => {
         this.editando = true;
-        this.geometrias = response as GeoJSON.FeatureCollection;
+        this.geometrias = response as GeoJSON.Geometry[];
         this.carregarGeometriasFixas();
       }, response => {
         this.carregarGeometriasFixas();

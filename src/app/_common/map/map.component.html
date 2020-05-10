@@ -1,7 +1,6 @@
 <div leaflet class="map" leafletDraw [leafletOptions]="options" [leafletDrawOptions]="drawOptions"
      [leafletDrawLocal]="drawLocal" (leafletDrawCreated)="onDrawCreated($event)"
-     (leafletDrawDeleted)="onDeleted($event)" (leafletDrawStart)="onDrawStart($event)"
-     (leafletMapReady)="onMapReady($event)">
+     (leafletDrawStart)="onDrawStart($event)" (leafletMapReady)="onMapReady($event)">
 
      <div [leafletLayer]="drawnItems"></div>
 

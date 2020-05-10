@@ -14,7 +14,6 @@ export class MapComponent implements OnInit {
 	@Input() ferramentas: any;
 	@Input() estiloDesenhadas: any = { color: 'lightblue' };
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
-	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
 
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
@@ -77,7 +76,6 @@ export class MapComponent implements OnInit {
 			});
 		}
 
-
 		if (this.geometriasCadastradas && this.geometriasCadastradas.length > 0) {
 			this.geometriasCadastradas.forEach(g => {
 				if (!g) {
@@ -129,7 +127,6 @@ export class MapComponent implements OnInit {
 		});
 
 		this.geometriasDesenhadas.emit(geometries);
-		this.featuresDesenhadas.emit(geojson);
 	}
 
 	public onDrawStart(e: any) {
@@ -137,7 +134,7 @@ export class MapComponent implements OnInit {
 	}
 
 	private preparaLayer(g: GeoJSON.Geometry) {
-		const layer = L.geoJSON(g);
+		let layer = new L.Polygon((g as GeoJSON.Polygon).coordinates[0].map(z => new L.LatLng(z[1], z[0])));
 		let style = (g as any).style;
 		if (!style) {
 			style = this.estiloDesenhadas;
