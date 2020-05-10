@@ -11,8 +11,7 @@ import { from } from 'rxjs';
 export class MapComponent implements OnInit {
 	@Input() geometriasFixas: GeoJSON.Geometry[];
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
-	@Input() ferramentas: any;
-	@Input() estiloDesenhadas: any = { color: 'lightblue' };
+	@Input() ferramentas: any = {};
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
 
 	geometries: any = [];
@@ -91,7 +90,7 @@ export class MapComponent implements OnInit {
 
 		if (this.ferramentas) {
 			this.drawOptions.draw.marker = this.ferramentas.marker;
-			this.drawOptions.draw.polygon = this.ferramentas.polygon;
+			this.drawOptions.draw.polygon = { shapeOptions: this.ferramentas.estiloDesenho };
 			this.drawOptions.draw.polyline = this.ferramentas.polyline;
 			this.drawOptions.draw.rectangle = this.ferramentas.rectangle;
 			this.drawOptions.draw.circle = this.ferramentas.circle;
@@ -111,7 +110,7 @@ export class MapComponent implements OnInit {
 
 	public onDrawCreated(e: DrawEvents.Created) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
-		if (this.ferramentas && this.ferramentas.quantidadeGeometrias > 0 && geojson.features.length >= this.ferramentas.quantidadeGeometrias) {
+		if (this.ferramentas.quantidadeGeometrias > 0 && geojson.features.length >= this.ferramentas.quantidadeGeometrias) {
 			alert('ja tem geometria');
 			return;
 		}
@@ -138,7 +137,7 @@ export class MapComponent implements OnInit {
 		let layer = new L.Polygon((g as GeoJSON.Polygon).coordinates[0].map(z => new L.LatLng(z[1], z[0])));
 		let style = (g as any).style;
 		if (!style) {
-			style = this.estiloDesenhadas;
+			style = this.ferramentas.estiloDesenho;
 		}
 		layer.setStyle(style);
 		return layer;

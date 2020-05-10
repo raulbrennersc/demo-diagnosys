@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
+import { GeometriaService } from 'src/app/_services/geometria.service';
 
 @Component({
   selector: 'app-talhoes-lavoura',
@@ -17,11 +18,12 @@ export class TalhoesLavouraComponent implements OnInit {
     polygon: true,
     edit: {},
     remove: {},
+    estiloDesenho: { color: this.geometriaService.corTalhao },
   };
 
   geometrias: GeoJSON.Geometry[];
   geometriasFixas: GeoJSON.Geometry[] = new Array<GeoJSON.Geometry>();
-  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService) { }
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -44,13 +46,9 @@ export class TalhoesLavouraComponent implements OnInit {
 
   carregarGeometriasFixas() {
     this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(responseFazenda => {
-      let geoFazenda = responseFazenda as any;
-      geoFazenda.style = { color: '#a9cf74' };
-      this.geometriasFixas.push(geoFazenda as GeoJSON.Geometry);
+      this.geometriasFixas.push(this.geometriaService.montarGeometriaFazenda(responseFazenda));
       this.lavouraService.consultarDemarcacaoLavoura(this.lavoura.id).subscribe(responseLavoura => {
-        let geoLavoura = responseLavoura as any;
-        geoLavoura.style = { color: '#f5a142' };
-        this.geometriasFixas.push(geoLavoura as GeoJSON.Geometry);
+        this.geometriasFixas.push(this.geometriaService.montarGeometriaLavoura(responseLavoura));
         this.etapaCarregada = true;
       });
     });

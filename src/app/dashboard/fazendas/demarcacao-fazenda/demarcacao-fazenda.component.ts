@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FazendasService } from 'src/app/_services/fazenda.service';
+import { GeometriaService } from 'src/app/_services/geometria.service';
 
 @Component({
   selector: 'app-demarcacao-fazenda',
@@ -17,10 +18,11 @@ export class DemarcacaoFazendaComponent implements OnInit {
     edit: {},
     remove: {},
     quantidadeGeometrias: 1,
+    estiloDesenho: { color: this.geometriaService.corFazenda },
   };
 
-  geometria: GeoJSON.Feature<GeoJSON.Polygon>;
-  constructor(private fazendaService: FazendasService) { }
+  geometria: GeoJSON.Geometry;
+  constructor(private fazendaService: FazendasService, private geometriaService: GeometriaService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -39,7 +41,7 @@ export class DemarcacaoFazendaComponent implements OnInit {
     this.fazendaService.consultarDemarcacaoFazenda(this.idFazenda)
       .subscribe(response => {
         this.editando = true;
-        this.geometria = response as GeoJSON.Feature<GeoJSON.Polygon>;
+        this.geometria = response as GeoJSON.Geometry;
         this.etapaCarregada = true;
       }, response => {
         this.etapaCarregada = true;

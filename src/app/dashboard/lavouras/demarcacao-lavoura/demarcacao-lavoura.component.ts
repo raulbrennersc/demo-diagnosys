@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
+import { GeometriaService } from 'src/app/_services/geometria.service';
 
 @Component({
   selector: 'app-demarcacao-lavoura',
@@ -17,12 +18,13 @@ export class DemarcacaoLavouraComponent implements OnInit {
     polygon: true,
     edit: {},
     remove: {},
-    quantidadeGeometrias: 1
+    quantidadeGeometrias: 1,
+    estiloDesenho: { color: this.geometriaService.corLavoura },
   };
 
   geometria: GeoJSON.Geometry;
   geometriaFazenda: GeoJSON.Geometry;
-  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService) { }
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -44,10 +46,8 @@ export class DemarcacaoLavouraComponent implements OnInit {
   }
 
   carregarGeometriaFazenda() {
-    this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(responseFazenda => {
-      let geoFazenda = responseFazenda as any;
-      geoFazenda.style = { color: '#a9cf74' };
-      this.geometriaFazenda = geoFazenda as GeoJSON.Geometry;
+    this.fazendaService.consultarDemarcacaoFazenda(this.lavoura.idFazenda).subscribe(response => {
+      this.geometriaFazenda = this.geometriaService.montarGeometriaFazenda(response);
       this.etapaCarregada = true;
     });
   }
