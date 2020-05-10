@@ -69,7 +69,7 @@ export class MapComponent implements OnInit {
 				if (!g) {
 					return;
 				}
-				const layer = this.preparaLayer(g);
+				const layer = this.montarLayerFixo(g);
 				this.drawnItems.addLayer(layer);
 				const center = layer.getBounds().getCenter();
 				this.options.center = center;
@@ -81,7 +81,7 @@ export class MapComponent implements OnInit {
 				if (!g) {
 					return;
 				}
-				const layer = this.preparaLayer(g);
+				const layer = this.montarLayerDesenhado(g);
 				this.drawnItems.addLayer(layer);
 				const center = layer.getBounds().getCenter();
 				this.options.center = center;
@@ -116,7 +116,7 @@ export class MapComponent implements OnInit {
 		}
 
 		const geo = e.layer.toGeoJSON().geometry;
-		const layer = this.preparaLayer(geo);
+		const layer = this.montarLayerDesenhado(geo);
 		this.drawnItems.addLayer(layer);
 
 		geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
@@ -133,8 +133,18 @@ export class MapComponent implements OnInit {
 
 	}
 
-	private preparaLayer(g: GeoJSON.Geometry) {
+	private montarLayerDesenhado(g: GeoJSON.Geometry) {
 		let layer = new L.Polygon((g as GeoJSON.Polygon).coordinates[0].map(z => new L.LatLng(z[1], z[0])));
+		let style = (g as any).style;
+		if (!style) {
+			style = this.estiloDesenhadas;
+		}
+		layer.setStyle(style);
+		return layer;
+	}
+
+	private montarLayerFixo(g: GeoJSON.Geometry) {
+		let layer = L.geoJSON(g);
 		let style = (g as any).style;
 		if (!style) {
 			style = this.estiloDesenhadas;
