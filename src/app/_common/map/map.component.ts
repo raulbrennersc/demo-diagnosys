@@ -11,8 +11,11 @@ import { from } from 'rxjs';
 export class MapComponent implements OnInit {
 	@Input() geometriasFixas: GeoJSON.Geometry[];
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
-	@Input() ferramentas: any = {};
+	@Input() ferramentas: any = {
+		draw: {}
+	};
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
+	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection>();
 
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
@@ -90,7 +93,9 @@ export class MapComponent implements OnInit {
 
 		if (this.ferramentas) {
 			this.drawOptions.draw.marker = this.ferramentas.marker;
-			this.drawOptions.draw.polygon = { shapeOptions: this.ferramentas.estiloDesenho };
+			if (this.ferramentas.draw.polygon) {
+				this.drawOptions.draw.polygon = { shapeOptions: this.ferramentas.estiloDesenho };
+			}
 			this.drawOptions.draw.polyline = this.ferramentas.polyline;
 			this.drawOptions.draw.rectangle = this.ferramentas.rectangle;
 			this.drawOptions.draw.circle = this.ferramentas.circle;
@@ -127,6 +132,7 @@ export class MapComponent implements OnInit {
 		});
 
 		this.geometriasDesenhadas.emit(geometries);
+		this.featuresDesenhadas.emit(geojson);
 	}
 
 	public onDrawStart(e: any) {

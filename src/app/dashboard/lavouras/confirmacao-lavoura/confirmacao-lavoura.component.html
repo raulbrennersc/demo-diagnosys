@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col-10 mx-auto">
-                <app-map [geometriasCadastradas]="[lavoura.demarcacao]"></app-map>
+                <app-map [geometriasCadastradas]="[lavoura.demarcacaoFazenda, lavoura.demarcacao]"></app-map>
             </div>
         </div>
         <div class="row">
@@ -44,7 +44,8 @@
         </div>
         <div class="row">
             <div class="col-10 mx-auto">
-                <app-map [geometriasCadastradas]="lavoura.talhoes"></app-map>
+                <app-map [geometriasCadastradas]="lavoura.conjuntoGeometrias">
+                </app-map>
             </div>
         </div>
     </div>

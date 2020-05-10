@@ -82,5 +82,4 @@ export class TalhoesLavouraComponent implements OnInit {
     this.lavouraService.atualizarTalhoesLavoura(this.lavoura.id, this.geometrias)
       .subscribe(callback);
   }
-
 }
