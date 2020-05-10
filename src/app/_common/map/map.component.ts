@@ -111,7 +111,7 @@ export class MapComponent implements OnInit {
 
 	public onDrawCreated(e: DrawEvents.Created) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
-		if (geojson.features.length == 10) {
+		if (this.ferramentas && this.ferramentas.quantidadeGeometrias > 0 && geojson.features.length >= this.ferramentas.quantidadeGeometrias) {
 			alert('ja tem geometria');
 			return;
 		}

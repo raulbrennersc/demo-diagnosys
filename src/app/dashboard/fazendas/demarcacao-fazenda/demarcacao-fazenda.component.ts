@@ -16,6 +16,7 @@ export class DemarcacaoFazendaComponent implements OnInit {
     polygon: true,
     edit: {},
     remove: {},
+    quantidadeGeometrias: 1,
   };
 
   geometria: GeoJSON.Feature<GeoJSON.Polygon>;

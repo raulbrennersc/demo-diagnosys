@@ -17,6 +17,7 @@ export class DemarcacaoLavouraComponent implements OnInit {
     polygon: true,
     edit: {},
     remove: {},
+    quantidadeGeometrias: 1
   };
 
   geometria: GeoJSON.Geometry;
