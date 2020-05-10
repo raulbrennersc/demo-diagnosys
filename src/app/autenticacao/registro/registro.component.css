@@ -1,0 +1,28 @@
+
+a{
+    color: #2484D0;
+}
+
+.outer-div{
+    background-image: url(../../../assets/images/lavoura-opacity-30.jpg);
+}
+
+#logo-diagnosys{
+    margin-top: 100px;
+    width: 500px;
+}
+
+#main-container{
+    background-color: #fff;
+    width: 450px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #fff;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.row{
+    margin-bottom: 10px;
+}
