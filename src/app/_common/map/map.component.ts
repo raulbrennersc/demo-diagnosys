@@ -93,7 +93,7 @@ export class MapComponent implements OnInit {
 
 		if (this.ferramentas) {
 			this.drawOptions.draw.marker = this.ferramentas.marker;
-			if (this.ferramentas.draw.polygon) {
+			if (this.ferramentas.polygon) {
 				this.drawOptions.draw.polygon = { shapeOptions: this.ferramentas.estiloDesenho };
 			}
 			this.drawOptions.draw.polyline = this.ferramentas.polyline;
