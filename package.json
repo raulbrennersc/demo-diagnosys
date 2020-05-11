@@ -25,6 +25,8 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^4.4.1",
+    "georaster": "^1.0.5",
+    "georaster-layer-for-leaflet": "^0.4.2",
     "leaflet": "^1.6.0",
     "leaflet-draw": "^1.0.4",
     "rxjs": "~6.5.4",

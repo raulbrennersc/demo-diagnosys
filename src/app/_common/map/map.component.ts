@@ -3,6 +3,7 @@ import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup,
 import * as L from 'leaflet';
 import { from } from 'rxjs';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+declare var GeoRaster: any;
 
 @Component({
 	selector: 'app-map',
@@ -17,7 +18,7 @@ export class MapComponent implements OnInit {
 	};
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
 	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection>();
-
+	map: any;
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
@@ -27,7 +28,7 @@ export class MapComponent implements OnInit {
 			tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
 			//   tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
 		],
-		zoom: 10,
+		zoom: 15,
 		center: latLng({ lat: -21.228959, lng: -45.003086 })
 	};
 
@@ -110,10 +111,11 @@ export class MapComponent implements OnInit {
 			this.drawOptions.edit.edit = false;
 			this.drawOptions.edit.remove = false;
 		}
+		console.log(GeoRaster);
 	}
 
 	public onMapReady(map: Map) {
-
+		this.map = map;
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {
