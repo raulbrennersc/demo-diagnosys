@@ -23,11 +23,13 @@ export class MapComponent implements OnInit {
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
-	imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/5_23KNS_2020-03-27_0_rgb.tif';
+	// imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/aeroporto_23KNS_2020-03-12_0_ndvi.tif';
+	imgUrl = 'http://localhost/SInterface/Arquivos/img.png';
+	bound: any;
 
 	options = {
 		layers: [
-			// tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
+			tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
 			// tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
 		],
 		zoom: 15,
@@ -80,6 +82,7 @@ export class MapComponent implements OnInit {
 				}
 				const layer = this.montarLayer(g);
 				this.fixItems.addLayer(layer);
+				this.bound = layer.getBounds();
 				const center = layer.getBounds().getCenter();
 				this.options.center = center;
 			});
@@ -92,6 +95,7 @@ export class MapComponent implements OnInit {
 				}
 				const layer = this.montarLayer(g);
 				this.drawnItems.addLayer(layer);
+				this.bound = layer.getBounds();
 				const center = layer.getBounds().getCenter();
 				this.options.center = center;
 			});
@@ -113,19 +117,23 @@ export class MapComponent implements OnInit {
 			this.drawOptions.edit.edit = false;
 			this.drawOptions.edit.remove = false;
 		}
-		fetch(this.imgUrl)
-			.then(response => response.arrayBuffer())
-			.then(GeoRaster)
-			.then(georaster => {
-				console.log("georaster:", georaster);
-			});
 	}
 
 	public onMapReady(map: Map) {
 		this.map = map;
-		const imageBounds = this.drawnItems.getBounds();
-		L.imageOverlay(this.imgUrl, imageBounds).addTo(map);
-		console.log(imageBounds);
+		// fetch(this.imgUrl, { mode: 'no-cors' })
+		// 	.then(response => response.arrayBuffer())
+		// 	.then(arrayBuffer => {
+		// 		GeoRaster(arrayBuffer).then(georaster => {
+		// 			georaster.projection = 4326;
+		// 			let x = new GeoRasterLayer({ georaster: georaster });
+		// 			map.fitBounds(this.bound)
+		// 			x.addTo(map);
+		// 			map.fitBounds(x.getBounds());
+		// 		})
+		// 	});
+
+		L.imageOverlay(this.imgUrl, this.bound).addTo(map);
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {

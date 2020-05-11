@@ -59,7 +59,9 @@
             ],
             "scripts": [
               "./node_modules/alertifyjs/build/alertify.min.js",
-              "./node_modules/georaster/dist/georaster.browser.bundle.js"
+              "./node_modules/leaflet/dist/leaflet.js",
+              "./node_modules/georaster/dist/georaster.browser.bundle.js",
+              "./node_modules/georaster-layer-for-leaflet/georaster-layer-for-leaflet.browserify.min.js"
             ]
           },
           "configurations": {
