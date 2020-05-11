@@ -29,7 +29,7 @@ export class MapComponent implements OnInit {
 
 	options = {
 		layers: [
-			tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
+			// tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
 			// tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
 		],
 		zoom: 15,
@@ -121,19 +121,17 @@ export class MapComponent implements OnInit {
 
 	public onMapReady(map: Map) {
 		this.map = map;
-		// fetch(this.imgUrl, { mode: 'no-cors' })
+		L.imageOverlay(this.imgUrl, this.bound).addTo(map);
+		// fetch(this.imgUrl)
 		// 	.then(response => response.arrayBuffer())
 		// 	.then(arrayBuffer => {
 		// 		GeoRaster(arrayBuffer).then(georaster => {
-		// 			georaster.projection = 4326;
-		// 			let x = new GeoRasterLayer({ georaster: georaster });
-		// 			map.fitBounds(this.bound)
-		// 			x.addTo(map);
-		// 			map.fitBounds(x.getBounds());
+		// 			// let x = new GeoRasterLayer({ georaster: georaster });
+		// 			// x.addTo(map);
+		// 			// map.fitBounds(x.getBounds());
 		// 		})
 		// 	});
 
-		L.imageOverlay(this.imgUrl, this.bound).addTo(map);
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {
