@@ -1,25 +1,29 @@
-<form #dadosForm="ngForm" (submit)="avancarEtapa(dadosForm)">
+<form #dadosLavouraForm="ngForm" (submit)="avancarEtapa(dadosLavouraForm)">
     <div class="modulo-div text-center">
         <div class="container-fluid text-right py-5 form-group">
             <div class="row">
-                <label class="col-3" for="localizacao.nomeLavoura">Nome da Lavoura: * </label>
+                <label class="col-3" for="dadosLavoura.nomeLavoura">Nome da Lavoura: * </label>
                 <input class="form-control col-3" type="text" required name="nomeLavoura"
                     [(ngModel)]="dadosLavoura.nome">
-                <label class="col-2" for="localizacao.mesAnoPlantio">Mês/Ano plantio: * </label>
+                <label class="col-2" for="dadosLavoura.mesAnoPlantio">Mês/Ano plantio: * </label>
                 <input class="form-control col-3" type="text" required name="mesAnoPlantio"
                     [(ngModel)]="dadosLavoura.mesAnoPlantio">
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.cultivar">Cultivar: * </label>
-                <input class="form-control col-8" type="text" required name="cultivar"
+                <label class="col-3" for="dadosLavoura.idMunicipio">Fazenda: * </label>
+                <select class="form-control col-3" required name="idMunicipio" [(ngModel)]="dadosLavoura.idFazenda">
+                    <option *ngFor="let fazenda of fazendas" value={{fazenda.id}}>{{fazenda.nome}}</option>
+                </select>
+                <label class="col-2" for="dadosLavoura.cultivar">Cultivar: * </label>
+                <input class="form-control col-3" type="text" required name="cultivar"
                     [(ngModel)]="dadosLavoura.cultivar">
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.areaTotal">Área total: * </label>
-                <input class="form-control col-2" type="text" required name="areaTotal"
+                <label class="col-3" for="dadosLavoura.areaTotal">Área total: * </label>
+                <input class="form-control col-3" type="text" required name="areaTotal"
                     [(ngModel)]="dadosLavoura.areaTotal">
-                <label class="col-2" for="localizacao.espacamentoHorizontal">Espaçamento: * </label>
-                <div class="col-4 px-0 mx-0 d-flex align-items-center">
+                <label class="col-2" for="dadosLavoura.espacamentoHorizontal">Espaçamento: * </label>
+                <div class="col-3 px-0 mx-0 d-flex align-items-center justify-content-end">
                     <input class="form-control col" type="text" required name="espacamentoHorizontal"
                         [(ngModel)]="dadosLavoura.espacamentoHorizontal">
                     <span class="col-1 text-center px-0 mx-0">x</span>
@@ -29,7 +33,7 @@
                 <span>&nbsp; m</span>
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.nPlantas">
+                <label class="col-3" for="dadosLavoura.nPlantas">
                     <i class="fa fa-question-circle"></i>
                     N° de plantas: * </label>
                 <div class="col-3 d-flex align-items-center px-0 mx-0">
@@ -37,14 +41,14 @@
                         [(ngModel)]="dadosLavoura.nPlantas">
                     <span>&nbsp; ha</span>
                 </div>
-                <label class="col-2" for="localizacao.stand">
+                <label class="col-2" for="dadosLavoura.stand">
                     <i class="fa fa-question-circle"></i>
                     Stand: * </label>
                 <input class="form-control col-3" disabled type="text" required name="stand"
                     [(ngModel)]="dadosLavoura.stand">
             </div>
             <div class="row">
-                <label class="col-3" for="localizacao.observacoes">Observações: * </label>
+                <label class="col-3" for="dadosLavoura.observacoes">Observações: * </label>
                 <input class="form-control col-8" type="text" required name="observacoes"
                     [(ngModel)]="dadosLavoura.observacoes">
             </div>

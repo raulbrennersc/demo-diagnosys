@@ -19,8 +19,6 @@ export class ListaLavourasComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.idFazenda = params['id'];
       if (this.idFazenda) {
-        this.podeCadastrar = true;
-        this.lavouraService.fazendaAtual = this.idFazenda;
         this.carregarLavourasPorFazenda()
       }
       else {

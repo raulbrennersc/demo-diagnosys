@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { StaticService } from 'src/app/_services/static.service';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { FazendasService } from 'src/app/_services/fazenda.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dados-lavoura',
@@ -11,22 +12,24 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class DadosLavouraComponent implements OnInit {
   dadosLavoura: any = {};
   editando = false;
-  constructor(private staticService: StaticService, private lavouraService: LavouraService, private alertify: AlertifyService) { }
+  constructor(private fazendaService: FazendasService, private lavouraService: LavouraService, private alertify: AlertifyService, private router: Router) { }
   @Input() idLavoura: number;
   @Output() salvar = new EventEmitter<number>();
-  estados: any = [];
-  municipios: any = [];
+  fazendas: any = [];
 
   ngOnInit(): void {
-    this.staticService.listarEstados()
-      .subscribe(response => this.estados = response);
-    if (this.idLavoura) {
+    this.fazendaService.listarFazendas().subscribe(fazendas => {
+      this.fazendas = fazendas
+      if (!this.fazendas || this.fazendas.length == 0) {
+        this.alertify.error('É necessário cadastrar uma fazenda antes de cadastrar lavouras!');
+        this.router.navigate(['/painel', 'lavouras']);
+      }
       this.lavouraService.consultarDadosLavoura(this.idLavoura)
         .subscribe(response => {
           this.editando = true;
           this.dadosLavoura = response;
         });
-    }
+    });
   }
 
   avancarEtapa(form) {
@@ -39,7 +42,7 @@ export class DadosLavouraComponent implements OnInit {
   }
 
   salvarLocalizacao() {
-    this.lavouraService.salvarDadosLavoura(this.lavouraService.fazendaAtual, this.dadosLavoura)
+    this.lavouraService.salvarDadosLavoura(this.dadosLavoura.idFazenda, this.dadosLavoura)
       .subscribe(response => {
         this.alertify.success('Dados salvos!');
         this.salvar.emit((response as any).id);
@@ -47,7 +50,7 @@ export class DadosLavouraComponent implements OnInit {
   }
 
   atualizarLocalizacao() {
-    this.lavouraService.atualizarDadosLavoura(this.dadosLavoura, this.idLavoura)
+    this.lavouraService.atualizarDadosLavoura(this.idLavoura, this.dadosLavoura)
       .subscribe(response => {
         this.alertify.success('Dados salvos!');
         this.salvar.emit();
