@@ -4,6 +4,7 @@ import * as L from 'leaflet';
 import { from } from 'rxjs';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 declare var GeoRaster: any;
+declare var GeoRasterLayer: any;
 
 @Component({
 	selector: 'app-map',
@@ -22,11 +23,12 @@ export class MapComponent implements OnInit {
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
+	imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/5_23KNS_2020-03-27_0_rgb.tif';
 
 	options = {
 		layers: [
-			tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
-			//   tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map'})
+			// tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Open Street Map' }),
+			// tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
 		],
 		zoom: 15,
 		center: latLng({ lat: -21.228959, lng: -45.003086 })
@@ -111,11 +113,19 @@ export class MapComponent implements OnInit {
 			this.drawOptions.edit.edit = false;
 			this.drawOptions.edit.remove = false;
 		}
-		console.log(GeoRaster);
+		fetch(this.imgUrl)
+			.then(response => response.arrayBuffer())
+			.then(GeoRaster)
+			.then(georaster => {
+				console.log("georaster:", georaster);
+			});
 	}
 
 	public onMapReady(map: Map) {
 		this.map = map;
+		const imageBounds = this.drawnItems.getBounds();
+		L.imageOverlay(this.imgUrl, imageBounds).addTo(map);
+		console.log(imageBounds);
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {
