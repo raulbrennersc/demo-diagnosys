@@ -1,0 +1,35 @@
+<div class="modulo-div">
+    <div class="container-fluid pt-5 px-5">
+        <div class="row justify-content-end px-3">
+            <a [routerLink]="['/painel', 'monitoramento', 'cadastro']"><button type="submit" class="btn btn-primary"><i
+                        class="fas fa-plus"></i>
+                    REALIZAR MONITORAMENTO</button></a>
+        </div>
+        <div class="container-fluid d-flex flex-wrap my-5 px-0" id="div-tabela-monitoramentos">
+            <table class="w-100 text-center table border">
+                <thead class="thead-light">
+                    <tr class="">
+                        <th class="text-left">Fazenda</th>
+                        <th>Data do monitoramento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let monitoramento of monitoramentos">
+                        <td class="text-left">{{monitoramento.nome}}</td>
+                        <td class="text-center">{{monitoramento.concluida ? 'Cadstro concluído' : 'Cadastro em andamento'}}
+                        </td>
+                        <td class="text-center">
+                            <a [routerLink]="['cadastro', monitoramento.id]"><i class="fa fa-eye"></i></a>
+                            <a (click)="excluirMonitoramento(monitoramento.id)"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="monitoramentos.length == 0">
+                        <td colspan="3" class="text-center">Não existem monitoramentos para listar.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

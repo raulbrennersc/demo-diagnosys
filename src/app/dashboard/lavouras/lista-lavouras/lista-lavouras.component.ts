@@ -54,5 +54,4 @@ export class ListaLavourasComponent implements OnInit {
         }
       })
   }
-
 }

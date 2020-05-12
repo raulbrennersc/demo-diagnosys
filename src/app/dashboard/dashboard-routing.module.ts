@@ -9,7 +9,8 @@ const routes: Routes = [{
   children: [
     { path: '', component: ModulosComponent },
     { path: 'fazendas', loadChildren: () => import('./fazendas/fazendas.module').then(m => m.FazendasModule) },
-    { path: 'lavouras', loadChildren: () => import('./lavouras/lavouras.module').then(m => m.LavourasModule) }
+    { path: 'lavouras', loadChildren: () => import('./lavouras/lavouras.module').then(m => m.LavourasModule) },
+    { path: 'monitoramento', loadChildren: () => import('./monitoramento/monitoramento.module').then(m => m.MonitoramentoModule) }
   ]
 }];
 
