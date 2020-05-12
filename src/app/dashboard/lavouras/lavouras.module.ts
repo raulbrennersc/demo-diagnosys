@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
-import { LavourasRoutingModule } from './lavouras-routing.module';
 import { FormsModule } from '@angular/forms';
+import { LavourasRoutingModule } from './lavouras-routing.module';
 
 
 import { LavourasComponent } from './lavouras.component';

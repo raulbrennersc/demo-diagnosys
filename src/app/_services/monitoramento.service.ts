@@ -11,12 +11,17 @@ export class MonitoramentoService {
 
   baseUrl = environment.apiUrl + 'monitoramentos/';
   fazendaUrl = environment.apiUrl + 'fazendas/';
-
-  listarPorFazenda(idFazenda) {
-    return this.http.get(this.fazendaUrl + '/monitoramentos' + idFazenda);
+  
+  listarFazendasMonitoramento() {
+    return this.http.get(this.baseUrl + 'fazendas');
   }
 
-  listarTodas() {
+  listarPorFazenda(idFazenda) {
+    return this.http.get(this.fazendaUrl + 'monitoramentos' + idFazenda);
+  }
+
+
+  listarTodos() {
     return this.http.get(this.baseUrl);
   }
 
