@@ -79,6 +79,9 @@ export class MapComponent implements OnInit, OnChanges {
 			this.drawnItems.eachLayer(layer => {
 				layer.remove();
 			});
+			this.fixItems.eachLayer(layer => {
+				layer.remove();
+			});
 			this.insereGeometriasFixas();
 		}
 	}

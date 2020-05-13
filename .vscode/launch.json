@@ -7,8 +7,8 @@
         {
             "type": "edge",
             "request": "launch",
+            "port": 9200,
             "name": "Launcho Microsoft Edge",
-            "urlFilter": "*localhost*",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         }
