@@ -4,14 +4,24 @@
     </div>
     <div id="main-container" class="container">
         <div class="container-fluid">
-            <div *ngIf="fazendasCarregadas" class="row align-items-center">
+            <div *ngIf="fazendasCarregadas" class="row align-items-center mb-5 ml-0">
 				<label class="mr-2" for="localizacao.idEstado">Estado: * </label>
 				<select (change)="carregarDadosFazenda(idFazenda)"
 					[(ngModel)]="idFazenda" class="form-control col-3" required name="idEstado">
 					<option *ngFor="let fazenda of fazendas" [ngValue]="fazenda.id">{{fazenda.nome}}</option>
                 </select>
             </div>
-            
+            <div *ngIf="geometriasCarregadas" class="map-content text-center">
+                <div class="row pl-3 ml-0">
+                    <span>20/05/2010</span>
+                </div>
+                <div class="container-fluid text-right pb-5 pt-2">
+                    <app-map [geometriasFixas]="geometrias" ></app-map>
+                </div>
+            </div>
+            <div class="row justify-content-end mt-5 pr-2">
+                <button type="submit" class="btn btn-primary">SALVAR <i class="fas fa-save"></i> </button>
+            </div>
         </div>
     </div>
 </div>

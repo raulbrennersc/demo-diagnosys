@@ -23,3 +23,11 @@
     color: var(--main-color);
     font-size: 25px;
 }
+
+.map-content{
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    border-radius: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
