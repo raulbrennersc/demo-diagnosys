@@ -16,11 +16,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let monitoramento of monitoramentos">
-                        <td class="text-left">{{monitoramento.nome}}</td>
-                        <td class="text-center">{{monitoramento.concluida ? 'Cadstro concluído' : 'Cadastro em andamento'}}
+                        <td class="text-left">{{monitoramento.nomeFazenda}}</td>
+                        <td class="text-center">
+                            {{monitoramento.dataMonitoramento | date: 'dd/MM/yyy'}}
                         </td>
                         <td class="text-center">
-                            <a [routerLink]="['cadastro', monitoramento.id]"><i class="fa fa-eye"></i></a>
+                            <a class="mr-2" [routerLink]="['cadastro', monitoramento.id]"><i class="fa fa-eye"></i></a>
                             <a (click)="excluirMonitoramento(monitoramento.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>

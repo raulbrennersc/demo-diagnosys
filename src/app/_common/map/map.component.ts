@@ -83,9 +83,11 @@ export class MapComponent implements OnInit {
 				}
 				const layer = this.montarLayer(g);
 				this.fixItems.addLayer(layer);
-				this.bound = layer.getBounds();
-				const center = layer.getBounds().getCenter();
-				this.options.center = center;
+				if (g.type != 'Point') {
+					this.bound = layer.getBounds();
+					const center = layer.getBounds().getCenter();
+					this.options.center = center;
+				}
 			});
 		}
 

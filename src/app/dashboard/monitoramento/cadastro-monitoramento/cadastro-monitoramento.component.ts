@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MonitoramentoService } from 'src/app/_services/monitoramento.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-cadastro-monitoramento',
@@ -9,6 +11,8 @@ import { GeometriaService } from 'src/app/_services/geometria.service';
 })
 export class CadastroMonitoramentoComponent implements OnInit {
   idFazenda = 0;
+  idMonitoramento = 0;
+  visualizando = false;
   fazendasCarregadas = false;
   geometriasCarregadas = false;
   fazendas: any = [];
@@ -21,34 +25,66 @@ export class CadastroMonitoramentoComponent implements OnInit {
     marker: true
   };
 
-  constructor(private monitoramentoService: MonitoramentoService, private geometriaService: GeometriaService) { }
+  constructor(private activatedRoute: ActivatedRoute, private monitoramentoService: MonitoramentoService, private geometriaService: GeometriaService, private router: Router, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.monitoramentoService.listarFazendasMonitoramento().subscribe(response => {
       this.fazendas = response;
       this.fazendasCarregadas = true;
+      this.activatedRoute.params.subscribe(params => {
+        const idMonitoramento = params['id'];
+        if (idMonitoramento) {
+          this.idMonitoramento = idMonitoramento;
+          this.visualizando = true;
+        }
+        if (this.visualizando) {
+          this.opcoesMapa.marker = false;
+          this.carregarMonitoramento();
+        }
+      });
     })
   }
 
   carregarDadosFazenda(idFazenda) {
     this.geometriasCarregadas = false;
     this.idFazenda = idFazenda;
-    this.monitoramentoService.consultarMonitoramentoFazenda(idFazenda)
+    this.monitoramentoService.consultarMonitoramentoFazenda(this.idFazenda)
       .subscribe(response => {
-        const x = response as any;
-        this.dataPdi = x.dataImagemPdi;
-        this.urlPdi = x.urlPdi;
-        this.geometrias = new Array<GeoJSON.Geometry>();
-        this.geometrias.push(this.geometriaService.montarGeometriaFazenda(x.demarcacaoFazenda));
-        x.demarcacoesLavoura.map(l => this.geometriaService.montarGeometriaLavoura(l)).forEach(l => {
-          this.geometrias.push(l);
-        });
-        x.demarcacoesTalhao.map(t => this.geometriaService.montarGeometriaTalhao(t)).forEach(t => {
-          this.geometrias.push(t);
-        });
-
-        this.geometriasCarregadas = true;
+        this.montarMonitoramento(response);
       });
+  }
+
+  carregarMonitoramento() {
+    this.monitoramentoService.consultarMonitoramento(this.idMonitoramento)
+      .subscribe(response => {
+        this.montarMonitoramento(response);
+      });
+  }
+
+  montarMonitoramento(x: any) {
+    this.dataPdi = x.dataImagemPdi;
+    this.urlPdi = x.urlPdi;
+    this.geometrias = new Array<GeoJSON.Geometry>();
+    this.geometrias.push(this.geometriaService.montarGeometriaFazenda(x.demarcacaoFazenda));
+    x.demarcacoesLavoura.map(l => this.geometriaService.montarGeometriaLavoura(l)).forEach(l => {
+      this.geometrias.push(l);
+    });
+    x.demarcacoesTalhao.map(t => this.geometriaService.montarGeometriaTalhao(t)).forEach(t => {
+      this.geometrias.push(t);
+    });
+
+    if (x.problemas) {
+      x.problemas.forEach(problema => {
+        problema.nome = 'Ponto ' + (this.problemas.length + 1);
+        this.problemas.push(problema);
+        this.geometrias.push(problema.ponto);
+      });
+    }
+
+    if (x.idFazenda) {
+      this.idFazenda = x.idFazenda;
+    }
+    this.geometriasCarregadas = true;
   }
 
   salvarGeometria(geo) {
@@ -72,8 +108,10 @@ export class CadastroMonitoramentoComponent implements OnInit {
     };
 
     this.monitoramentoService.salvarMonitoramento(monitoramento)
-      .subscribe(console.log);
-
+      .subscribe(response => {
+        this.alertify.success('Monitoramento realizado com sucesso!');
+        this.router.navigate(['']);
+      });
   }
 
 }

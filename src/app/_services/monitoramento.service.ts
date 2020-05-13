@@ -20,6 +20,10 @@ export class MonitoramentoService {
     return this.http.get(this.fazendaUrl + 'monitoramentos' + idFazenda);
   }
 
+  consultarMonitoramento(idMonitoramento) {
+    return this.http.get(this.baseUrl + idMonitoramento);
+  }
+
   consultarMonitoramentoFazenda(idFazenda) {
     return this.http.get(this.baseUrl + 'fazenda/' + idFazenda);
   }
