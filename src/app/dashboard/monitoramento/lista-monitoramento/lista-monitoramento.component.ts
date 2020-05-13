@@ -36,7 +36,7 @@ export class ListaMonitoramentoComponent implements OnInit {
   }
 
   carregarMonitoramentosPorUsuario() {
-    this.monitoramentoService.listarTodas()
+    this.monitoramentoService.listarTodos()
       .subscribe(response => {
         this.monitoramentos = response;
         this.monitoramentosCarregados = true;
