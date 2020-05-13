@@ -12,6 +12,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class CadastroMonitoramentoComponent implements OnInit {
   idFazenda = 0;
   idMonitoramento = 0;
+  idProblema = 1;
   visualizando = false;
   fazendasCarregadas = false;
   geometriasCarregadas = false;
@@ -89,16 +90,25 @@ export class CadastroMonitoramentoComponent implements OnInit {
 
   salvarGeometria(geo) {
     const problema = {
+      id: this.idProblema,
       ponto: geo,
-      nome: 'Ponto ' + (this.problemas.length + 1),
-      descricao: 'descricao' + (this.problemas.length + 1),
-      recomendacao: 'recomendacao' + (this.problemas.length + 1),
+      nome: 'Ponto ' + this.idProblema,
+      descricao: 'descricao' + this.idProblema,
+      recomendacao: 'recomendacao' + this.idProblema,
     }
+    this.idProblema++;
     this.problemas.push(problema);
+    this.geometrias.push(geo);
   }
 
   excluirProblema(problema) {
-
+    this.geometriasCarregadas = false;
+    this.geometrias = this.geometrias.filter(g => g != problema.ponto);
+    this.problemas = this.problemas.filter(p => p != problema);
+    //Gambiarra temporária pq já são 00:12
+    setTimeout(() => {
+      this.geometriasCarregadas = true;
+    }, 100);
   }
 
   salvarMonitoramento() {
