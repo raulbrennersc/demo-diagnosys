@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FazendasRoutingModule } from './fazendas-routing.module';
 import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 
 import { FazendasComponent } from './fazendas.component';
@@ -20,7 +21,8 @@ import { ConfirmacaoFazendaComponent } from './confirmacao-fazenda/confirmacao-f
     CommonModule,
     FazendasRoutingModule,
     FormsModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    NgxMaskModule.forChild()
   ]
 })
 export class FazendasModule { }

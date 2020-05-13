@@ -5,6 +5,7 @@ import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 
 import { AppComponent } from './app.component';
@@ -24,12 +25,13 @@ export function tokenGetter() {
     HttpClientModule,
     LeafletModule,
     LeafletDrawModule,
+    NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter,
         whitelistedDomains: ['localhost:5000', 'diagnosys-demo.azurewebsites.net'],
         blacklistedRoutes: ['localhost:5000/api/auth', 'diagnosys-demo.azurewebsites.net/api/auth'],
-      }
+      },
     }),
   ],
   providers: [
