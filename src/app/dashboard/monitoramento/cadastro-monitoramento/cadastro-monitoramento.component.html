@@ -33,9 +33,11 @@
                         <tbody>
                             <tr *ngFor="let problema of problemas">
                                 <td class="text-left">{{problema.nome}}</td>
-                                <td class="text-center">{{problema.descricao}}
+                                <td class="text-center"><input [disabled]="visualizando"
+                                        [(ngModel)]="problema.descricao">
                                 </td>
-                                <td class="text-center">{{problema.recomendacao}}
+                                <td class="text-center"><input [disabled]="visualizando"
+                                        [(ngModel)]="problema.recomendacao">
                                 </td>
                                 <td *ngIf="!visualizando" class="text-center">
                                     <a (click)="excluirProblema(problema)"><i class="fa fa-trash"></i></a>

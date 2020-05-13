@@ -120,7 +120,7 @@ export class CadastroMonitoramentoComponent implements OnInit {
     this.monitoramentoService.salvarMonitoramento(monitoramento)
       .subscribe(response => {
         this.alertify.success('Monitoramento realizado com sucesso!');
-        this.router.navigate(['']);
+        this.router.navigate(['/painel', 'monitoramento']);
       });
   }
 
