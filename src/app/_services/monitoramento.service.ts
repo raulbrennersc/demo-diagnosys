@@ -11,7 +11,7 @@ export class MonitoramentoService {
 
   baseUrl = environment.apiUrl + 'monitoramentos/';
   fazendaUrl = environment.apiUrl + 'fazendas/';
-  
+
   listarFazendasMonitoramento() {
     return this.http.get(this.baseUrl + 'fazendas');
   }
@@ -35,5 +35,9 @@ export class MonitoramentoService {
 
   excluirMonitoramento(idLavoura) {
     return this.http.get(this.baseUrl + idLavoura);
+  }
+
+  salvarMonitoramento(monitoramento) {
+    return this.http.post(this.baseUrl, monitoramento);
   }
 }

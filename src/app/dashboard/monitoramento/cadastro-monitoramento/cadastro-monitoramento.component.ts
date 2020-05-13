@@ -32,6 +32,7 @@ export class CadastroMonitoramentoComponent implements OnInit {
 
   carregarDadosFazenda(idFazenda) {
     this.geometriasCarregadas = false;
+    this.idFazenda = idFazenda;
     this.monitoramentoService.consultarMonitoramentoFazenda(idFazenda)
       .subscribe(response => {
         const x = response as any;
@@ -52,7 +53,7 @@ export class CadastroMonitoramentoComponent implements OnInit {
 
   salvarGeometria(geo) {
     const problema = {
-      geometria: geo,
+      ponto: geo,
       nome: 'Ponto ' + (this.problemas.length + 1),
       descricao: 'descricao' + (this.problemas.length + 1),
       recomendacao: 'recomendacao' + (this.problemas.length + 1),
@@ -61,6 +62,17 @@ export class CadastroMonitoramentoComponent implements OnInit {
   }
 
   excluirProblema(problema) {
+
+  }
+
+  salvarMonitoramento() {
+    const monitoramento = {
+      idFazenda: this.idFazenda,
+      problemas: this.problemas
+    };
+
+    this.monitoramentoService.salvarMonitoramento(monitoramento)
+      .subscribe(console.log);
 
   }
 
