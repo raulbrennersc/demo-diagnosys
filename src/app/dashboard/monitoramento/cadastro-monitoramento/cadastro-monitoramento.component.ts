@@ -10,20 +10,19 @@ import { GeometriaService } from 'src/app/_services/geometria.service';
 export class CadastroMonitoramentoComponent implements OnInit {
   idFazenda = 0;
   fazendasCarregadas = false;
-  geometriasCarregadas= false;
+  geometriasCarregadas = false;
   fazendas: any = [];
   geometrias: GeoJSON.Geometry[];
   dataPdi: any;
   urlPdi = '';
+  problemas = [];
 
   opcoesMapa = {
-    marker: true,
-    edit: {},
-    remove: {},
+    marker: true
   };
 
   constructor(private monitoramentoService: MonitoramentoService, private geometriaService: GeometriaService) { }
-  
+
   ngOnInit(): void {
     this.monitoramentoService.listarFazendasMonitoramento().subscribe(response => {
       this.fazendas = response;
@@ -31,23 +30,38 @@ export class CadastroMonitoramentoComponent implements OnInit {
     })
   }
 
-  carregarDadosFazenda(idFazenda){
+  carregarDadosFazenda(idFazenda) {
+    this.geometriasCarregadas = false;
     this.monitoramentoService.consultarMonitoramentoFazenda(idFazenda)
-    .subscribe(response =>{
-      const x = response as any;
-      this.dataPdi = x.dataImagemPdi;
-      this.urlPdi = x.urlPdi;
-      this.geometrias = new Array<GeoJSON.Geometry>();
-      this.geometrias.push(this.geometriaService.montarGeometriaFazenda(x.demarcacaoFazenda));
-      x.demarcacoesLavoura.map(l => this.geometriaService.montarGeometriaLavoura(l)).forEach(l => {
-        this.geometrias.push(l);
-      });
-      x.demarcacoesTalhao.map(t => this.geometriaService.montarGeometriaTalhao(t)).forEach(t => {
-        this.geometrias.push(t);
-      });
+      .subscribe(response => {
+        const x = response as any;
+        this.dataPdi = x.dataImagemPdi;
+        this.urlPdi = x.urlPdi;
+        this.geometrias = new Array<GeoJSON.Geometry>();
+        this.geometrias.push(this.geometriaService.montarGeometriaFazenda(x.demarcacaoFazenda));
+        x.demarcacoesLavoura.map(l => this.geometriaService.montarGeometriaLavoura(l)).forEach(l => {
+          this.geometrias.push(l);
+        });
+        x.demarcacoesTalhao.map(t => this.geometriaService.montarGeometriaTalhao(t)).forEach(t => {
+          this.geometrias.push(t);
+        });
 
-      this.geometriasCarregadas = true;
-    });
+        this.geometriasCarregadas = true;
+      });
+  }
+
+  salvarGeometria(geo) {
+    const problema = {
+      geometria: geo,
+      nome: 'Ponto ' + (this.problemas.length + 1),
+      descricao: 'descricao' + (this.problemas.length + 1),
+      recomendacao: 'recomendacao' + (this.problemas.length + 1),
+    }
+    this.problemas.push(problema);
+  }
+
+  excluirProblema(problema) {
+
   }
 
 }

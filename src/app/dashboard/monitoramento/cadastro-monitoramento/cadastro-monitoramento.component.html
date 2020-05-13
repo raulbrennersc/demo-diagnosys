@@ -1,14 +1,15 @@
 <div class="modulo-div">
     <div id="cabecalho-cadastro">
-        <span><i id="icone-cadastro" class="fas fa-plus"></i> &nbsp; Monitoramento Fazendas / <strong>Realizar Monitoramento</strong></span>
+        <span><i id="icone-cadastro" class="fas fa-plus"></i> &nbsp; Monitoramento Fazendas / <strong>Realizar
+                Monitoramento</strong></span>
     </div>
     <div id="main-container" class="container">
         <div class="container-fluid">
             <div *ngIf="fazendasCarregadas" class="row align-items-center mb-5 ml-0">
-				<label class="mr-2" for="localizacao.idEstado">Estado: * </label>
-				<select (change)="carregarDadosFazenda(idFazenda)"
-					[(ngModel)]="idFazenda" class="form-control col-3" required name="idEstado">
-					<option *ngFor="let fazenda of fazendas" [ngValue]="fazenda.id">{{fazenda.nome}}</option>
+                <label class="mr-2" for="localizacao.idEstado">Estado: * </label>
+                <select (change)="carregarDadosFazenda(idFazenda)" [(ngModel)]="idFazenda" class="form-control col-3"
+                    required name="idEstado">
+                    <option *ngFor="let fazenda of fazendas" [ngValue]="fazenda.id">{{fazenda.nome}}</option>
                 </select>
             </div>
             <div *ngIf="geometriasCarregadas" class="map-content text-center">
@@ -16,7 +17,32 @@
                     <span>20/05/2010</span>
                 </div>
                 <div class="container-fluid text-right pb-5 pt-2">
-                    <app-map [geometriasFixas]="geometrias" [ferramentas]="opcoesMapa" ></app-map>
+                    <app-map [geometriasFixas]="geometrias" [ferramentas]="opcoesMapa"
+                        (ultimoDesenho)="salvarGeometria($event)"></app-map>
+                </div>
+                <div class="px-3">
+                    <table class="w-100 text-center table border">
+                        <thead class="thead-light">
+                            <tr class="">
+                                <th class="text-left">Ponto</th>
+                                <th>Problema</th>
+                                <th>Recomendação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let problema of problemas">
+                                <td class="text-left">{{problema.nome}}</td>
+                                <td class="text-center">{{problema.descricao}}
+                                </td>
+                                <td class="text-center">
+                                    <a (click)="excluirProblema(problema)"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr *ngIf="problemas.length == 0">
+                                <td colspan="3" class="text-center">Não existem problemas para listar.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="row justify-content-end mt-5 pr-2">

@@ -18,6 +18,7 @@ export class MapComponent implements OnInit {
 		draw: {}
 	};
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
+	@Output() ultimoDesenho = new EventEmitter<GeoJSON.Geometry>();
 	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection>();
 	map: any;
 	geometries: any = [];
@@ -110,8 +111,8 @@ export class MapComponent implements OnInit {
 			if (this.ferramentas.marker) {
 				this.drawOptions.draw.marker = {
 					icon: L.icon({
-						iconSize: [ 25, 41 ],
-						iconAnchor: [ 13, 41 ],
+						iconSize: [25, 41],
+						iconAnchor: [13, 41],
 						iconUrl: 'assets/marker-icon.png',
 						iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
 						shadowUrl: 'assets/marker-shadow.png'
@@ -165,6 +166,7 @@ export class MapComponent implements OnInit {
 
 		this.geometriasDesenhadas.emit(geometries);
 		this.featuresDesenhadas.emit(geojson);
+		this.ultimoDesenho.emit(geo);
 	}
 
 	public onDrawStart(e: any) {
@@ -172,7 +174,7 @@ export class MapComponent implements OnInit {
 	}
 
 	private montarLayer(g: GeoJSON.Geometry) {
-		let layer; 
+		let layer;
 		switch (g.type) {
 			case 'Polygon':
 				layer = new L.Polygon((g as GeoJSON.Polygon).coordinates[0].map(z => new L.LatLng(z[1], z[0])));
@@ -185,13 +187,13 @@ export class MapComponent implements OnInit {
 				layer = new L.Marker(latLng, this.drawOptions.draw.marker);
 				layer._latlng = new L.LatLng(y, x);
 				break;
-		
+
 			default:
 				break;
 		}
 		if (g.type != 'Point') {
 			let style = (g as any).style;
-			if(!style){
+			if (!style) {
 				style = this.ferramentas.estiloDesenho;
 			}
 			layer.setStyle(style);
