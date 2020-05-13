@@ -16,6 +16,12 @@ export class CadastroMonitoramentoComponent implements OnInit {
   dataPdi: any;
   urlPdi = '';
 
+  opcoesMapa = {
+    marker: true,
+    edit: {},
+    remove: {},
+  };
+
   constructor(private monitoramentoService: MonitoramentoService, private geometriaService: GeometriaService) { }
   
   ngOnInit(): void {

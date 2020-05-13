@@ -106,6 +106,18 @@ export class MapComponent implements OnInit {
 			if (this.ferramentas.polygon) {
 				this.drawOptions.draw.polygon = { shapeOptions: this.ferramentas.estiloDesenho };
 			}
+
+			if (this.ferramentas.marker) {
+				this.drawOptions.draw.marker = {
+					icon: L.icon({
+						iconSize: [ 25, 41 ],
+						iconAnchor: [ 13, 41 ],
+						iconUrl: 'assets/marker-icon.png',
+						iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
+						shadowUrl: 'assets/marker-shadow.png'
+					})
+				};
+			}
 			this.drawOptions.draw.polyline = this.ferramentas.polyline;
 			this.drawOptions.draw.rectangle = this.ferramentas.rectangle;
 			this.drawOptions.draw.circle = this.ferramentas.circle;
@@ -140,7 +152,6 @@ export class MapComponent implements OnInit {
 			this.alertify.error('Quantidade máxima de geometrias atingida!');
 			return;
 		}
-
 		const geo = e.layer.toGeoJSON().geometry;
 		const layer = this.montarLayer(geo);
 		this.drawnItems.addLayer(layer);
@@ -161,12 +172,30 @@ export class MapComponent implements OnInit {
 	}
 
 	private montarLayer(g: GeoJSON.Geometry) {
-		let layer = new L.Polygon((g as GeoJSON.Polygon).coordinates[0].map(z => new L.LatLng(z[1], z[0])));
-		let style = (g as any).style;
-		if (!style) {
-			style = this.ferramentas.estiloDesenho;
+		let layer; 
+		switch (g.type) {
+			case 'Polygon':
+				layer = new L.Polygon((g as GeoJSON.Polygon).coordinates[0].map(z => new L.LatLng(z[1], z[0])));
+				break;
+			case 'Point':
+				const geo = g as GeoJSON.Point;
+				const x = geo.coordinates[0];
+				const y = geo.coordinates[1];
+				const latLng = new L.LatLng(y, x);
+				layer = new L.Marker(latLng, this.drawOptions.draw.marker);
+				layer._latlng = new L.LatLng(y, x);
+				break;
+		
+			default:
+				break;
 		}
-		layer.setStyle(style);
+		if (g.type != 'Point') {
+			let style = (g as any).style;
+			if(!style){
+				style = this.ferramentas.estiloDesenho;
+			}
+			layer.setStyle(style);
+		}
 		return layer;
 	}
 
