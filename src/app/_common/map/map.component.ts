@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents, Map } from 'leaflet';
 import * as L from 'leaflet';
 import { from } from 'rxjs';
@@ -11,7 +11,7 @@ declare var GeoRasterLayer: any;
 	templateUrl: './map.component.html',
 	styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
 	@Input() geometriasFixas: GeoJSON.Geometry[];
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
 	@Input() ferramentas: any = {
@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
 	@Output() ultimoDesenho = new EventEmitter<GeoJSON.Geometry>();
 	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection>();
-	map: any;
+	map: Map;
 	geometries: any = [];
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
@@ -74,8 +74,16 @@ export class MapComponent implements OnInit {
 	};
 
 	constructor(private alertify: AlertifyService) { }
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.geometriasFixas && !changes.geometriasFixas.firstChange) {
+			this.drawnItems.eachLayer(layer => {
+				layer.remove();
+			});
+			this.insereGeometriasFixas();
+		}
+	}
 
-	ngOnInit() {
+	insereGeometriasFixas() {
 		if (this.geometriasFixas && this.geometriasFixas.length > 0) {
 			this.geometriasFixas.forEach(g => {
 				if (!g) {
@@ -90,6 +98,10 @@ export class MapComponent implements OnInit {
 				}
 			});
 		}
+	}
+
+	ngOnInit() {
+		this.insereGeometriasFixas();
 
 		if (this.geometriasCadastradas && this.geometriasCadastradas.length > 0) {
 			this.geometriasCadastradas.forEach(g => {

@@ -102,13 +102,8 @@ export class CadastroMonitoramentoComponent implements OnInit {
   }
 
   excluirProblema(problema) {
-    this.geometriasCarregadas = false;
     this.geometrias = this.geometrias.filter(g => g != problema.ponto);
     this.problemas = this.problemas.filter(p => p != problema);
-    //Gambiarra temporária pq já são 00:12
-    setTimeout(() => {
-      this.geometriasCarregadas = true;
-    }, 100);
   }
 
   salvarMonitoramento() {
