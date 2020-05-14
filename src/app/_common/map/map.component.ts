@@ -20,12 +20,15 @@ export class MapComponent implements OnInit, OnChanges {
 	@Output() geometriasDesenhadas = new EventEmitter<GeoJSON.Geometry[]>();
 	@Output() ultimoDesenho = new EventEmitter<GeoJSON.Geometry>();
 	@Output() featuresDesenhadas = new EventEmitter<GeoJSON.FeatureCollection>();
-	map: Map;
 	geometries: any = [];
+	
+	map: Map;
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
+
 	// imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/aeroporto_23KNS_2020-03-12_0_ndvi.tif';
-	imgUrl = 'http://localhost/SInterface/Arquivos/img.png';
+	// imgUrl = 'http://localhost/SInterface/Arquivos/img.png';
+
 	bound: any;
 
 	options = {
@@ -43,18 +46,9 @@ export class MapComponent implements OnInit, OnChanges {
 			polyline: false,
 			rectangle: false,
 			circle: false,
-			marker: false,
 			circlemarker: false,
 			polygon: false,
-			// marker: {
-			// 	icon: L.icon({
-			// 		iconSize: [ 25, 41 ],
-			// 		iconAnchor: [ 13, 41 ],
-			// 		iconUrl: 'assets/marker-icon.png',
-			// 		iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
-			// 		shadowUrl: 'assets/marker-shadow.png'
-			// 	})
-			// }
+			marker: false,
 		},
 		edit: {
 			featureGroup: this.drawnItems,
@@ -89,9 +83,6 @@ export class MapComponent implements OnInit, OnChanges {
 	insereGeometriasFixas() {
 		if (this.geometriasFixas && this.geometriasFixas.length > 0) {
 			this.geometriasFixas.forEach(g => {
-				if (!g) {
-					return;
-				}
 				const layer = this.montarLayer(g);
 				this.fixItems.addLayer(layer);
 				if (g.type != 'Point') {
@@ -201,7 +192,15 @@ export class MapComponent implements OnInit, OnChanges {
 				const x = geo.coordinates[0];
 				const y = geo.coordinates[1];
 				const latLng = new L.LatLng(y, x);
-				layer = new L.Marker(latLng, this.drawOptions.draw.marker);
+				layer = new L.Marker(latLng, {
+					icon: L.icon({
+						iconSize: [ 25, 41 ],
+						iconAnchor: [ 13, 41 ],
+						iconUrl: 'assets/marker-icon.png',
+						iconRetinaUrl: '680f69f3c2e6b90c1812a813edf67fd7.png',
+						shadowUrl: 'assets/marker-shadow.png'
+					})
+				});
 				layer._latlng = new L.LatLng(y, x);
 				break;
 
