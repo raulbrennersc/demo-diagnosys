@@ -91,4 +91,9 @@ textarea{
     color: var(--input-color);
 }
 
+.form-control:focus{
+    border-color: var(--main-color);
+    box-shadow: none;
+}
+
 

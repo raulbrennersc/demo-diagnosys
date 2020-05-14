@@ -5,7 +5,7 @@
     </div>
     <div id="main-container" class="container">
         <div class="container-fluid">
-            <div *ngIf="fazendasCarregadas" class="row align-items-center mb-5 ml-0">
+            <div *ngIf="fazendasCarregadas" class="row align-items-center mb-3 ml-0">
                 <label class="mr-2">Fazenda: </label>
                 <select [disabled]="visualizando" (change)="carregarDadosFazenda(idFazenda)" [(ngModel)]="idFazenda"
                     class="form-control col-3">
@@ -16,7 +16,7 @@
                 <div class="row pl-3 ml-0">
                     <!-- <span>20/05/2010</span> -->
                 </div>
-                <div class="container-fluid text-right pb-5 pt-2">
+                <div class="container-fluid text-right pb-3 pt-2">
                     <app-map [geometriasFixas]="geometrias" [ferramentas]="opcoesMapa"
                         (ultimoDesenho)="salvarGeometria($event)"></app-map>
                 </div>
@@ -33,10 +33,10 @@
                         <tbody>
                             <tr *ngFor="let problema of problemas">
                                 <td class="text-left">{{problema.nome}}</td>
-                                <td class="text-center"><input [disabled]="visualizando"
+                                <td class="text-center"><input class="form-control" [disabled]="visualizando"
                                         [(ngModel)]="problema.descricao">
                                 </td>
-                                <td class="text-center"><input [disabled]="visualizando"
+                                <td class="text-center"><input class="form-control" [disabled]="visualizando"
                                         [(ngModel)]="problema.recomendacao">
                                 </td>
                                 <td *ngIf="!visualizando" class="text-center">
