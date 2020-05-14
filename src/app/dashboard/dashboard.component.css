@@ -22,7 +22,7 @@
 
 #sidebar {
     max-height: 90vh;
-    width: fit-content;
+    width: 225px;
     font-weight: 600;
     font-size: 15px;
 }
