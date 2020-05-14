@@ -38,7 +38,7 @@ export class MonitoramentoService {
   }
 
   excluirMonitoramento(idMonitoramento) {
-    return this.http.delete(this.baseUrl);
+    return this.http.delete(this.baseUrl + idMonitoramento);
   }
 
   salvarMonitoramento(monitoramento) {
