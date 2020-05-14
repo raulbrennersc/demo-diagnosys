@@ -31,8 +31,8 @@ export class DemarcacaoLavouraComponent implements OnInit {
     this.consultarGeometria();
   }
 
-  salvarGeometria(geometrias) {
-    this.geometria = geometrias[0];
+  salvarGeometria(geometria) {
+    this.geometria = geometria
   }
 
   consultarGeometria() {
@@ -54,6 +54,10 @@ export class DemarcacaoLavouraComponent implements OnInit {
   }
 
   avancarEtapa() {
+    if(!this.geometria){
+      this.alertify.error('Insira o desenho da lavoura para continuar.');
+      return;
+    }
     const callback = {
       next: (response) => {
         this.alertify.success('Dados salvos!');

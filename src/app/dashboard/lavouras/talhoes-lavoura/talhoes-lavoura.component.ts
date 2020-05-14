@@ -56,6 +56,10 @@ export class TalhoesLavouraComponent implements OnInit {
   }
 
   avancarEtapa() {
+    if(!this.geometrias || this.geometrias.length == 0){
+      this.alertify.error('É necessário inserir ao menos um talhão.')
+      return ;
+    }
     const callback = {
       next: (response) => {
         this.alertify.success('Dados Salvos!');

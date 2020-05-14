@@ -51,7 +51,7 @@ export class DemarcacaoFazendaComponent implements OnInit {
 
   avancarEtapa() {
     if(!this.geometria){
-      this.alertify.error('Insira a geometria da fazenda para continuar.')
+      this.alertify.error('Insira o desenho da fazenda para continuar.')
       return;
     }
     const callback = {

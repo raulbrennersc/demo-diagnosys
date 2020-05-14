@@ -37,8 +37,8 @@ export class MonitoramentoService {
     return this.http.get(this.baseUrl + idLavoura);
   }
 
-  excluirMonitoramento(idLavoura) {
-    return this.http.get(this.baseUrl + idLavoura);
+  excluirMonitoramento(idMonitoramento) {
+    return this.http.delete(this.baseUrl);
   }
 
   salvarMonitoramento(monitoramento) {
