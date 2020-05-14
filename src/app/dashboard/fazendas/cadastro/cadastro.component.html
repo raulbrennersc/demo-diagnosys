@@ -2,7 +2,7 @@
     <div id="cabecalho-cadastro">
         <span><i id="icone-cadastro" class="fas fa-plus"></i> &nbsp; Fazendas / <strong>Cadastro</strong></span>
     </div>
-    <div id="main-container" class="container">
+    <div id="main-container" class="container-fluid col-10">
         <div class="container-fluid">
             <app-etapas *ngIf="etapasCarregadas" [(etapas)]="etapas" [(etapaInicial)]="fazenda.idEtapa"
                 [(etapaAtual)]="etapaAtiva" (alterarEtapa)="alterarEtapa($event)">

@@ -19,8 +19,8 @@
             </div>
         </div>
 
-        <div class="row flex-grow-1">
-            <div id="sidebar" class="container-fluid d-flex flex-column justify-content-center pb-5 col-2">
+        <div class="row flex-grow-1 justify-content-start">
+            <div id="sidebar" class="container-fluid mx-0 d-flex flex-column align-items-start justify-content-center pr-5">
                 <a routerLink="/painel" routerLinkActive="modulo-ativo" [routerLinkActiveOptions]="{exact: true}">
                     <div class="row items-painel">
                         <div class="mark"></div>
@@ -58,7 +58,7 @@
                     </div>
                 </a>
             </div>
-            <div id="modulos" class="col-10 bg-info">
+            <div id="modulos" class="flex-grow-1">
                 <router-outlet></router-outlet>
             </div>
         </div>
