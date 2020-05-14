@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-localizacao-fazenda',
@@ -9,14 +10,15 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
   styleUrls: ['./localizacao-fazenda.component.css']
 })
 export class LocalizacaoFazendaComponent implements OnInit {
-  localizacaoFazenda: any = {};
-  editando = false;
+  localizacaoFazenda: any = { };
   constructor(private staticService: StaticService, private fazendaService: FazendasService, private alertify: AlertifyService) { }
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<number>();
   estados: any = [];
   municipios: any = [];
-
+  
+  editando = false;
+  formSubmited = false;
   ngOnInit(): void {
     this.staticService.listarEstados()
       .subscribe(response => this.estados = response);
@@ -35,7 +37,13 @@ export class LocalizacaoFazendaComponent implements OnInit {
       .subscribe(response => this.municipios = response);
   }
 
-  avancarEtapa(form) {
+  avancarEtapa(form: NgForm) {
+    if(form.invalid){
+      this.formSubmited = true;
+      this.alertify.error('Preencha os campos corretamente.');
+      return;
+    }
+
     if (this.editando) {
       this.atualizarLocalizacao();
     }
