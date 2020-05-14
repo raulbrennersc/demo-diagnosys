@@ -10,6 +10,7 @@
                 <thead class="thead-light">
                     <tr class="">
                         <th class="text-left">Lavouras Cadastradas</th>
+                        <th>Fazenda</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
@@ -17,6 +18,7 @@
                 <tbody>
                     <tr *ngFor="let lavoura of lavouras">
                         <td class="text-left">{{lavoura.nome}}</td>
+                        <td class="text-center">{{lavoura.nomeFazenda}}</td>
                         <td class="text-center">{{lavoura.concluida ? 'Cadstro concluído' : 'Cadastro em andamento'}}
                         </td>
                         <td class="text-center">
@@ -26,7 +28,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="lavouras.length == 0">
-                        <td colspan="3" class="text-center">Não existem lavouras para listar.</td>
+                        <td colspan="4" class="text-center">Não existem lavouras para listar.</td>
                     </tr>
                 </tbody>
             </table>
