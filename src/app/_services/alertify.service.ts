@@ -6,7 +6,10 @@ declare let alertify: any;
 })
 export class AlertifyService {
 
-  constructor() { }
+  constructor() { 
+    alertify.set('notifier','position', 'top-right');
+   }
+
   confirm(message: string, okCallback: () => any) {
     alertify.confirm(message, (e) => {
       if (e) {
