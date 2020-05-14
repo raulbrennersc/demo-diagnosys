@@ -3,6 +3,7 @@ import { LavouraService } from 'src/app/_services/lavoura.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dados-lavoura',
@@ -11,12 +12,14 @@ import { Router } from '@angular/router';
 })
 export class DadosLavouraComponent implements OnInit {
   dadosLavoura: any = {};
-  editando = false;
   constructor(private fazendaService: FazendasService, private lavouraService: LavouraService, private alertify: AlertifyService, private router: Router) { }
   @Input() idLavoura: number;
   @Output() salvar = new EventEmitter<number>();
   fazendas: any = [];
 
+  editando = false;
+  formSubmited = false;
+  
   ngOnInit(): void {
     this.fazendaService.listarFazendas().subscribe(fazendas => {
       this.fazendas = fazendas
@@ -32,7 +35,12 @@ export class DadosLavouraComponent implements OnInit {
     });
   }
 
-  avancarEtapa(form) {
+  avancarEtapa(form: NgForm) {
+    if(form.invalid){
+      this.formSubmited = true;
+      this.alertify.error('Preencha os campos corretamente.');
+      return;
+    }
     if (this.editando) {
       this.atualizarLocalizacao();
     }

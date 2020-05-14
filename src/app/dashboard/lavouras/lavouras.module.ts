@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
 import { FormsModule } from '@angular/forms';
 import { LavourasRoutingModule } from './lavouras-routing.module';
+import { NgxMaskModule } from 'ngx-mask'
 
 
 import { LavourasComponent } from './lavouras.component';
@@ -20,7 +21,8 @@ import { ConfirmacaoLavouraComponent } from './confirmacao-lavoura/confirmacao-l
     CommonModule,
     LavourasRoutingModule,
     SharedComponentsModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule
   ]
 })
 export class LavourasModule { }

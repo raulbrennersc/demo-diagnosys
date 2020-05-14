@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FazendasRoutingModule } from './fazendas-routing.module';
 import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask'
 
 
 import { FazendasComponent } from './fazendas.component';

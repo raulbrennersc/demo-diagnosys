@@ -1,13 +1,13 @@
 <form #dadosForm="ngForm" (submit)="avancarEtapa(dadosForm)" [ngClass]="{submited: formSubmited}">
     <div class="modulo-div text-center">
         <div class="container-fluid text-right py-5">
-            <div class="row from-group">
+            <div class="row form-group">
                 <label class="col-3" for="area">Area total: * </label>
-                <input class="form-control col-5" type="text" name="area" [(ngModel)]="dadosFazenda.areaTotal"
+                <input class="form-control col-5" type="number" name="area" [(ngModel)]="dadosFazenda.areaTotal"
                     required>
                 <span class="col text-left">ha</span>
             </div>
-            <div class="row from-group">
+            <div class="row form-group">
                 <label class="col-3" for="idCultura">Cultura: * </label>
                 <select [(ngModel)]="dadosFazenda.idCultura" required class="form-control col-5" name="idCultura">
                     <option [ngValue]="undefined" disabled selected>Selecione...</option>
