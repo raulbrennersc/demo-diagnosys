@@ -19,10 +19,10 @@
                     <tr *ngFor="let lavoura of lavouras">
                         <td class="text-left">{{lavoura.nome}}</td>
                         <td class="text-center">{{lavoura.nomeFazenda}}</td>
-                        <td class="text-center">{{lavoura.concluida ? 'Cadstro concluído' : 'Cadastro em andamento'}}
+                        <td class="text-center">{{lavoura.concluida ? 'Cadastro concluído' : 'Cadastro em andamento'}}
                         </td>
                         <td class="text-center">
-                            <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-eye"></i></a>
+                            <!-- <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-eye"></i></a> -->
                             <a [routerLink]="['cadastro', lavoura.id]"><i class="fa fa-edit mx-2"></i></a>
                             <a (click)="excluirLavoura(lavoura.id)"><i class="fa fa-trash"></i></a>
                         </td>
