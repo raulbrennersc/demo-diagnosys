@@ -89,6 +89,8 @@ textarea{
     border-left: 0;
     border-width: 1px;
     color: var(--input-color);
+    display: flex;
+    background-color: #fff;
 }
 
 .form-control{

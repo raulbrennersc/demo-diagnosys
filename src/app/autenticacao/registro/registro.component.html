@@ -6,26 +6,20 @@
         <form class="form" #registerForm="ngForm" (submit)="register()">
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="nome" placeholder="Nome" required
-                            [(ngModel)]="model.nome">
-                    </div>
+                    <input class="form-control" type="text" name="nome" placeholder="Nome" required
+                        [(ngModel)]="model.nome">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="email" placeholder="E-mail"
-                            [(ngModel)]="model.email">
-                    </div>
+                    <input class="form-control" type="text" name="email" placeholder="E-mail"
+                        [(ngModel)]="model.email">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="cpf" placeholder="CPF/CNPJ" required
-                            [(ngModel)]="model.cpf">
-                    </div>
+                    <input class="form-control" type="text" name="cpf" mask="000.000.000-00" placeholder="CPF/CNPJ" required
+                        [(ngModel)]="model.cpf">
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -33,13 +27,17 @@
                     <div class="input-group">
                         <input class="form-control" type="password" name="senha" placeholder="Senha"
                             [(ngModel)]="model.password">
+                            <div (click)="togglePassword($event)" class="input-group-append">
+                                <span
+                                    class="input-group-text icone-input-right fa fa-eye"></span>
+                            </div>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="d-flex justify-content-between col-10">
                     <div class="d-flex align-items-center">
-                        <a [routerLink]="['']">Fazer login</a>
+                        <a [routerLink]="['']">Já tenho uma conta</a>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">REGISTRAR</button>

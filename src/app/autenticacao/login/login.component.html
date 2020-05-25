@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="input-group">
-                        <input class="form-control" type="text" name="cpf" placeholder="CPF/CNPJ" required
+                        <input class="form-control" type="text" name="cpf" mask="000.000.000-00" placeholder="CPF/CNPJ" required
                             [(ngModel)]="model.cpf">
                         <div class="input-group-append">
                             <span
@@ -19,7 +19,7 @@
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="input-group">
-                        <input class="form-control" type="password" name="senha" placeholder="Senha"
+                        <input class="form-control" type="password" name="senha" placeholder="Senha" minlength="6" maxlength="20"
                             [(ngModel)]="model.password">
                         <div class="input-group-append">
                             <span

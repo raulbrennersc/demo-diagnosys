@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AutenticacaoService } from 'src/app/_services/autenticacao.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -22,5 +23,15 @@ export class RegistroComponent implements OnInit {
       this.router.navigate(['']);
     });
 
+  }
+
+  togglePassword(event){
+    const type = event.target.parentElement.parentElement.children['senha'].type
+    if(type == 'password'){
+      event.target.parentElement.parentElement.children['senha'].type = 'text';
+    }
+    else{
+      event.target.parentElement.parentElement.children['senha'].type = 'password';
+    }
   }
 }
