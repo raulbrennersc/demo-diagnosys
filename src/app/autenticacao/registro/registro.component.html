@@ -3,7 +3,7 @@
         <img src="../../../assets/images/diagnose-virtual.png" alt="Logo Diagnosys" id="logo-diagnosys">
     </div>
     <div class="container" id="main-container">
-        <form class="form" #registerForm="ngForm" (submit)="register()">
+        <form class="form" #registerForm="ngForm" (submit)="register(registerForm)" [ngClass]="{submited: formSubmited}">
             <div class="row justify-content-center">
                 <div class="col-10">
                     <input class="form-control" type="text" name="nome" placeholder="Nome" required
@@ -12,7 +12,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <input class="form-control" type="text" name="email" placeholder="E-mail"
+                    <input class="form-control" type="email" email name="email" placeholder="E-mail" required
                         [(ngModel)]="model.email">
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="input-group">
-                        <input class="form-control" type="password" name="senha" placeholder="Senha"
+                        <input class="form-control" type="password" name="senha" placeholder="Senha" required
                             [(ngModel)]="model.password">
                             <div (click)="togglePassword($event)" class="input-group-append">
                                 <span
