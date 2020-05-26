@@ -11,7 +11,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./dados-lavoura.component.css']
 })
 export class DadosLavouraComponent implements OnInit {
-  dadosLavoura: any = {};
+  dadosLavoura: any = {
+    nPlantas: 0,
+    stand: 0,
+  };
   constructor(private fazendaService: FazendasService, private lavouraService: LavouraService, private alertify: AlertifyService, private router: Router) { }
   @Input() idLavoura: number;
   @Output() salvar = new EventEmitter<number>();
@@ -19,7 +22,7 @@ export class DadosLavouraComponent implements OnInit {
 
   editando = false;
   formSubmited = false;
-  
+
   ngOnInit(): void {
     this.fazendaService.listarFazendas().subscribe(fazendas => {
       this.fazendas = fazendas
@@ -36,7 +39,7 @@ export class DadosLavouraComponent implements OnInit {
   }
 
   avancarEtapa(form: NgForm) {
-    if(form.invalid){
+    if (form.invalid) {
       this.formSubmited = true;
       this.alertify.error('Preencha os campos corretamente.');
       return;
@@ -63,5 +66,19 @@ export class DadosLavouraComponent implements OnInit {
         this.alertify.success('Dados salvos!');
         this.salvar.emit();
       });
+  }
+
+  atualizarValores() {
+    if (isNaN(this.dadosLavoura.areaTotal) || isNaN(this.dadosLavoura.espacamentoHorizontal) || isNaN(this.dadosLavoura.espacamentoVertical)) {
+      this.dadosLavoura.nPlantas = 0;
+      this.dadosLavoura.stand = 0;
+      return;
+    }
+    let nPlantas = (this.dadosLavoura.areaTotal * this.dadosLavoura.espacamentoHorizontal * this.dadosLavoura.espacamentoVertical / 10000).toString();
+    nPlantas = nPlantas.replace('.', '*').replace(',', '.').replace('*', ',');
+    let stand = (this.dadosLavoura.espacamentoHorizontal * this.dadosLavoura.espacamentoVertical / 10000).toString();
+    stand = stand.replace('.', '*').replace(',', '.').replace('*', ',');
+    this.dadosLavoura.nPlantas = nPlantas;
+    this.dadosLavoura.stand = stand;
   }
 }

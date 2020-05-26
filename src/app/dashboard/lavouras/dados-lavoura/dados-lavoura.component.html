@@ -22,14 +22,17 @@
             <div class="row form-group">
                 <label class="col-3" for="dadosLavoura.areaTotal">Área total: * </label>
                 <input class="form-control col-3" type="text" required name="areaTotal" mask="separator"
-                    thousandSeparator="." decimalSeparator="," [(ngModel)]="dadosLavoura.areaTotal">
+                    thousandSeparator="." decimalSeparator="," [(ngModel)]="dadosLavoura.areaTotal"
+                    (ngModelChange)="atualizarValores()">
                 <label class="col-2" for="dadosLavoura.espacamentoHorizontal">Espaçamento: * </label>
                 <div class="col-3 px-0 d-flex align-items-center justify-content-end">
                     <input class="form-control" type="text" required name="espacamentoHorizontal" mask="separator"
-                        thousandSeparator="." decimalSeparator="," [(ngModel)]="dadosLavoura.espacamentoHorizontal">
+                        thousandSeparator="." decimalSeparator="," [(ngModel)]="dadosLavoura.espacamentoHorizontal"
+                        (ngModelChange)="atualizarValores()">
                     <span class="col-1 text-center px-0 mx-0">x</span>
                     <input class="form-control" type="text" required name="espacamentoVertical" mask="separator"
-                        thousandSeparator="." decimalSeparator="," [(ngModel)]="dadosLavoura.espacamentoVertical">
+                        thousandSeparator="." decimalSeparator="," [(ngModel)]="dadosLavoura.espacamentoVertical"
+                        (ngModelChange)="atualizarValores()">
                 </div>
                 <span>&nbsp; m</span>
             </div>
