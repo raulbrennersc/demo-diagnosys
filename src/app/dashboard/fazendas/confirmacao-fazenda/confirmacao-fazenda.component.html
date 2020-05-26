@@ -15,7 +15,7 @@
                 <span><strong>Município:</strong> {{fazenda.localizacaoFazenda.nomeMunicipio}}</span>
                 <span><strong>Proprietário:</strong> {{fazenda.localizacaoFazenda.proprietario}}</span>
                 <span><strong>Gerente da Fazenda:</strong> {{fazenda.localizacaoFazenda.gerente}}</span>
-                <span><strong>Contato da Fazenda:</strong> {{fazenda.localizacaoFazenda.telefone}}</span>
+                <span><strong>Contato da Fazenda:</strong> {{fazenda.localizacaoFazenda.telefone | mask: '(00) 0000-0000'}}</span>
                 <span><strong>Ponto de referência:</strong> {{fazenda.localizacaoFazenda.pontoReferencia}}</span>
             </div>
         </div>
