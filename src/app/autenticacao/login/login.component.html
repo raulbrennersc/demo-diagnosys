@@ -1,14 +1,14 @@
 <div class="outer-div">
-    <div class="container text-center">
-        <img src="../../../assets/images/diagnose-virtual.png" alt="Logo Diagnosys" id="logo-diagnosys">
+    <div class="container text-center mb-5">
+        <img src="../../../assets/images/diagnosys-colorido.png" alt="Logo Diagnosys" id="logo-diagnosys">
     </div>
     <div class="container" id="main-container">
         <form class="form" #loginForm="ngForm" (submit)="login(loginForm)" [ngClass]="{submited: formSubmited}">
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="input-group">
-                        <input class="form-control" type="text" name="cpf" mask="000.000.000-00||00.000.000/0000-00" placeholder="CPF/CNPJ" required
-                            [(ngModel)]="model.cpf">
+                        <input class="form-control" type="text" name="cpf" mask="000.000.000-00||00.000.000/0000-00"
+                            placeholder="CPF/CNPJ" required [(ngModel)]="model.cpf">
                         <div class="input-group-append">
                             <span
                                 class="input-group-text icone-input-right fa fa-user bg-white d-flex align-items-center"></span>
@@ -19,8 +19,8 @@
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="input-group">
-                        <input class="form-control" type="password" name="senha" placeholder="Senha" minlength="6" maxlength="20" required
-                            [(ngModel)]="model.password">
+                        <input class="form-control" type="password" name="senha" placeholder="Senha" minlength="6"
+                            maxlength="20" required [(ngModel)]="model.password">
                         <div class="input-group-append">
                             <span
                                 class="input-group-text icone-input-right fas fa-lock bg-white d-flex align-items-center"></span>
