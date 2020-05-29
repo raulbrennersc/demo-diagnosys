@@ -30,6 +30,7 @@ export class ConfirmacaoLavouraComponent implements OnInit {
         lavoura.conjuntoGeometrias = [lavoura.demarcacaoFazenda, lavoura.demarcacao, ...lavoura.talhoes]
         this.lavoura = lavoura;
         this.etapaCarregada = true;
+        this.calcularValores();
       });
   }
 
@@ -43,6 +44,20 @@ export class ConfirmacaoLavouraComponent implements OnInit {
         this.alertify.success('Cadastro de lavoura concluído!');
         this.confirmar.emit(false);
       })
+  }
+
+  calcularValores() {
+    if (isNaN(this.lavoura.dadosLavoura.areaTotal) || isNaN(this.lavoura.dadosLavoura.espacamentoHorizontal) || isNaN(this.lavoura.dadosLavoura.espacamentoVertical)) {
+      this.lavoura.dadosLavoura.nPlantas = 0;
+      this.lavoura.dadosLavoura.stand = 0;
+      return;
+    }
+    let nPlantas = (this.lavoura.dadosLavoura.areaTotal * this.lavoura.dadosLavoura.espacamentoHorizontal * this.lavoura.dadosLavoura.espacamentoVertical / 10000).toString();
+    nPlantas = nPlantas.replace('.', '*').replace(',', '.').replace('*', ',');
+    let stand = (this.lavoura.dadosLavoura.espacamentoHorizontal * this.lavoura.dadosLavoura.espacamentoVertical / 10000).toString();
+    stand = stand.replace('.', '*').replace(',', '.').replace('*', ',');
+    this.lavoura.dadosLavoura.nPlantas = nPlantas;
+    this.lavoura.dadosLavoura.stand = stand;
   }
 
 }

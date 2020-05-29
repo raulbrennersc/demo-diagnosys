@@ -34,6 +34,7 @@ export class DadosLavouraComponent implements OnInit {
         .subscribe(response => {
           this.editando = true;
           this.dadosLavoura = response;
+          this.atualizarValores();
         });
     });
   }
