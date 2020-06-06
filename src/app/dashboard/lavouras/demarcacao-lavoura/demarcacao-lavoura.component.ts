@@ -80,7 +80,7 @@ export class DemarcacaoLavouraComponent implements OnInit {
   }
 
   atualizarDemarcacao(callback) {
-    this.lavouraService.atualizarDemarcacaoLavoura(this.geometria, this.lavoura.id)
+    this.lavouraService.atualizarDemarcacaoLavoura(this.lavoura.id, this.geometria)
       .subscribe(callback);
   }
 
