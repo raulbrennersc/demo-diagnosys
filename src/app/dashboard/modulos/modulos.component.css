@@ -5,7 +5,7 @@
 }
 
 .card-modulo{
-    background-color: var(--main-color);
+    background-color: var(--primary-color);
     border-radius: 45px;
     height: 180px;
     width: 180px;

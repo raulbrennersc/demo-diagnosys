@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class DadosFazendaComponent implements OnInit {
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<any>();
+  @Output() voltar = new EventEmitter<boolean>();
   dadosFazenda: any = {};
   culturas: any = [];
   
@@ -61,5 +62,9 @@ export class DadosFazendaComponent implements OnInit {
   atualizarDados(callback) {
     this.fazendaService.atualizarDadosFazenda(this.dadosFazenda, this.idFazenda)
       .subscribe(callback);
+  }
+
+  voltarEtapa() {
+    this.voltar.emit(true);
   }
 }

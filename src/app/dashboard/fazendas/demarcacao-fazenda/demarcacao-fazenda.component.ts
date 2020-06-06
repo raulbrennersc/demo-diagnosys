@@ -11,6 +11,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class DemarcacaoFazendaComponent implements OnInit {
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<boolean>();
+  @Output() voltar = new EventEmitter<boolean>();
 
   etapaCarregada = false;
   editando = false;
@@ -77,6 +78,10 @@ export class DemarcacaoFazendaComponent implements OnInit {
   atualizarDemarcacao(callback) {
     this.fazendaService.atualizarDemarcacaoFazenda(this.geometria, this.idFazenda)
       .subscribe(callback);
+  }
+
+  voltarEtapa(){
+    this.voltar.emit(true);
   }
 
 }

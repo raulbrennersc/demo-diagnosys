@@ -26,6 +26,10 @@ export class CadastroComponent implements OnInit {
     this.alterarEtapa(this.etapaAtiva + 1);
   }
 
+  voltarEtapa() {
+    this.alterarEtapa(this.etapaAtiva - 1);
+  }
+
   carregarFazenda(idNovaFazenda = undefined) {
     if (idNovaFazenda) {
       this.router.navigate(['painel', 'fazendas', 'cadastro', idNovaFazenda]);

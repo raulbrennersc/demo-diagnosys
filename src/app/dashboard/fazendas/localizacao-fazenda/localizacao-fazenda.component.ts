@@ -67,5 +67,4 @@ export class LocalizacaoFazendaComponent implements OnInit {
         this.salvar.emit();
       });
   }
-
 }

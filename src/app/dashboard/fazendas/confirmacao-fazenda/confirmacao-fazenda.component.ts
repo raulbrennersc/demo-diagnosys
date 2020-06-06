@@ -12,6 +12,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class ConfirmacaoFazendaComponent implements OnInit {
   @Input() idFazenda: number;
   @Output() confirmar = new EventEmitter<boolean>();
+  @Output() voltar = new EventEmitter<boolean>();
 
   fazenda: any;
   etapaCarregada = false;
@@ -41,5 +42,9 @@ export class ConfirmacaoFazendaComponent implements OnInit {
         this.alertify.success('Cadastro da fazenda concluído');
         this.confirmar.emit(false);
       })
+  }
+
+  voltarEtapa() {
+    this.voltar.emit(true);
   }
 }
