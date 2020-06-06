@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm) {
-    
+    if(this.carregando){
+      return;
+    }
     if(form.invalid){
       this.formSubmited = true;
       this.alertify.error('Preencha os campos corretamente.');

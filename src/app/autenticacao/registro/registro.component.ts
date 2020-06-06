@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-
+  carregando = false;
   model: any = {};
   formSubmited = false;
   constructor(private autenticacaoService: AutenticacaoService, private router: Router, private alertify: AlertifyService) { }
@@ -19,16 +19,22 @@ export class RegistroComponent implements OnInit {
   }
 
   register(form: NgForm) {
-
+    if(this.carregando){
+      return;
+    }
     if(form.invalid){
       this.formSubmited = true;
       this.alertify.error('Preencha os campos corretamente.');
       return;
     }
 
+    this.carregando = true;
     this.autenticacaoService.register(this.model).subscribe(next => {
       this.alertify.success('Registro realizado!');
       this.router.navigate(['']);
+      this.carregando = false;
+    }, error => {
+      this.carregando = false;
     });
 
   }

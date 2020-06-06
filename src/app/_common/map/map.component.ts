@@ -25,7 +25,7 @@ export class MapComponent implements OnInit, OnChanges {
 	map: Map;
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
-	imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/d69225f413a02fbdab7da00035e469d2859e4dabcc4c62033ce3dbd4fe990b0f_23KMS_2020-05-31_0_rgb.png';
+	imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/d69225f413a02fbdab7da00035e469d2859e4dabcc4c62033ce3dbd4fe990b0f_23KMS_2020-05-31_0_ndvi.png';
 
 	bound: any;
 
