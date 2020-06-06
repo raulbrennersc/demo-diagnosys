@@ -26,6 +26,10 @@ export class CadastroLavouraComponent implements OnInit {
     this.alterarEtapa(this.etapaAtiva + 1);
   }
 
+  voltarEtapa(idNovaLavoura = undefined) {
+    this.alterarEtapa(this.etapaAtiva - 1);
+  }
+
   carregarLavoura(idNovaLavoura = undefined) {
     if (idNovaLavoura) {
       this.router.navigate(['painel', 'lavouras', 'cadastro', idNovaLavoura]);

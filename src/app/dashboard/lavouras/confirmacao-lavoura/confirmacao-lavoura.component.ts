@@ -11,6 +11,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class ConfirmacaoLavouraComponent implements OnInit {
   @Input() lavoura: any;
   @Output() confirmar = new EventEmitter<boolean>();
+  @Output() voltar = new EventEmitter<boolean>();
 
   etapaCarregada = false;
 
@@ -58,6 +59,10 @@ export class ConfirmacaoLavouraComponent implements OnInit {
     stand = stand.replace('.', '*').replace(',', '.').replace('*', ',');
     this.lavoura.dadosLavoura.nPlantas = nPlantas;
     this.lavoura.dadosLavoura.stand = stand;
+  }
+
+  voltarEtapa() {
+    this.voltar.emit(true);
   }
 
 }

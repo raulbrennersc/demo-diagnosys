@@ -11,11 +11,11 @@
                 <div class="container-fluid p-0 m-0" [ngSwitch]="etapaAtiva">
                     <app-dados-lavoura [idLavoura]="lavoura.id" (salvar)="avancarEtapa($event)" *ngSwitchCase="1">
                     </app-dados-lavoura>
-                    <app-demarcacao-lavoura [lavoura]="lavoura" (salvar)="avancarEtapa()" *ngSwitchCase="2">
+                    <app-demarcacao-lavoura [lavoura]="lavoura" (voltar)="voltarEtapa()" (salvar)="avancarEtapa()" *ngSwitchCase="2">
                     </app-demarcacao-lavoura>
-                    <app-talhoes-lavoura [lavoura]="lavoura" (salvar)="avancarEtapa()" *ngSwitchCase="3">
+                    <app-talhoes-lavoura [lavoura]="lavoura" (voltar)="voltarEtapa()" (salvar)="avancarEtapa()" *ngSwitchCase="3">
                     </app-talhoes-lavoura>
-                    <app-confirmacao-lavoura [lavoura]="lavoura" (confirmar)="concluirCadastro()" *ngSwitchCase="4">
+                    <app-confirmacao-lavoura [lavoura]="lavoura" (voltar)="voltarEtapa()" (confirmar)="concluirCadastro()" *ngSwitchCase="4">
                     </app-confirmacao-lavoura>
                 </div>
             </div>

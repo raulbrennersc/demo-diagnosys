@@ -12,6 +12,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class DemarcacaoLavouraComponent implements OnInit {
   @Input() lavoura: any;
   @Output() salvar = new EventEmitter<boolean>();
+  @Output() voltar = new EventEmitter<boolean>();
 
   etapaCarregada = false;
   editando = false;
@@ -54,7 +55,7 @@ export class DemarcacaoLavouraComponent implements OnInit {
   }
 
   avancarEtapa() {
-    if(!this.geometria){
+    if (!this.geometria) {
       this.alertify.error('Insira o desenho da lavoura para continuar.');
       return;
     }
@@ -81,6 +82,10 @@ export class DemarcacaoLavouraComponent implements OnInit {
   atualizarDemarcacao(callback) {
     this.lavouraService.atualizarDemarcacaoLavoura(this.geometria, this.lavoura.id)
       .subscribe(callback);
+  }
+
+  voltarEtapa() {
+    this.voltar.emit(true);
   }
 
 }
