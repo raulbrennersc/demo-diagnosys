@@ -41,7 +41,7 @@
             </div>
             <div class="row form-group">
                 <label class="col-3" for="dadosLavoura.nPlantas">
-                    <i class="fa fa-question-circle"></i>
+                    <i class="fa fa-question-circle" placement="top" ngbTooltip="O número de plantas se dá pela área de plantio multiplicado pelo espaçamento, dividido por um hectare (equivalente a 10.000 metros)."></i>
                     N° de plantas: * </label>
                 <div class="col-3 d-flex align-items-center px-0 mx-0">
                     <input class="form-control col-10" disabled type="text" name="nPlantas"
@@ -49,7 +49,7 @@
                     <span>&nbsp; ha</span>
                 </div>
                 <label class="col-2" for="dadosLavoura.stand">
-                    <i class="fa fa-question-circle"></i>
+                    <i class="fa fa-question-circle" placement="top" ngbTooltip="Equivalente ao número de plantas dividido pela área total de plantio."></i>
                     Stand: * </label>
                 <input class="form-control col-3" disabled type="text" name="stand" [(ngModel)]="dadosLavoura.stand">
             </div>
