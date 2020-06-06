@@ -25,9 +25,7 @@ export class MapComponent implements OnInit, OnChanges {
 	map: Map;
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
-
-	// imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/aeroporto_23KNS_2020-03-12_0_ndvi.tif';
-	// imgUrl = 'http://localhost/SInterface/Arquivos/img.png';
+	imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/d69225f413a02fbdab7da00035e469d2859e4dabcc4c62033ce3dbd4fe990b0f_23KMS_2020-05-31_0_rgb.png';
 
 	bound: any;
 
@@ -142,17 +140,7 @@ export class MapComponent implements OnInit, OnChanges {
 
 	public onMapReady(map: Map) {
 		this.map = map;
-		// L.imageOverlay(this.imgUrl, this.bound).addTo(map);
-		// fetch(this.imgUrl)
-		// 	.then(response => response.arrayBuffer())
-		// 	.then(arrayBuffer => {
-		// 		GeoRaster(arrayBuffer).then(georaster => {
-		// 			// let x = new GeoRasterLayer({ georaster: georaster });
-		// 			// x.addTo(map);
-		// 			// map.fitBounds(x.getBounds());
-		// 		})
-		// 	});
-
+		L.imageOverlay(this.imgUrl, this.bound).addTo(map);
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {
