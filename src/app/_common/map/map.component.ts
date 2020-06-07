@@ -13,6 +13,7 @@ declare var GeoRasterLayer: any;
 })
 export class MapComponent implements OnInit, OnChanges {
 	@Input() geometriasFixas: GeoJSON.Geometry[];
+	@Input() imgUrl: string;
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
 	@Input() ferramentas: any = {
 		draw: {}
@@ -25,7 +26,6 @@ export class MapComponent implements OnInit, OnChanges {
 	map: Map;
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
-	imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/d69225f413a02fbdab7da00035e469d2859e4dabcc4c62033ce3dbd4fe990b0f_23KMS_2020-05-31_0_ndvi.png';
 
 	bound: any;
 
@@ -140,7 +140,10 @@ export class MapComponent implements OnInit, OnChanges {
 
 	public onMapReady(map: Map) {
 		this.map = map;
-		L.imageOverlay(this.imgUrl, this.bound).addTo(map);
+		if(this.geometriasFixas.length > 0 && this.imgUrl){
+			const bounds = this.montarLayer(this.geometriasFixas[0]).getBounds();
+			L.imageOverlay(this.imgUrl, bounds).addTo(map);
+		}
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {

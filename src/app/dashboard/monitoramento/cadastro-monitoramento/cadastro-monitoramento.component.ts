@@ -37,8 +37,6 @@ export class CadastroMonitoramentoComponent implements OnInit {
         if (idMonitoramento) {
           this.idMonitoramento = idMonitoramento;
           this.visualizando = true;
-        }
-        if (this.visualizando) {
           this.opcoesMapa.marker = false;
           this.carregarMonitoramento();
         }
@@ -52,6 +50,7 @@ export class CadastroMonitoramentoComponent implements OnInit {
     this.monitoramentoService.consultarMonitoramentoFazenda(this.idFazenda)
       .subscribe(response => {
         this.montarMonitoramento(response);
+        this.urlPdi = (response as any).urlPdi;
       });
   }
 
