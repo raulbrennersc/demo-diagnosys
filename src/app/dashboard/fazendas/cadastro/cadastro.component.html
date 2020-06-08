@@ -11,11 +11,11 @@
                 <div class="container-fluid p-0 m-0" [ngSwitch]="etapaAtiva">
                     <app-localizacao-fazenda [idFazenda]="fazenda.id" (salvar)="avancarEtapa($event)" *ngSwitchCase="1">
                     </app-localizacao-fazenda>
-                    <app-dados-fazenda [idFazenda]="fazenda.id" (salvar)="avancarEtapa()" *ngSwitchCase="2">
+                    <app-dados-fazenda [idFazenda]="fazenda.id" (voltar)="voltarEtapa()" (salvar)="avancarEtapa()" *ngSwitchCase="2">
                     </app-dados-fazenda>
-                    <app-demarcacao-fazenda [idFazenda]="fazenda.id" (salvar)="avancarEtapa()" *ngSwitchCase="3">
+                    <app-demarcacao-fazenda [idFazenda]="fazenda.id" (voltar)="voltarEtapa()" (salvar)="avancarEtapa()" *ngSwitchCase="3">
                     </app-demarcacao-fazenda>
-                    <app-confirmacao-fazenda [idFazenda]="fazenda.id" (confirmar)="concluirCadastro()"
+                    <app-confirmacao-fazenda [idFazenda]="fazenda.id" (voltar)="voltarEtapa()" (confirmar)="concluirCadastro()"
                         *ngSwitchCase="4"></app-confirmacao-fazenda>
                 </div>
             </div>

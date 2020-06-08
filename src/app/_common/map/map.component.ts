@@ -13,6 +13,7 @@ declare var GeoRasterLayer: any;
 })
 export class MapComponent implements OnInit, OnChanges {
 	@Input() geometriasFixas: GeoJSON.Geometry[];
+	@Input() imgUrl: string;
 	@Input() geometriasCadastradas: GeoJSON.Geometry[];
 	@Input() ferramentas: any = {
 		draw: {}
@@ -26,9 +27,6 @@ export class MapComponent implements OnInit, OnChanges {
 	drawnItems: FeatureGroup = featureGroup();
 	fixItems: FeatureGroup = featureGroup();
 
-	// imgUrl = 'https://fazendas.s3.us-east-2.amazonaws.com/aeroporto_23KNS_2020-03-12_0_ndvi.tif';
-	// imgUrl = 'http://localhost/SInterface/Arquivos/img.png';
-
 	bound: any;
 
 	options = {
@@ -37,7 +35,8 @@ export class MapComponent implements OnInit, OnChanges {
 			// tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
 		],
 		zoom: 17,
-		center: latLng({ lat: -21.228959, lng: -45.003086 })
+		center: latLng({ lat: -21.228959, lng: -45.003086 }),
+		scrollWheelZoom: false,
 	};
 
 	drawOptions: any = {
@@ -142,17 +141,10 @@ export class MapComponent implements OnInit, OnChanges {
 
 	public onMapReady(map: Map) {
 		this.map = map;
-		// L.imageOverlay(this.imgUrl, this.bound).addTo(map);
-		// fetch(this.imgUrl)
-		// 	.then(response => response.arrayBuffer())
-		// 	.then(arrayBuffer => {
-		// 		GeoRaster(arrayBuffer).then(georaster => {
-		// 			// let x = new GeoRasterLayer({ georaster: georaster });
-		// 			// x.addTo(map);
-		// 			// map.fitBounds(x.getBounds());
-		// 		})
-		// 	});
-
+		if(this.geometriasFixas.length > 0 && this.imgUrl){
+			const bounds = this.montarLayer(this.geometriasFixas[0]).getBounds();
+			L.imageOverlay(this.imgUrl, bounds).addTo(map);
+		}
 	}
 
 	public onDrawCreated(e: DrawEvents.Created) {
@@ -212,6 +204,7 @@ export class MapComponent implements OnInit, OnChanges {
 			if (!style) {
 				style = this.ferramentas.estiloDesenho;
 			}
+			style = { ...style, fillColor: 'transparent'}
 			layer.setStyle(style);
 		}
 		return layer;

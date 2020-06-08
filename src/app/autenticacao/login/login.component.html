@@ -36,8 +36,9 @@
                     <div class="d-flex align-items-center">
                         <a [routerLink]="['registro']">Criar conta</a>
                     </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary">ENTRAR</button>
+                    <div class="text-right col-4 px-0">
+                        <button *ngIf="!carregando" type="submit" class="btn btn-primary w-100">ENTRAR</button>
+                        <button *ngIf="carregando" type="submit" class="btn btn-primary w-100"><i class="fas fa-spinner spinner"></i></button>
                     </div>
                 </div>
             </div>

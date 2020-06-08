@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  carregando = false;
   model: any = {};
   formSubmited = false;
   constructor(private autenticacaoService: AutenticacaoService, private router: Router, private alertify: AlertifyService) { }
@@ -22,17 +22,20 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm) {
-    
+    if(this.carregando){
+      return;
+    }
     if(form.invalid){
       this.formSubmited = true;
       this.alertify.error('Preencha os campos corretamente.');
       return;
     }
-
+    this.carregando = true;
     this.autenticacaoService.login(this.model).subscribe(next => {
       this.alertify.success('Login realizado!');
       this.router.navigate(['/painel']);
     }, error => {
+      this.carregando = false;
       this.alertify.error('Login e/ou senha incorretos!');
     }, () => {
 

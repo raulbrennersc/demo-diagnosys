@@ -12,6 +12,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class TalhoesLavouraComponent implements OnInit {
   @Input() lavoura: any;
   @Output() salvar = new EventEmitter<boolean>();
+  @Output() voltar = new EventEmitter<boolean>();
 
   etapaCarregada = false;
   editando = false;
@@ -84,4 +85,9 @@ export class TalhoesLavouraComponent implements OnInit {
     this.lavouraService.atualizarTalhoesLavoura(this.lavoura.id, this.geometrias)
       .subscribe(callback);
   }
+
+  voltarEtapa() {
+    this.voltar.emit(true);
+  }
+  
 }

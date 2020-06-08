@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'src/app/shared-components/shared-components.module';
 import { FormsModule } from '@angular/forms';
 import { LavourasRoutingModule } from './lavouras-routing.module';
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { LavourasComponent } from './lavouras.component';
@@ -22,7 +23,8 @@ import { ConfirmacaoLavouraComponent } from './confirmacao-lavoura/confirmacao-l
     LavourasRoutingModule,
     SharedComponentsModule,
     FormsModule,
-    NgxMaskModule
+    NgxMaskModule,
+    NgbModule
   ]
 })
 export class LavourasModule { }

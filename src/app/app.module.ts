@@ -10,6 +10,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { AppComponent } from './app.component';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -33,6 +34,7 @@ export function tokenGetter() {
         blacklistedRoutes: ['localhost:5000/api/auth', 'diagnosys-demo.azurewebsites.net/api/auth'],
       },
     }),
+    NgbModule,
   ],
   providers: [
     AlertifyService

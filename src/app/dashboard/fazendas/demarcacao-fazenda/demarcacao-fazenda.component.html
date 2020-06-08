@@ -2,6 +2,7 @@
     <app-map *ngIf="etapaCarregada" [geometriasCadastradas]="[geometria]" [ferramentas]="opcoesMapa"
         (geometriasDesenhadas)="salvarGeometria($event)"></app-map>
 </div>
-<div class="row justify-content-end mt-5 pr-2 mb-5">
+<div class="row justify-content-between mt-5 px-2 mb-5">
+    <button type="button" (click)="voltarEtapa()" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>  VOLTAR</button>
     <button (click)="avancarEtapa()" class="btn btn-primary">AVANÇAR <i class="fas fa-arrow-right"></i> </button>
 </div>

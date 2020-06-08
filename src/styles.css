@@ -1,4 +1,3 @@
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 @import '../node_modules/leaflet/dist/leaflet.css';
 @import '../node_modules/leaflet-draw//dist/leaflet.draw.css';
@@ -7,15 +6,13 @@
 
 
 :root{
-    --main-color: #0F8B72;
+    --primary-color: #0F8B72;
+    --secondary-color: #264B5A;
     --text-main-color: #666666;
     --input-color: #666666;
     --input-border-color: #BFBFBF;
     --disabled-step-color: #A5A4A4;
     --error-color: #ff0000;
-}
-
-html{
 }
 
 body{
@@ -72,17 +69,26 @@ textarea{
     padding-left: 25px;
     padding-right: 25px;
     background-color: white;
-    color: var(--main-color);
 }
 
 .btn-primary{
-    border-color: var(--main-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-primary:hover{
     border-color: transparent;
-    background-color: var(--main-color);
-    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.btn-secondary{
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-secondary:hover{
+    border-color: transparent;
+    background-color: var(--secondary-color);
 }
 
 .icone-input-right{
@@ -93,12 +99,29 @@ textarea{
     background-color: #fff;
 }
 
+/*Form validation*/
+.spinner{
+    animation-name: spin;
+    animation-duration: 3000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
 .form-control{
     border-color: var(--input-border-color);
 }
 
 .form-control:focus{
-    border-color: var(--main-color);
+    border-color: var(--primary-color);
     box-shadow: none;
 }
 
