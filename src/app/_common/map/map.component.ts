@@ -35,7 +35,8 @@ export class MapComponent implements OnInit, OnChanges {
 			// tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
 		],
 		zoom: 17,
-		center: latLng({ lat: -21.228959, lng: -45.003086 })
+		center: latLng({ lat: -21.228959, lng: -45.003086 }),
+		scrollWheelZoom: false,
 	};
 
 	drawOptions: any = {
@@ -203,6 +204,7 @@ export class MapComponent implements OnInit, OnChanges {
 			if (!style) {
 				style = this.ferramentas.estiloDesenho;
 			}
+			style = { ...style, fillColor: 'transparent'}
 			layer.setStyle(style);
 		}
 		return layer;
