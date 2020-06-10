@@ -36,7 +36,7 @@ export class MapComponent implements OnInit, OnChanges {
 		],
 		zoom: 17,
 		center: latLng({ lat: -21.228959, lng: -45.003086 }),
-		scrollWheelZoom: false,
+		// scrollWheelZoom: false,
 	};
 
 	drawOptions: any = {
