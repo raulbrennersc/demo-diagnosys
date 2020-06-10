@@ -53,10 +53,11 @@ export class ConfirmacaoLavouraComponent implements OnInit {
       this.lavoura.dadosLavoura.stand = 0;
       return;
     }
-    let nPlantas = (this.lavoura.dadosLavoura.areaTotal * this.lavoura.dadosLavoura.espacamentoHorizontal * this.lavoura.dadosLavoura.espacamentoVertical / 10000).toString();
-    nPlantas = nPlantas.replace('.', '*').replace(',', '.').replace('*', ',');
-    let stand = (this.lavoura.dadosLavoura.espacamentoHorizontal * this.lavoura.dadosLavoura.espacamentoVertical / 10000).toString();
-    stand = stand.replace('.', '*').replace(',', '.').replace('*', ',');
+    const nLinhas = 100 / this.lavoura.dadosLavoura.espacamentoHorizontal;
+    const nColunas = 100 / this.lavoura.dadosLavoura.espacamentoVertical;
+    const x = (nLinhas * nColunas * this.lavoura.dadosLavoura.areaTotal).toLocaleString('pt-br', {maximumFractionDigits: 0});
+    const nPlantas = x;
+    const stand = (this.lavoura.dadosLavoura.espacamentoHorizontal * this.lavoura.dadosLavoura.espacamentoVertical / 10000).toLocaleString('pt-br', {maximumFractionDigits: 0});
     this.lavoura.dadosLavoura.nPlantas = nPlantas;
     this.lavoura.dadosLavoura.stand = stand;
   }

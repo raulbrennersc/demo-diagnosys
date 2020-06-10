@@ -75,10 +75,11 @@ export class DadosLavouraComponent implements OnInit {
       this.dadosLavoura.stand = 0;
       return;
     }
-    let nPlantas = (this.dadosLavoura.areaTotal * this.dadosLavoura.espacamentoHorizontal * this.dadosLavoura.espacamentoVertical / 10000).toString();
-    nPlantas = nPlantas.replace('.', '*').replace(',', '.').replace('*', ',');
-    let stand = (this.dadosLavoura.espacamentoHorizontal * this.dadosLavoura.espacamentoVertical / 10000).toString();
-    stand = stand.replace('.', '*').replace(',', '.').replace('*', ',');
+    const nLinhas = 100 / this.dadosLavoura.espacamentoHorizontal;
+    const nColunas = 100 / this.dadosLavoura.espacamentoVertical;
+    const x = (nLinhas * nColunas * this.dadosLavoura.areaTotal).toLocaleString('pt-br', {maximumFractionDigits: 0});
+    const nPlantas = x;
+    const stand = (this.dadosLavoura.espacamentoHorizontal * this.dadosLavoura.espacamentoVertical / 10000).toLocaleString('pt-br', {maximumFractionDigits: 0});
     this.dadosLavoura.nPlantas = nPlantas;
     this.dadosLavoura.stand = stand;
   }
