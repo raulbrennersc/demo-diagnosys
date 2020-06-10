@@ -63,6 +63,9 @@ export class DemarcacaoLavouraComponent implements OnInit {
       next: (response) => {
         this.alertify.success('Dados salvos!');
         this.salvar.emit();
+      },
+      error: (error) => {
+        this.alertify.error(error.error);
       }
     }
 

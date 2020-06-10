@@ -65,6 +65,9 @@ export class TalhoesLavouraComponent implements OnInit {
       next: (response) => {
         this.alertify.success('Dados Salvos!');
         this.salvar.emit();
+      },
+      error: (error) => {
+        this.alertify.error(error.error);
       }
     }
 
