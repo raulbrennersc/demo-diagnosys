@@ -31,12 +31,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.carregando = true;
-    this.autenticacaoService.login(this.model).subscribe(next => {
+    this.autenticacaoService.login(this.model).subscribe(response => {
       this.alertify.success('Login realizado!');
       this.router.navigate(['/painel']);
     }, error => {
       this.carregando = false;
-      this.alertify.error('Login e/ou senha incorretos!');
+      this.alertify.error(error.error);
     }, () => {
 
     });

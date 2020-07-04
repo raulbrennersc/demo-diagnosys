@@ -21,9 +21,13 @@ export class AutenticacaoService {
       .pipe(
         map((response: any) => {
           const user = response;
-          if (user) {
+          if (user && !user.primeiroAcesso) {
             localStorage.setItem('token', user.token);
             this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          }
+          else if(user && user.primeiroAcesso){
+            alert('erro');
+            throw {error: 'Você precisa aceitar os termos para utilizar o serviço.'};
           }
         })
       );
