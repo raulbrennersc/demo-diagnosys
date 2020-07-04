@@ -77,9 +77,9 @@ export class DadosLavouraComponent implements OnInit {
     }
     const nLinhas = 100 / this.dadosLavoura.espacamentoHorizontal;
     const nColunas = 100 / this.dadosLavoura.espacamentoVertical;
-    const x = (nLinhas * nColunas * this.dadosLavoura.areaTotal).toLocaleString('pt-br', {maximumFractionDigits: 0});
-    const nPlantas = x;
-    const stand = (this.dadosLavoura.espacamentoHorizontal * this.dadosLavoura.espacamentoVertical / 10000).toLocaleString('pt-br', {maximumFractionDigits: 0});
+    const x = (nLinhas * nColunas * this.dadosLavoura.areaTotal);
+    const nPlantas = x.toLocaleString('pt-br', {maximumFractionDigits: 0});
+    const stand = (x / (this.dadosLavoura.areaTotal * 10000)).toLocaleString('pt-br', {maximumFractionDigits: 5});
     this.dadosLavoura.nPlantas = nPlantas;
     this.dadosLavoura.stand = stand;
   }
