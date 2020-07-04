@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LocalizacaoFazendaComponent implements OnInit {
   localizacaoFazenda: any = { };
-  constructor(private staticService: StaticService, private fazendaService: FazendasService, private alertify: AlertifyService) { }
+  constructor(private staticService: StaticService, private fazendaService: FazendasService, private toastr: ToastrService) { }
   @Input() idFazenda: number;
   @Output() salvar = new EventEmitter<number>();
   estados: any = [];
@@ -40,7 +40,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
   avancarEtapa(form: NgForm) {
     if(form.invalid){
       this.formSubmited = true;
-      this.alertify.error('Preencha os campos corretamente.');
+      this.toastr.error('Preencha os campos corretamente.');
       return;
     }
 
@@ -55,7 +55,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
   salvarLocalizacao() {
     this.fazendaService.salvarLocalizacaoFazenda(this.localizacaoFazenda)
       .subscribe(response => {
-        this.alertify.success('Dados salvos!');
+        this.toastr.success('Dados salvos!');
         this.salvar.emit((response as any).id);
       });
   }
@@ -63,7 +63,7 @@ export class LocalizacaoFazendaComponent implements OnInit {
   atualizarLocalizacao() {
     this.fazendaService.atualizarLocalizacaoFazenda(this.localizacaoFazenda, this.idFazenda)
       .subscribe(response => {
-        this.alertify.success('Dados salvos!');
+        this.toastr.success('Dados salvos!');
         this.salvar.emit();
       });
   }

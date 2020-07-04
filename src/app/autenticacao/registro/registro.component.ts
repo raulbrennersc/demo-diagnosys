@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacaoService } from 'src/app/_services/autenticacao.service';
 import { Router } from '@angular/router';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ export class RegistroComponent implements OnInit {
   carregando = false;
   model: any = {};
   formSubmited = false;
-  constructor(private autenticacaoService: AutenticacaoService, private router: Router, private alertify: AlertifyService) { }
+  constructor(private autenticacaoService: AutenticacaoService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -24,13 +24,13 @@ export class RegistroComponent implements OnInit {
     }
     if(form.invalid){
       this.formSubmited = true;
-      this.alertify.error('Preencha os campos corretamente.');
+      this.toastr.error('Preencha os campos corretamente.');
       return;
     }
 
     this.carregando = true;
     this.autenticacaoService.register(this.model).subscribe(next => {
-      this.alertify.success('Registro realizado!');
+      this.toastr.success('Registro realizado!');
       this.router.navigate(['']);
       this.carregando = false;
     }, error => {

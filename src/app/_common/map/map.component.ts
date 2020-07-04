@@ -1,10 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { tileLayer, latLng, circle, polygon, marker, FeatureGroup, featureGroup, DrawEvents, Map } from 'leaflet';
 import * as L from 'leaflet';
-import { from } from 'rxjs';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-declare var GeoRaster: any;
-declare var GeoRasterLayer: any;
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-map',
@@ -66,7 +63,7 @@ export class MapComponent implements OnInit, OnChanges {
 		}
 	};
 
-	constructor(private alertify: AlertifyService) { }
+	constructor(private toastr: ToastrService) { }
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes.geometriasFixas && !changes.geometriasFixas.firstChange) {
 			this.drawnItems.eachLayer(layer => {
@@ -150,7 +147,7 @@ export class MapComponent implements OnInit, OnChanges {
 	public onDrawCreated(e: DrawEvents.Created) {
 		let geojson = (this.drawnItems.toGeoJSON() as GeoJSON.FeatureCollection);
 		if (this.ferramentas.quantidadeGeometrias > 0 && geojson.features.length >= this.ferramentas.quantidadeGeometrias) {
-			this.alertify.error('Quantidade máxima de geometrias atingida!');
+			this.toastr.error('Quantidade máxima de geometrias atingida!');
 			return;
 		}
 		const geo = e.layer.toGeoJSON().geometry;

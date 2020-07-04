@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MonitoramentoService } from 'src/app/_services/monitoramento.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro-monitoramento',
@@ -26,7 +26,7 @@ export class CadastroMonitoramentoComponent implements OnInit {
     marker: true
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private monitoramentoService: MonitoramentoService, private geometriaService: GeometriaService, private router: Router, private alertify: AlertifyService) { }
+  constructor(private activatedRoute: ActivatedRoute, private monitoramentoService: MonitoramentoService, private geometriaService: GeometriaService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.monitoramentoService.listarFazendasMonitoramento().subscribe(response => {
@@ -113,7 +113,7 @@ export class CadastroMonitoramentoComponent implements OnInit {
 
     this.monitoramentoService.salvarMonitoramento(monitoramento)
       .subscribe(response => {
-        this.alertify.success('Monitoramento realizado com sucesso!');
+        this.toastr.success('Monitoramento realizado com sucesso!');
         this.router.navigate(['/painel', 'monitoramento']);
       });
   }

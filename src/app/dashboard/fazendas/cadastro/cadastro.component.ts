@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { StaticService } from 'src/app/_services/static.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,7 +15,7 @@ export class CadastroComponent implements OnInit {
   etapaAtiva = 1;
   etapasCarregadas = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private fazendaService: FazendasService, private staticService: StaticService, private alertify: AlertifyService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private fazendaService: FazendasService, private staticService: StaticService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.carregarFazenda();

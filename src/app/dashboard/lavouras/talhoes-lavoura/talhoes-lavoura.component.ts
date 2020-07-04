@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-talhoes-lavoura',
@@ -25,7 +25,7 @@ export class TalhoesLavouraComponent implements OnInit {
 
   geometrias: GeoJSON.Geometry[];
   geometriasFixas: GeoJSON.Geometry[] = new Array<GeoJSON.Geometry>();
-  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -58,16 +58,16 @@ export class TalhoesLavouraComponent implements OnInit {
 
   avancarEtapa() {
     if(!this.geometrias || this.geometrias.length == 0){
-      this.alertify.error('É necessário inserir ao menos um talhão.')
+      this.toastr.error('É necessário inserir ao menos um talhão.')
       return ;
     }
     const callback = {
       next: (response) => {
-        this.alertify.success('Dados Salvos!');
+        this.toastr.success('Dados Salvos!');
         this.salvar.emit();
       },
       error: (error) => {
-        this.alertify.error(error.error);
+        this.toastr.error(error.error);
       }
     }
 

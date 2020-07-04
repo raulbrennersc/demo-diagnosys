@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-demarcacao-fazenda',
@@ -24,7 +24,7 @@ export class DemarcacaoFazendaComponent implements OnInit {
   };
 
   geometria: GeoJSON.Geometry;
-  constructor(private fazendaService: FazendasService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
+  constructor(private fazendaService: FazendasService, private geometriaService: GeometriaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -52,16 +52,16 @@ export class DemarcacaoFazendaComponent implements OnInit {
 
   avancarEtapa() {
     if(!this.geometria){
-      this.alertify.error('Insira o desenho da fazenda para continuar.')
+      this.toastr.error('Insira o desenho da fazenda para continuar.')
       return;
     }
     const callback = {
       next: (response) => {
-        this.alertify.success('Dados salvos!');
+        this.toastr.success('Dados salvos!');
         this.salvar.emit();
       },
       error: (error) => {
-        this.alertify.error(error.error);
+        this.toastr.error(error.error);
       }
     }
 

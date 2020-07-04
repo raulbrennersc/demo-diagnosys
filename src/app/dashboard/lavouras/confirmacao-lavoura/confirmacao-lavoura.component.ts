@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-confirmacao-lavoura',
@@ -15,7 +15,7 @@ export class ConfirmacaoLavouraComponent implements OnInit {
 
   etapaCarregada = false;
 
-  constructor(private lavouraService: LavouraService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
+  constructor(private lavouraService: LavouraService, private geometriaService: GeometriaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.carregarEtapa();
@@ -42,7 +42,7 @@ export class ConfirmacaoLavouraComponent implements OnInit {
     }
     this.lavouraService.concluirLavoura(this.lavoura.id)
       .subscribe(response => {
-        this.alertify.success('Cadastro de lavoura concluído!');
+        this.toastr.success('Cadastro de lavoura concluído!');
         this.confirmar.emit(false);
       })
   }

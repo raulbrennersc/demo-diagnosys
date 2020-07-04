@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
@@ -9,8 +10,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 
 import { AppComponent } from './app.component';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -26,6 +27,8 @@ export function tokenGetter() {
     HttpClientModule,
     LeafletModule,
     LeafletDrawModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -37,7 +40,7 @@ export function tokenGetter() {
     NgbModule,
   ],
   providers: [
-    AlertifyService
+    
   ],
   bootstrap: [AppComponent]
 })

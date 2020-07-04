@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LavouraService } from 'src/app/_services/lavoura.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
 import { GeometriaService } from 'src/app/_services/geometria.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-demarcacao-lavoura',
@@ -26,7 +26,7 @@ export class DemarcacaoLavouraComponent implements OnInit {
 
   geometria: GeoJSON.Geometry;
   geometriaFazenda: GeoJSON.Geometry;
-  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService, private alertify: AlertifyService) { }
+  constructor(private lavouraService: LavouraService, private fazendaService: FazendasService, private geometriaService: GeometriaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.consultarGeometria();
@@ -56,16 +56,16 @@ export class DemarcacaoLavouraComponent implements OnInit {
 
   avancarEtapa() {
     if (!this.geometria) {
-      this.alertify.error('Insira o desenho da lavoura para continuar.');
+      this.toastr.error('Insira o desenho da lavoura para continuar.');
       return;
     }
     const callback = {
       next: (response) => {
-        this.alertify.success('Dados salvos!');
+        this.toastr.success('Dados salvos!');
         this.salvar.emit();
       },
       error: (error) => {
-        this.alertify.error(error.error);
+        this.toastr.error(error.error);
       }
     }
 

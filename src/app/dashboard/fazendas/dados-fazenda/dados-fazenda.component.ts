@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StaticService } from 'src/app/_services/static.service';
 import { FazendasService } from 'src/app/_services/fazenda.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,7 @@ export class DadosFazendaComponent implements OnInit {
   editando = false;
   formSubmited = false;
 
-  constructor(private staticService: StaticService, private fazendaService: FazendasService, private alertify: AlertifyService) { }
+  constructor(private staticService: StaticService, private fazendaService: FazendasService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.staticService.listarCulturas()
@@ -36,12 +36,12 @@ export class DadosFazendaComponent implements OnInit {
   avancarEtapa(form: NgForm) {
     if(form.invalid){
       this.formSubmited = true;
-      this.alertify.error('Preencha os campos corretamente.');
+      this.toastr.error('Preencha os campos corretamente.');
       return;
     }
     const callback = {
       next: (response) => {
-        this.alertify.success('Dados salvos!');
+        this.toastr.success('Dados salvos!');
         this.salvar.emit();
       }
     }
