@@ -92,8 +92,8 @@ export class CadastroMonitoramentoComponent implements OnInit {
       id: this.idProblema,
       ponto: geo,
       nome: 'Ponto ' + this.idProblema,
-      descricao: 'descricao' + this.idProblema,
-      recomendacao: 'recomendacao' + this.idProblema,
+      descricao: 'Digite aqui...',
+      recomendacao: 'Digite aqui...',
     }
     this.idProblema++;
     this.problemas.push(problema);
