@@ -21,25 +21,25 @@
 				</select>
 			</div>
 			<div class="row form-group">
-				<label class="col-3" for="localizacao.nomeProprietario">Proprietário: * </label>
-				<input maxlength=50 class="form-control col-8" type="text" required name="nomeProprietario"
+				<label class="col-3" for="localizacao.nomeProprietario">Proprietário: </label>
+				<input maxlength=50 class="form-control col-8" type="text" name="nomeProprietario"
 					[(ngModel)]="localizacaoFazenda.proprietario">
 			</div>
 			<div class="row form-group">
-				<label class="col-3" for="localizacao.nomeGerente">Gerente da Fazenda: * </label>
-				<input maxlength=50 class="form-control col-8" type="text" required name="nomeGerente"
+				<label class="col-3" for="localizacao.nomeGerente">Gerente da Fazenda: </label>
+				<input maxlength=50 class="form-control col-8" type="text" name="nomeGerente"
 					[(ngModel)]="localizacaoFazenda.gerente">
 			</div>
 			<div class="row form-group">
-				<label class="col-3" for="localizacao.emailFazenda">E-mail da Fazenda: * </label>
+				<label class="col-3" for="localizacao.emailFazenda">E-mail da Fazenda: </label>
 				<input maxlength=50 class="form-control col-3" type="email" email required name="emailFazenda"
 					[(ngModel)]="localizacaoFazenda.email">
-				<label class="col-3" for="localizacao.telefoneFazenda">Telefone da Fazenda: * </label>
+				<label class="col-3" for="localizacao.telefoneFazenda">Telefone da Fazenda: </label>
 				<input class="form-control col-2" type="text" required name="telefoneFazenda"
 					[(ngModel)]="localizacaoFazenda.telefone" mask="(00) 000000009">
 			</div>
 			<div class="row form-group">
-				<label class="col-3" for="localizacao.pontoReferencia">Ponto de Referência: * </label>
+				<label class="col-3" for="localizacao.pontoReferencia">Ponto de Referência: </label>
 				<textarea maxlength=150 class="form-control col-8" type="text" required name="pontoReferencia"
 					[(ngModel)]="localizacaoFazenda.pontoReferencia"></textarea>
 			</div>
