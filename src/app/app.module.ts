@@ -11,7 +11,9 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -28,6 +30,8 @@ export function tokenGetter() {
     LeafletModule,
     LeafletDrawModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({

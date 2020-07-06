@@ -6,10 +6,11 @@ import { NgxMaskModule } from 'ngx-mask'
 import { AutenticacaoRoutingModule } from './autenticacao-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { ModalTermoComponent } from './modal-termo/modal-termo.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistroComponent],
+  declarations: [LoginComponent, RegistroComponent, ModalTermoComponent],
   imports: [
     CommonModule,
     AutenticacaoRoutingModule,

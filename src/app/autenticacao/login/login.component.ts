@@ -32,9 +32,21 @@ export class LoginComponent implements OnInit {
     }
     this.carregando = true;
     this.autenticacaoService.login(this.model).subscribe(response => {
-      this.toastr.success('Login realizado!');
-      this.router.navigate(['/painel']);
-      this.carregando = false;
+      if(response){
+        response.subscribe(data => {
+          if(data.success){
+            this.autenticacaoService.login(this.model).subscribe(data => {
+              this.toastr.success('Login realizado!');
+              this.router.navigate(['/painel']);
+              this.carregando = false;
+            });
+          }
+        })
+      }else{
+        this.toastr.success('Login realizado!');
+        this.router.navigate(['/painel']);
+        this.carregando = false;
+      }
     }, error => {
       this.carregando = false;
       this.toastr.error(error.error);
